@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NDIS providers: find out exactly why families aren't finding you online. Free, honest website review. No calls, no jargon. VitalScale Digital, Melbourne." />
+  <title>VitalScale Digital — Online Presence for NDIS Providers</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="shortcut icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+/* ═══════════════════════════════════════
+   HERO (two-column)
+═══════════════════════════════════════ */
+.hero {
+  background: var(--ink);
+  padding: 56px 0 52px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(75,124,87,0.13) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+.hero-accent {
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(75,124,87,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+.hero-left { min-width: 0; }
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(75,124,87,0.18);
+  border: 1px solid rgba(75,124,87,0.35);
+  color: #a8d4b0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.hero h1 em { font-style: italic; color: #7fba8a; }
+.hero-sub {
+  font-size: 0.93rem;
+  color: rgba(255,255,255,0.58);
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 460px;
+  margin-bottom: 28px;
+}
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.hero-micro {
+  font-size: 11px;
+  color: rgba(255,255,255,0.32);
+}
+.hero-trust-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.hero-trust-bar .trust-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
+}
+.hero-trust-bar .trust-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #7fba8a;
+  flex-shrink: 0;
+  display: inline-block !important;
+}
+
+/* ─── HERO RIGHT CARD ─── */
+.hero-right-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  min-width: 0;
+}
+.hrc-header {
+  background: var(--green);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hrc-header-title {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.hrc-badge {
+  background: rgba(255,255,255,0.2);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 3px;
+}
+.hrc-body { padding: 10px 16px; }
+.hrc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.hrc-item:last-child { border-bottom: none; }
+.hrc-icon {
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  background: rgba(75,124,87,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.hrc-icon svg {
+  width: 13px !important; height: 13px !important;
+  max-width: 13px !important; max-height: 13px !important;
+  display: inline-block !important;
+  stroke: #7fba8a;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hrc-text strong {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 1px;
+}
+.hrc-text span {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.42);
+  line-height: 1.5;
+}
+.hrc-footer {
+  background: rgba(255,255,255,0.03);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hrc-footer-note { font-size: 11px; color: rgba(255,255,255,0.35); }
+.hrc-footer-cta {
+  font-size: 11px;
+  font-weight: 700;
+  color: #7fba8a;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+}
+.hrc-footer-cta svg {
+  width: 12px !important; height: 12px !important;
+  max-width: 12px !important;
+  display: inline-block !important;
+}
+.hrc-footer-cta:hover { color: #96cba0; }
+
+/* ═══════════════════════════════════════
+   PROBLEM SECTION
+═══════════════════════════════════════ */
+.problem-section { background: var(--white); padding: 48px 0; }
+.problem-intro { max-width: 600px; margin-bottom: 20px; }
+.problem-intro h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.problem-intro h2 em { font-style: italic; color: var(--green); }
+.problem-intro p { font-size: 0.9rem; color: var(--gray); line-height: 1.75; }
+.problem-list {
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  max-width: 680px;
+}
+.problem-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.6;
+  transition: background 0.15s;
+}
+.problem-list li:last-child { border-bottom: none; }
+.problem-list li:hover { background: var(--green-pale); }
+.problem-x {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #c0392b;
+  margin-top: 4px;
+  min-width: 14px;
+}
+
+/* ═══════════════════════════════════════
+   WHAT WE FIX
+═══════════════════════════════════════ */
+.fix-section { background: var(--green-pale); padding: 48px 0; }
+.fix-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 8px;
+  max-width: 560px;
+}
+.fix-section h2 em { font-style: italic; color: var(--green); }
+.fix-section .section-lead { font-size: 0.9rem; color: var(--gray); line-height: 1.75; max-width: 520px; margin-bottom: 20px; }
+.fix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  min-width: 0;
+}
+.fix-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  min-width: 0;
+}
+.fix-icon {
+  width: 40px; height: 40px;
+  background: var(--green-light);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.fix-icon svg {
+  width: 18px !important; height: 18px !important;
+  max-width: 18px !important;
+  display: inline-block !important;
+  stroke: var(--green);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fix-card h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; line-height: 1.25; }
+.fix-card p  { font-size: 0.88rem; color: var(--gray); line-height: 1.7; }
+
+/* ═══════════════════════════════════════
+   PROCESS SECTION
+═══════════════════════════════════════ */
+.process-section { background: var(--ink); padding: 48px 0; }
+.process-section .eyebrow { color: rgba(231,246,237,0.55); }
+.process-section .eyebrow::before { background: rgba(231,246,237,0.35); }
+.process-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  margin-bottom: 32px;
+}
+.process-section h2 em { font-style: italic; color: #7fba8a; }
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+}
+.step { background: rgba(255,255,255,0.03); padding: 24px 22px; transition: background 0.2s; min-width: 0; }
+.step:hover { background: rgba(75,124,87,0.1); }
+.step-num {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: rgba(127,186,138,0.25);
+  line-height: 1;
+  margin-bottom: 10px;
+  -webkit-text-stroke: 1px rgba(127,186,138,0.4);
+}
+.step h4 { font-family: var(--font-display); font-size: 0.97rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.step p  { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+/* ═══════════════════════════════════════
+   TRUST SECTION
+═══════════════════════════════════════ */
+.trust-section { background: var(--white); padding: 48px 0; }
+.trust-card {
+  background: var(--green-pale);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 28px 32px;
+  max-width: 680px;
+}
+.trust-card blockquote { font-size: 0.95rem; color: var(--gray-dark); line-height: 1.85; margin-bottom: 20px; }
+.trust-card blockquote strong { color: var(--ink); }
+.trust-sig { display: flex; align-items: center; gap: 14px; padding-top: 24px; border-top: 1px solid var(--border); }
+.trust-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--green-light);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--green);
+  flex-shrink: 0;
+}
+.trust-sig-text strong { display: block; font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+.trust-sig-text span   { font-size: 0.8rem; color: var(--gray); }
+
+/* ═══════════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════════ */
+.final-cta {
+  background: var(--ink);
+  padding: 56px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(75,124,87,0.12) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+.final-cta-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
+.final-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.final-cta h2 em { font-style: italic; color: #7fba8a; }
+.final-cta p { font-size: 0.9rem; color: rgba(255,255,255,0.52); line-height: 1.7; margin-bottom: 36px; }
+.final-cta .btn--white { font-size: 15px; padding: 15px 36px; }
+.final-urgency { font-size: 11px; color: rgba(255,255,255,0.28); margin-top: 16px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+/* ═══════════════════════════════════════
+   CONTACT FORM SECTION
+═══════════════════════════════════════ */
+.contact-section { background: var(--green-pale); padding: 56px 0; }
+.contact-section .eyebrow { margin-bottom: 8px; }
+.contact-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.contact-section h2 em { font-style: italic; color: var(--green); }
+.contact-section .section-desc { font-size: 0.88rem; color: var(--gray); margin-bottom: 32px; max-width: 480px; }
+.contact-form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px;
+  max-width: 560px;
+  box-shadow: 0 4px 24px rgba(15,18,16,0.07);
+}
+.cf-group { margin-bottom: 16px; }
+.cf-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+.cf-group input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--ink);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.2s;
+  line-height: 1.5;
+  -webkit-appearance: none;
+}
+.cf-group input:focus { border-color: var(--green); }
+.cf-group input::placeholder { color: #aab8b0; }
+.cf-error { display: none; font-size: 0.78rem; color: #c0392b; margin-bottom: 10px; }
+.cf-submit {
+  width: 100%;
+  background: var(--green);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 13px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 4px;
+  letter-spacing: -0.01em;
+}
+.cf-submit:hover { background: var(--green-dark); transform: translateY(-1px); }
+.cf-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.cf-note { font-size: 0.73rem; color: var(--gray); text-align: center; margin-top: 10px; }
+.cf-success { display: none; text-align: center; padding: 16px 0; }
+.cf-success-icon {
+  width: 52px; height: 52px;
+  background: var(--green-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+.cf-success-icon svg {
+  width: 22px !important; height: 22px !important;
+  max-width: 22px !important;
+  display: inline-block !important;
+  stroke: var(--green);
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cf-success h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.cf-success p  { font-size: 0.85rem; color: var(--gray); line-height: 1.65; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .footer-main { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-right-card { display: none; }
+}
+
+@media (max-width: 860px) {
+  .fix-grid { grid-template-columns: 1fr 1fr; }
+  .steps-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-right .btn,
+  .nav-right .nav-cta,
+  #navbar .nav-cta,
+  #navbar a.btn--primary { display: none !important; }
+  .nav-logo-text { font-size: 15px; white-space: nowrap; }
+  .nav-logo-icon { width: 26px !important; height: 26px !important; min-width: 26px !important; max-width: 26px !important; border-radius: 6px; }
+  .nav-logo-icon svg { width: 14px !important; height: 14px !important; min-width: 14px !important; max-width: 14px !important; min-height: 14px !important; max-height: 14px !important; }
+  .footer-main { grid-template-columns: 1fr; gap: 32px; }
+  .footer-brand { grid-column: auto; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-legal { justify-content: center; }
+}
+
+@media (max-width: 600px) {
+  .contact-form-card { padding: 20px 16px; }
+  .steps-row { grid-template-columns: 1fr; }
+  .fix-grid { grid-template-columns: 1fr; }
+  .trust-card { padding: 20px; }
+}
+
+@media (max-width: 560px) {
+  .hero-cta-group { width: 100%; }
+  .hero-cta-group .btn { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .btn--lg { font-size: 14px; padding: 13px 24px; }
+  .nav-logo-text { font-size: 14px; }
+  .blog-grid,
+  #blog-preview-grid,
+  .related-grid { grid-template-columns: 1fr !important; }
+}
+
+  </style>
+</head>
+<body class="page-offset">
+
+<!-- NAV -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-wrap">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4b7c57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 20V10M12 20V4M6 20v-6"/>
+            </svg>
+          </div>
+          <span class="nav-logo-text">Vital<span>Scale</span> Digital</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="blog.html">Insights</a></li>
+          <li><a href="#contact-form">Contact</a></li>
+        </ul>
+        <div class="nav-right" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <a href="contact.html" class="btn btn--primary btn--sm nav-cta">
+            Get Free Website Check
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="blog.html">Insights</a>
+    <a href="#contact-form">Contact</a>
+    <a href="contact.html" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Get Free Audit</a>
+  </div>
+
+
+  <section class="hero">
+    <div class="hero-accent"></div>
+    <div class="container">
+      <div class="hero-grid fade-in visible">
+
+        <!-- LEFT: headline + CTA -->
+        <div class="hero-left">
+          <div class="hero-pill">Free · NDIS Providers in Australia</div>
+
+          <h1>Why isn't your NDIS website<br><em>getting enquiries?</em></h1>
+
+          <p class="hero-sub">
+            Send me your website. I'll tell you exactly what's wrong — and what to fix first.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#contact-form" class="btn btn--primary btn--lg">
+              Get My Free Audit
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span class="hero-micro">Takes less than 2 minutes &nbsp;·&nbsp; No calls. No pressure.</span>
+          </div>
+
+          <div class="hero-trust-bar">
+            <div class="trust-item"><div class="trust-dot"></div> NDIS sector only</div>
+            <div class="trust-item"><div class="trust-dot"></div> Melbourne based</div>
+            <div class="trust-item"><div class="trust-dot"></div> Healthcare background</div>
+            <div class="trust-item"><div class="trust-dot"></div> No lock-in contracts</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: what the audit covers -->
+        <div class="hero-right-card">
+          <div class="hrc-header">
+            <span class="hrc-header-title">What you'll receive</span>
+            <span class="hrc-badge">100% Free</span>
+          </div>
+          <div class="hrc-body">
+            <div class="hrc-item">
+              <div class="hrc-icon">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              </div>
+              <div class="hrc-text">
+                <strong>Google search visibility</strong>
+                <span>Do families find you when they search your suburb?</span>
+              </div>
+            </div>
+            <div class="hrc-item">
+              <div class="hrc-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="hrc-text">
+                <strong>Google Business Profile</strong>
+                <span>What's missing and what's hurting your ranking</span>
+              </div>
+            </div>
+            <div class="hrc-item">
+              <div class="hrc-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <div class="hrc-text">
+                <strong>Website clarity check</strong>
+                <span>Is your site converting visitors or losing them?</span>
+              </div>
+            </div>
+            <div class="hrc-item">
+              <div class="hrc-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <div class="hrc-text">
+                <strong>Reviews snapshot</strong>
+                <span>How you look vs competitors to a searching family</span>
+              </div>
+            </div>
+            <div class="hrc-item">
+              <div class="hrc-icon">
+                <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+              <div class="hrc-text">
+                <strong>3 priority actions</strong>
+                <span>Specific, ordered — the highest-impact fixes first</span>
+              </div>
+            </div>
+          </div>
+          <div class="hrc-footer">
+            <span class="hrc-footer-note">Sent to your inbox · No call needed</span>
+            <a href="#contact-form" class="hrc-footer-cta">
+              Get mine
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       PROBLEM
+  ═══════════════════════════════════════ -->
+  <section class="problem-section">
+    <div class="container">
+      <div class="problem-intro fade-in">
+        <div class="eyebrow">Sound familiar?</div>
+        <h2>Most NDIS providers are losing enquiries<br><em>for the same reasons.</em></h2>
+      </div>
+
+      <ul class="problem-list fade-in">
+        <li>
+          <span class="problem-x">✕</span>
+          <span><strong>Families can't find you on Google.</strong> You're not appearing when someone searches "NDIS provider [your suburb]" — that enquiry goes to a competitor.</span>
+        </li>
+        <li>
+          <span class="problem-x">✕</span>
+          <span><strong>Your website doesn't explain what you do.</strong> Visitors leave in seconds because they can't quickly understand your services or how to contact you.</span>
+        </li>
+        <li>
+          <span class="problem-x">✕</span>
+          <span><strong>Almost no reviews.</strong> Two reviews next to a competitor with forty looks unproven — even when your care is better.</span>
+        </li>
+        <li>
+          <span class="problem-x">✕</span>
+          <span><strong>Incomplete Google Business profile.</strong> Missing hours, no photos, outdated info. Google buries incomplete profiles. Families skip them.</span>
+        </li>
+        <li>
+          <span class="problem-x">✕</span>
+          <span><strong>Referrals are your only pipeline.</strong> Word of mouth works — until it slows. One quiet month becomes a cash flow problem.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       WHAT WE FIX
+  ═══════════════════════════════════════ -->
+  <section class="fix-section">
+    <div class="container">
+      <div class="fade-in" style="margin-bottom:0;">
+        <div class="eyebrow">What we actually do</div>
+        <h2>We fix the gaps that are <em>costing you enquiries.</em></h2>
+        <p class="section-lead">No bloated retainers. No vague strategy decks. We find the specific things stopping families from reaching you — and we fix them.</p>
+      </div>
+
+      <div class="fix-grid">
+        <div class="fix-card fade-in">
+          <div class="fix-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </div>
+          <h4>Google visibility</h4>
+          <p>We get you appearing when families search for NDIS support in your area — not buried on page two.</p>
+        </div>
+
+        <div class="fix-card fade-in">
+          <div class="fix-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h4>Website clarity</h4>
+          <p>We make sure visitors understand what you offer in the first few seconds — and know exactly how to reach you.</p>
+        </div>
+
+        <div class="fix-card fade-in">
+          <div class="fix-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <h4>Reviews & reputation</h4>
+          <p>We help you build a genuine review presence so families see proof of your quality before they even call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       WHAT HAPPENS AFTER YOU SUBMIT
+  ═══════════════════════════════════════ -->
+  <section class="process-section">
+    <div class="container">
+      <div class="eyebrow fade-in">What happens next</div>
+      <h2 class="fade-in">What happens after<br><em>you submit.</em></h2>
+
+      <div class="steps-row">
+        <div class="step fade-in">
+          <div class="step-num">01</div>
+          <h4>I personally review your site</h4>
+          <p>Not a bot. Not a junior. I look at your Google presence, local rankings, reviews, and website myself.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">02</div>
+          <h4>You get 2–3 clear improvements</h4>
+          <p>Specific, plain language, in order of impact. Sent to your inbox within 2 business days. No jargon.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">03</div>
+          <h4>You decide what happens next</h4>
+          <p>No sales call. No pressure. Take the feedback and act on it yourself — or ask me to help. Entirely up to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       TRUST
+  ═══════════════════════════════════════ -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="eyebrow fade-in">A real person. Not an agency.</div>
+      <div class="trust-card fade-in">
+        <blockquote>
+          Before VitalScale, I worked as a <strong>Registered Nurse</strong> in community care. I know how NDIS providers operate — and I know what families look for before they pick up the phone.<br><br>
+          Most agencies don't. They treat NDIS like any other niche. I don't.<br><br>
+          <strong>If your site is already in good shape, I'll tell you that.</strong> You won't hear a pitch. Just honest feedback you can actually use.
+        </blockquote>
+        <div class="trust-sig">
+          <div class="trust-avatar">A</div>
+          <div class="trust-sig-text">
+            <strong>Ajay Singh</strong>
+            <span>Director, VitalScale Digital · Registered Nurse · Melbourne</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       FINAL CTA
+  ═══════════════════════════════════════ -->
+  <section class="final-cta">
+    <div class="final-cta-inner fade-in">
+      <h2>More families could be<br>contacting you <em>this week.</em></h2>
+      <p>Find out exactly what's stopping them. Free, honest, no pressure.</p>
+      <a href="#contact-form" class="btn btn--white btn--lg">
+        Get My Free Audit
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="final-urgency">Takes less than 2 minutes &nbsp;·&nbsp; Limited spots each week</div>
+    </div>
+  </section>
+
+
+
+  <!-- CONTACT FORM -->
+  <section class="contact-section" id="contact-form">
+    <div class="container">
+      <div class="eyebrow">Get your free audit</div>
+      <h2>Takes less than 2 minutes.<br><em>Could change a lot.</em></h2>
+      <p class="section-desc">No calls. No pressure. Just honest feedback in your inbox within 2 business days.</p>
+
+      <div class="contact-form-card">
+        <form id="cf-form" novalidate>
+          <input type="hidden" name="access_key" value="ecb7a169-e6b4-4da0-af56-6a4f6334a8e7">
+          <input type="hidden" name="subject" value="Website Audit Request — VitalScale Digital">
+          <input type="hidden" name="from_name" value="VitalScale Digital Website">
+          <input type="checkbox" name="botcheck" style="display:none">
+          <div class="cf-group">
+            <label for="cf-name">Your name</label>
+            <input type="text" id="cf-name" name="name" placeholder="Jane Smith" autocomplete="name">
+          </div>
+          <div class="cf-group">
+            <label for="cf-email">Email address</label>
+            <input type="email" id="cf-email" name="email" placeholder="jane@yourorganisation.com.au" autocomplete="email">
+          </div>
+          <div class="cf-group">
+            <label for="cf-website">Your website address</label>
+            <input type="text" id="cf-website" name="website" placeholder="yourwebsite.com.au" autocomplete="off" autocorrect="off" autocapitalize="none">
+          </div>
+          <div class="cf-error" id="cf-error"></div>
+          <button type="submit" class="cf-submit" id="cf-btn">Get My Free Audit →</button>
+          <p class="cf-note">No calls. No obligation. Feedback within 2 business days.</p>
+        </form>
+        <div class="cf-success" id="cf-success">
+          <div class="cf-success-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Done. I'll be in touch soon.</h3>
+          <p>I'll review your website personally and send clear feedback within 2 business days. No call, no pressure — just honest information you can act on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-brand-logo">Vital<span>Scale</span> Digital</span>
+          <p class="footer-tagline">We help NDIS providers across Australia build an online presence that generates real enquiries — not just traffic.</p>
+          <p class="footer-abn">VitalScale Digital &nbsp;·&nbsp; ABN: 28 337 767 445 &nbsp;·&nbsp; Melbourne, Australia</p>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="service-visibility.html">Online Visibility & SEO</a></li>
+            <li><a href="service-website.html">Website Design</a></li>
+            <li><a href="service-reputation.html">Reputation & Reviews</a></li>
+            <li><a href="service-content.html">Content & Positioning</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Insights</a></li>
+            <li><a href="#contact-form">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 VitalScale Digital. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    const burger = document.getElementById('hamburger');
+    const mMenu  = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mMenu.classList.toggle('open');
+    });
+    document.addEventListener('click', e => {
+      if (!burger.contains(e.target) && !mMenu.contains(e.target)) {
+        burger.classList.remove('open');
+        mMenu.classList.remove('open');
+      }
+    });
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(el => {
+        if (el.isIntersecting) { el.target.classList.add('visible'); obs.unobserve(el.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    // ── Contact form — Web3Forms ──
+    const cfForm    = document.getElementById('cf-form');
+    const cfSuccess = document.getElementById('cf-success');
+    const cfBtn     = document.getElementById('cf-btn');
+    const cfError   = document.getElementById('cf-error');
+
+    function cfShowError(msg) { cfError.textContent = msg; cfError.style.display = 'block'; }
+    function cfClearError()   { cfError.style.display = 'none'; }
+
+    if (cfForm) {
+      cfForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        cfClearError();
+
+        const name    = document.getElementById('cf-name').value.trim();
+        const email   = document.getElementById('cf-email').value.trim();
+        const website = document.getElementById('cf-website').value.trim();
+
+        if (!name)    { cfShowError('Please enter your name.'); return; }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          cfShowError('Please enter a valid email address.'); return;
+        }
+        if (!website) { cfShowError('Please enter your website address.'); return; }
+
+        cfBtn.disabled = true;
+        cfBtn.textContent = 'Sending…';
+
+        try {
+          const res  = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              access_key: document.querySelector('[name="access_key"]').value,
+              subject:    document.querySelector('[name="subject"]').value,
+              from_name:  document.querySelector('[name="from_name"]').value,
+              name,
+              email,
+              website,
+              botcheck:   ''
+            })
+          });
+          const data = await res.json();
+          if (data.success) {
+            cfForm.style.display = 'none';
+            cfSuccess.style.display = 'block';
+          } else {
+            cfShowError('Something went wrong. Please try again or email us directly.');
+            cfBtn.disabled = false;
+            cfBtn.textContent = 'Get My Free Audit →';
+          }
+        } catch (err) {
+          cfShowError('Could not send. Please check your connection and try again.');
+          cfBtn.disabled = false;
+          cfBtn.textContent = 'Get My Free Audit →';
+        }
+      });
+    }
+
+  </script>
+
+</body>
+</html>

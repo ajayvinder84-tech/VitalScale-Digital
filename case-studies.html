@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Studies — VitalScale Digital</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #4b7c57;
+      --green-dark: #3a6144;
+      --mint: #e7f6ed;
+      --mint-light: #f4fbf6;
+      --border: #d4eadb;
+      --text: #1a1a1a;
+      --muted: #5c6b63;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      background: var(--mint);
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 4px;
+      padding: 7px 7px 7px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon span {
+      display: block;
+      width: 3px;
+      background: var(--green);
+      border-radius: 2px 2px 1px 1px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon .b1 { height: 10px; }
+    .logo-icon .b2 { height: 17px; }
+    .logo-icon .b3 { height: 13px; }
+
+    .logo-text {
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .logo-text .black { color: var(--text); }
+    .logo-text .green { color: var(--green); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a.active { color: var(--green); font-weight: 600; }
+
+    .nav-cta {
+      background: var(--green) !important;
+      color: var(--white) !important;
+      padding: 0.48rem 1rem;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover { background: var(--green-dark) !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem 1.25rem;
+    }
+
+    .mobile-menu a {
+      font-size: 0.93rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      display: block;
+    }
+
+    .mobile-menu .m-cta {
+      margin-top: 0.8rem;
+      background: var(--green);
+      color: var(--white) !important;
+      text-align: center;
+      padding: 0.68rem 1rem;
+      border-radius: 6px;
+      border-bottom: none !important;
+      font-weight: 600 !important;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--mint);
+      padding: 4rem 1.5rem 3.5rem;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(75,124,87,0.1);
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.75rem, 4.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      max-width: 620px;
+      margin: 0 auto 1rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── MAIN ── */
+    .page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 2rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 16px;
+      height: 2px;
+      background: var(--green);
+      border-radius: 2px;
+    }
+
+    /* ── CASE STUDY CARD ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      border-color: var(--green);
+      box-shadow: 0 8px 32px rgba(75,124,87,0.1);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      background: var(--mint);
+      padding: 1.75rem 1.75rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-industry {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(75,124,87,0.1);
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      margin-bottom: 0.9rem;
+    }
+
+    .card-header h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-location {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .card-body {
+      padding: 1.5rem 1.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-summary {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 1.25rem;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .card-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .card-meta-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .card-meta-value {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--green);
+      transition: gap 0.2s;
+    }
+
+    .card-link:hover { gap: 0.65rem; }
+
+    .card-link svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ── COMING SOON CARD ── */
+    .card-placeholder {
+      border: 1.5px dashed var(--border);
+      border-radius: 12px;
+      background: var(--mint-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      min-height: 280px;
+    }
+
+    .placeholder-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--mint);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .placeholder-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--green);
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card-placeholder h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-placeholder p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 220px;
+      line-height: 1.6;
+    }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      margin-top: 4rem;
+      background: var(--green);
+      border-radius: 14px;
+      padding: 2.75rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-strip-text h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .cta-strip-text p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.78);
+    }
+
+    .btn-white {
+      display: inline-block;
+      background: var(--white);
+      color: var(--green);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.8rem 1.75rem;
+      border-radius: 7px;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
+
+    .btn-white:hover {
+      background: var(--mint);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      color: rgba(255,255,255,0.5);
+      padding: 3.5rem 2rem 2rem;
+      font-size: 0.875rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-logo-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(231,246,237,0.15);
+      border-radius: 7px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 3px;
+      padding: 6px 6px 6px;
+      flex-shrink: 0;
+    }
+
+    .footer-logo-icon span {
+      display: block;
+      width: 3px;
+      background: rgba(231,246,237,0.7);
+      border-radius: 2px 2px 1px 1px;
+    }
+
+    .footer-logo-icon .b1 { height: 8px; }
+    .footer-logo-icon .b2 { height: 13px; }
+    .footer-logo-icon .b3 { height: 10px; }
+
+    .footer-logo-text {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .footer-logo-text .green { color: #7fba8a; }
+
+    .footer-brand p {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.42);
+      max-width: 270px;
+    }
+
+    .footer-brand .abn {
+      margin-top: 0.4rem;
+      font-size: 0.77rem;
+      color: rgba(255,255,255,0.28);
+    }
+
+    .footer-col h4 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.9rem;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.45rem; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.48);
+      font-size: 0.84rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: rgba(255,255,255,0.88); }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 2.25rem auto 0;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.77rem;
+      color: rgba(255,255,255,0.28);
+    }
+
+    .footer-bottom a { color: rgba(255,255,255,0.32); }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.65); }
+    .footer-bottom-links { display: flex; gap: 1.25rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1.25rem; }
+      .hero { padding: 2.75rem 1.25rem 2.25rem; }
+      .page-wrap { padding: 2.5rem 1.25rem 4rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .cta-strip { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-brand p { max-width: 100%; }
+    }
+
+    @media (max-width: 420px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: auto; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body class="page-offset">
+
+  <!-- NAV -->
+  <nav id="navbar">
+  <div class="container">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4b7c57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <span class="nav-logo-text">Vital<span>Scale</span> Digital</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="case-studies.html" class="active">Case Studies</a></li>
+        <li><a href="blog.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right" style="display:flex;align-items:center;gap:8px;">
+        <a href="contact.html" class="btn btn--primary btn--sm">Free Online Presence Review</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Insights</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Free Online Presence Review</a>
+</div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Case Studies</div>
+    <h1>Real work. <em>Real results.</em></h1>
+    <p class="hero-sub">A look at how we've helped service-based businesses improve their online presence, build trust, and convert more visitors into enquiries.</p>
+  </section>
+
+  <!-- MAIN -->
+  <main class="page-wrap">
+
+    <div class="section-label">Published Case Studies</div>
+
+    <div class="cards-grid">
+
+      <!-- CARD 1 — Elite IV Infusions -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-industry">Health &amp; Wellness</div>
+          <h2>Elite IV Infusions</h2>
+          <div class="card-location">Kalkallo, Victoria</div>
+        </div>
+        <div class="card-body">
+          <p class="card-summary">A health clinic with an existing website that wasn't building the trust it needed to. We audited the site, fixed usability issues, and restructured the layout so visitors could clearly understand the services and know how to get in touch.</p>
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <span class="card-meta-label">Focus</span>
+              <span class="card-meta-value">Trust &amp; Usability</span>
+            </div>
+            <div class="card-meta-item">
+              <span class="card-meta-label">Duration</span>
+              <span class="card-meta-value">3–5 Days</span>
+            </div>
+          </div>
+          <a href="case-study-elite-iv-infusions.html" class="card-link">
+            Read case study
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER -->
+      <div class="card-placeholder">
+        <div class="placeholder-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        </div>
+        <h3>More coming soon</h3>
+        <p>New case studies are added as we complete work with clients.</p>
+      </div>
+
+    </div>
+
+    <!-- CTA STRIP -->
+    <div class="cta-strip">
+      <div class="cta-strip-text">
+        <h2>Want us to take a look at your website?</h2>
+        <p>We'll review your online presence and tell you exactly what's worth fixing — no cost, no obligation.</p>
+      </div>
+      <a href="contact.html" class="btn-white">Get a Free Review</a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <span class="footer-brand-logo">Vital<span>Scale</span> Digital</span>
+        <p class="footer-tagline">We help NDIS providers across Australia build an online presence that generates real enquiries — not just traffic.</p>
+        <p class="footer-abn">VitalScale Digital &nbsp;·&nbsp; ABN: 28 337 767 445 &nbsp;·&nbsp; Melbourne, Australia</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="service-visibility.html">Online Visibility & SEO</a></li>
+          <li><a href="service-website.html">Website Design</a></li>
+          <li><a href="service-reputation.html">Reputation & Reviews</a></li>
+          <li><a href="service-content.html">Content & Positioning</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="blog.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VitalScale Digital. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script>
+window.addEventListener("scroll", () => { document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 40); });
+const burger = document.getElementById("hamburger"), mMenu = document.getElementById("mobileMenu");
+burger.addEventListener("click", () => { burger.classList.toggle("open"); mMenu.classList.toggle("open"); });
+document.addEventListener("click", e => { if (!burger.contains(e.target) && !mMenu.contains(e.target)) { burger.classList.remove("open"); mMenu.classList.remove("open"); } });
+</script>
+
+</body>
+</html>

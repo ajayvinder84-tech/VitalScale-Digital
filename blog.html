@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Practical digital insights for NDIS providers — online visibility, reputation, website tips, and more from VitalScale Digital.">
+<title>NDIS Digital Insights — VitalScale Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+.blog-featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  transition: all 0.24s var(--ease);
+}
+.blog-featured:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.blog-featured-img {
+  background: var(--green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  position: relative;
+  overflow: hidden;
+}
+.blog-featured-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(75,124,87,0.08) 0%, transparent 60%);
+}
+.blog-featured-body {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.blog-featured-body .blog-cat { margin-bottom: 12px; }
+.blog-featured-body h2 {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.blog-featured-body p { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 24px; flex: 1; }
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.filter-btn {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--gray-dark);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.filter-btn:hover, .filter-btn.active { background: var(--green); color: var(--white); border-color: var(--green); }
+
+.blog-sidebar {
+  position: sticky;
+  top: 88px;
+}
+.sidebar-card {
+  background: var(--green-pale);
+  border: 1px solid rgba(75,124,87,0.15);
+  border-radius: var(--r-lg);
+  padding: 28px;
+}
+.sidebar-card h4 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.sidebar-card p { font-size: 14px; color: var(--gray); line-height: 1.65; margin-bottom: 20px; }
+
+@media (max-width: 1024px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .blog-featured { grid-template-columns: 1fr; }
+  .blog-featured-img { min-height: 220px; }
+}
+@media (max-width: 768px) {
+  .blog-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body class="page-offset">
+
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4b7c57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <span class="nav-logo-text">Vital<span>Scale</span> Digital</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="blog.html" class="active">Insights</a></li><li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right" style="display:flex;align-items:center;gap:8px;">
+        <a href="contact.html" class="btn btn--primary btn--sm">Free Online Presence Review</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Insights</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Free Online Presence Review</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="eyebrow" style="color:var(--green);">NDIS Digital Insights</div>
+      <h1>Practical thinking for <em>NDIS providers</em></h1>
+      <p>No fluff. No generic marketing advice. Just honest, useful content for NDIS providers who want to understand their digital presence and improve it.</p>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <div class="section-pad">
+
+      <!-- Featured Article -->
+      <div class="blog-featured fade-in">
+        <div class="blog-featured-img" style="background:#1a2e1d;overflow:hidden;position:relative;">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80&auto=format&fit=crop" alt="Person searching on a laptop, representing local Google visibility for NDIS providers" style="width:100%;height:100%;object-fit:cover;opacity:0.72;display:block;min-height:320px;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(10,20,12,0.5) 0%,rgba(10,20,12,0.1) 100%);"></div>
+        </div>
+        <div class="blog-featured-body">
+          <div class="badge badge--green" style="margin-bottom:16px;">Featured</div>
+          <div class="blog-cat">Online Visibility</div>
+          <h2>Why NDIS Providers Are Invisible on Google — And How to Fix It</h2>
+          <p>Most NDIS providers don't appear in local searches not because their service isn't good enough, but because of simple, fixable gaps in their Google presence that nobody has ever pointed out to them. This article walks through the five most common issues — and what to actually do about them.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:18px;">
+            <span style="font-size:13px;color:var(--gray);">8 min read &nbsp;·&nbsp; VitalScale Digital</span>
+            <a href="article-google-visibility.html" class="btn btn--primary btn--sm">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter row -->
+      <div class="filter-row fade-in delay-1" style="margin-top:40px;">
+        <button class="filter-btn active">All topics</button>
+        <button class="filter-btn">Online Visibility</button>
+        <button class="filter-btn">Reputation</button>
+        <button class="filter-btn">Website</button>
+        <button class="filter-btn">Coordinators</button>
+        <button class="filter-btn">SEO</button>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid">
+
+        <div class="blog-card fade-in delay-1">
+          <div class="blog-card-img" style="background:#1a2e1d;overflow:hidden;position:relative;min-height:180px;">
+            <img src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=600&q=75&auto=format&fit=crop" alt="Person checking reviews on a smartphone" style="width:100%;height:100%;object-fit:cover;opacity:0.75;display:block;min-height:180px;">
+            <div style="position:absolute;inset:0;background:rgba(10,20,12,0.25);"></div>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Reputation</div>
+            <h3>The Google Review Problem Every NDIS Provider Needs to Know About</h3>
+            <p>A single outdated or unanswered negative review can quietly override years of positive service. Here's how to manage your online reputation deliberately and consistently.</p>
+            <div class="blog-meta">
+              <span>6 min read</span>
+              <a href="article-reviews.html" class="blog-read-more">Read article →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card fade-in delay-2">
+          <div class="blog-card-img" style="background:#1a2e1d;overflow:hidden;position:relative;min-height:180px;">
+            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=75&auto=format&fit=crop" alt="Website design on a laptop screen" style="width:100%;height:100%;object-fit:cover;opacity:0.75;display:block;min-height:180px;">
+            <div style="position:absolute;inset:0;background:rgba(10,20,12,0.25);"></div>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Website</div>
+            <h3>What Makes an NDIS Website Actually Convert — And What Kills It</h3>
+            <p>Most NDIS provider websites look reasonable on the surface but quietly lose enquiries. Here are the elements that make the difference between a visit and a contact.</p>
+            <div class="blog-meta">
+              <span>7 min read</span>
+              <a href="article-website-conversion.html" class="blog-read-more">Read article →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-card fade-in delay-3">
+          <div class="blog-card-img" style="background:#1a2e1d;overflow:hidden;position:relative;min-height:180px;">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=75&auto=format&fit=crop" alt="Two professionals in a meeting discussing referrals and support coordination" style="width:100%;height:100%;object-fit:cover;opacity:0.75;display:block;min-height:180px;">
+            <div style="position:absolute;inset:0;background:rgba(10,20,12,0.25);"></div>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-cat">Coordinators</div>
+            <h3>How Support Coordinators Actually Choose Which Providers to Refer To</h3>
+            <p>Understanding what support coordinators look for — and where they look — is one of the most underutilised growth levers available to NDIS providers.</p>
+            <div class="blog-meta">
+              <span>5 min read</span>
+              <a href="contact.html" class="blog-read-more">Coming soon →</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /blog-grid -->
+
+    </div>
+  </div>
+
+  <!-- CTA Band -->
+  <section class="cta-band" style="margin-top:0;">
+    <div class="cta-band-inner fade-in">
+      <h2>Want to know how your online presence actually <em>stacks up?</em></h2>
+      <p>We'll review your Google profile, website, reviews, and local visibility — and tell you honestly what we find.</p>
+      <a href="contact.html" class="btn btn--white btn--lg">Get a Free Online Presence Review <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <span class="footer-brand-logo">Vital<span>Scale</span> Digital</span>
+        <p class="footer-tagline">We help NDIS providers across Australia build an online presence that generates real enquiries.</p>
+        <p class="footer-abn">VitalScale Digital &nbsp;·&nbsp; ABN: 28 337 767 445 &nbsp;·&nbsp; Melbourne, Australia</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="service-visibility.html">Online Visibility & SEO</a></li><li><a href="service-website.html">Website Design</a></li><li><a href="service-reputation.html">Reputation & Reviews</a></li><li><a href="service-content.html">Content & Positioning</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VitalScale Digital. All rights reserved.</p>
+      <div class="footer-legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40); });
+const burger = document.getElementById('hamburger'), mMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => { burger.classList.toggle('open'); mMenu.classList.toggle('open'); });
+document.addEventListener('click', e => { if (!burger.contains(e.target) && !mMenu.contains(e.target)) { burger.classList.remove('open'); mMenu.classList.remove('open'); } });
+const obs = new IntersectionObserver(entries => { entries.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); obs.unobserve(el.target); } }); }, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Filter buttons (visual only — expand to filter by data-cat attribute for full functionality)
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

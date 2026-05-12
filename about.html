@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VitalScale Digital is a Melbourne-based digital agency focused exclusively on helping NDIS providers across Australia improve their online presence and generate more enquiries.">
+<title>About VitalScale Digital — NDIS Digital Agency Melbourne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* About-specific */
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+  padding: var(--section-py) 0;
+}
+.about-intro-visual {
+  background: var(--green-light);
+  border-radius: var(--r-xl);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.about-intro-visual::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(75,124,87,0.12);
+}
+.about-big-text {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 12vw, 120px);
+  font-weight: 900;
+  color: rgba(75,124,87,0.15);
+  line-height: 1;
+  position: absolute;
+  top: 20px; left: 20px;
+  letter-spacing: -4px;
+}
+.about-intro-visual blockquote {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 600;
+  color: var(--green-dark);
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+  font-style: italic;
+}
+.about-intro-visual cite {
+  display: block;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--green);
+  margin-top: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Values */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.value-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 36px 28px;
+  transition: all 0.22s;
+}
+.value-card:hover { border-color: rgba(75,124,87,0.3); box-shadow: 0 8px 28px rgba(75,124,87,0.07); transform: translateY(-3px); }
+.value-num { font-family: var(--font-display); font-size: 36px; font-weight: 900; color: var(--green-light); line-height: 1; margin-bottom: 14px; }
+.value-card h3 { font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+.value-card p  { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+/* Approach section */
+.approach-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.approach-steps { display: flex; flex-direction: column; gap: 0; }
+.approach-step {
+  display: flex;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.approach-step:last-child { border-bottom: none; }
+.as-num {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--white);
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.as-text h4 { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.as-text p  { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+/* Dark stat band */
+.stat-band {
+  background: var(--ink);
+  padding: 72px 0;
+}
+.stat-row-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.stat-cell {
+  padding: 40px 32px;
+  background: rgba(255,255,255,0.02);
+}
+.stat-cell .val { font-family: var(--font-display); font-size: 48px; font-weight: 900; color: var(--green); line-height: 1; margin-bottom: 8px; }
+.stat-cell h4  { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.stat-cell p   { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+@media (max-width: 1024px) {
+  .about-intro-grid { grid-template-columns: 1fr; gap: 48px; }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+  .approach-grid { grid-template-columns: 1fr; gap: 48px; }
+  .stat-row-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .values-grid { grid-template-columns: 1fr; }
+  .stat-row-grid { grid-template-columns: 1fr; }
+  .about-intro-visual { min-height: 280px; }
+}
+</style>
+</head>
+<body class="page-offset">
+
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4b7c57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <span class="nav-logo-text">Vital<span>Scale</span> Digital</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="blog.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right" style="display:flex;align-items:center;gap:8px;">
+        <a href="contact.html" class="btn btn--primary btn--sm">Free Online Presence Review</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Insights</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Free Online Presence Review</a>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="eyebrow" style="color:var(--green);">About Us</div>
+      <h1>A digital agency built <em>for NDIS providers</em></h1>
+      <p>We work exclusively with NDIS providers because this sector has specific needs, specific audiences, and specific missed opportunities that generic agencies don't understand — or don't care about.</p>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- Intro -->
+  <section class="section-light">
+    <div class="container">
+      <div class="about-intro-grid">
+        <div class="fade-in">
+          <div class="eyebrow">Who we are</div>
+          <h2 class="display-md" style="margin-bottom:18px;">We started with a simple <em>observation</em></h2>
+          <p class="body-lg" style="color:var(--gray);margin-bottom:20px;">Across Australia, NDIS providers are doing genuinely excellent work — and most of them are nearly invisible online. Not because they lack quality or credibility, but because nobody has helped them translate that into a digital presence that families and coordinators can actually find and trust.</p>
+          <p class="body-md" style="color:var(--gray);margin-bottom:20px;">That gap is what VitalScale Digital exists to close. We're a Melbourne-based digital agency focused exclusively on NDIS providers — helping them build an online presence that generates real enquiries, not just website traffic.</p>
+          <p class="body-md" style="color:var(--gray);margin-bottom:32px;">We don't offer a one-size-fits-all package or pretend digital marketing is magic. We do the audit work, we identify what's actually missing, and we fix the specific things costing you enquiries — clearly, honestly, and without inflating the scope of what needs to be done.</p>
+          <a href="contact.html" class="btn btn--primary">Book a Free Online Presence Review <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="about-intro-visual fade-in delay-2">
+          <div class="about-big-text">VS</div>
+          <blockquote>
+            "The providers doing the best work aren't always the ones being found first. That gap is fixable — and it's what we're here for."
+            <cite>VitalScale Digital</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats band -->
+  <section class="stat-band">
+    <div class="container">
+      <div class="stat-row-grid fade-in">
+        <div class="stat-cell">
+          <div class="val">NDIS</div>
+          <h4>Sector only</h4>
+          <p>We work exclusively with NDIS providers. No healthcare clinics, no retail, no e-commerce.</p>
+        </div>
+        <div class="stat-cell">
+          <div class="val">AU</div>
+          <h4>Australia-wide</h4>
+          <p>Based in Melbourne, we serve providers across Victoria and nationally — wherever you operate.</p>
+        </div>
+        <div class="stat-cell">
+          <div class="val">0</div>
+          <h4>Lock-in contracts</h4>
+          <p>We don't lock clients in. We'd rather earn your continued engagement through results.</p>
+        </div>
+        <div class="stat-cell">
+          <div class="val">1</div>
+          <h4>Primary CTA</h4>
+          <p>Everything we do points toward one outcome: more qualified enquiries reaching your business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our values -->
+  <section class="section-pad section-light2">
+    <div class="container">
+      <div style="text-align:center;max-width:580px;margin:0 auto 56px;" class="fade-in">
+        <div class="eyebrow" style="justify-content:center;">What guides us</div>
+        <h2 class="display-md">The principles behind <em>how we work</em></h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-in">
+          <div class="value-num">01</div>
+          <h3>Honesty before everything</h3>
+          <p>If your online presence doesn't have urgent gaps, we'll tell you. If something we do isn't working, we'll say so and adjust. We'd rather give you an honest picture than a flattering one.</p>
+        </div>
+        <div class="value-card fade-in delay-1">
+          <div class="value-num">02</div>
+          <h3>Sector knowledge, not guesswork</h3>
+          <p>We've spent time understanding how NDIS families search, what support coordinators need to see before referring, and how the sector's compliance culture affects how providers can present themselves online.</p>
+        </div>
+        <div class="value-card fade-in delay-2">
+          <div class="value-num">03</div>
+          <h3>Enquiries, not vanity metrics</h3>
+          <p>We don't measure success in impressions or follower counts. We care about whether more qualified people are finding your organisation and making contact. That's the only metric that matters for business growth.</p>
+        </div>
+        <div class="value-card fade-in delay-1">
+          <div class="value-num">04</div>
+          <h3>Simple, not complicated</h3>
+          <p>Digital marketing has a tendency to hide behind jargon and complexity. We explain what we're doing and why in plain language — and we keep the scope of our work clear and bounded.</p>
+        </div>
+        <div class="value-card fade-in delay-2">
+          <div class="value-num">05</div>
+          <h3>Sustainable, not short-term</h3>
+          <p>Quick wins are useful but not enough. We build digital foundations that compound over time — a strong review presence, clear SEO positioning, and content that keeps working after we've stopped actively working on it.</p>
+        </div>
+        <div class="value-card fade-in delay-3">
+          <div class="value-num">06</div>
+          <h3>Direct accountability</h3>
+          <p>You work directly with us — not a junior account manager or an outsourced team. When you have a question, you get a real answer. When something needs to change, it changes quickly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How we approach it -->
+  <section class="section-pad section-pale">
+    <div class="container">
+      <div class="approach-grid">
+        <div class="fade-in">
+          <div class="eyebrow">Our approach</div>
+          <h2 class="display-md" style="margin-bottom:16px;">We start by <em>understanding</em> before we recommend</h2>
+          <p class="lead" style="margin-bottom:0;">Every provider's situation is different. Before we suggest anything, we look at where you actually stand — what's working, what's missing, and what's costing you enquiries. That's the foundation everything else is built on.</p>
+        </div>
+        <div class="approach-steps fade-in delay-1">
+          <div class="approach-step">
+            <div class="as-num">1</div>
+            <div class="as-text">
+              <h4>We research before we meet</h4>
+              <p>When you book a free review, we look at your Google profile, local rankings, review presence, and website before the conversation — so our time together is specific and useful, not generic.</p>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="as-num">2</div>
+            <div class="as-text">
+              <h4>We give you an honest picture</h4>
+              <p>We tell you what we found — the gaps, the quick wins, and the bigger structural issues if any exist. No upselling, no inflated scope, no "you need everything" pitch.</p>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="as-num">3</div>
+            <div class="as-text">
+              <h4>We agree on what to work on first</h4>
+              <p>We prioritise by impact — the things most likely to move enquiry volume first. You know exactly what we're doing and why before we start.</p>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="as-num">4</div>
+            <div class="as-text">
+              <h4>We report in plain language</h4>
+              <p>No dashboard full of metrics you don't care about. We tell you what changed, what it means, and what we're doing next. Clear, brief, and useful.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="cta-band">
+    <div class="cta-band-inner fade-in">
+      <h2>Ready to find out where you <em>actually stand?</em></h2>
+      <p>Book a free online presence review. We'll look at your Google profile, visibility, reviews, and website — and give you an honest picture before we recommend anything.</p>
+      <a href="contact.html" class="btn btn--white btn--lg">Book My Free Online Presence Review <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <p style="margin-top:18px;font-size:13px;color:rgba(255,255,255,0.3);">No cost. No lock-in. Just a clear, honest conversation.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <span class="footer-brand-logo">Vital<span>Scale</span> Digital</span>
+        <p class="footer-tagline">We help NDIS providers across Australia build an online presence that generates real enquiries.</p>
+        <p class="footer-abn">VitalScale Digital &nbsp;·&nbsp; ABN: 28 337 767 445 &nbsp;·&nbsp; Melbourne, Australia</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="service-visibility.html">Online Visibility & SEO</a></li><li><a href="service-website.html">Website Design</a></li><li><a href="service-reputation.html">Reputation & Reviews</a></li><li><a href="service-content.html">Content & Positioning</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VitalScale Digital. All rights reserved.</p>
+      <div class="footer-legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40);});
+const burger=document.getElementById('hamburger'),mMenu=document.getElementById('mobileMenu');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');mMenu.classList.toggle('open');});
+document.addEventListener('click',e=>{if(!burger.contains(e.target)&&!mMenu.contains(e.target)){burger.classList.remove('open');mMenu.classList.remove('open');}});
+const obs=new IntersectionObserver(entries=>{entries.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

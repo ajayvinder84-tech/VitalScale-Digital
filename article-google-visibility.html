@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Most NDIS providers are invisible on Google not because of bad content, but due to fixable gaps. This article explains exactly what to fix and why it matters.">
+<title>Why NDIS Providers Are Invisible on Google — VitalScale Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.article-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 72px;
+  padding: var(--section-py) 0;
+  align-items: start;
+}
+.article-header { margin-bottom: 40px; }
+.article-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.5vw, 48px);
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -1.5px;
+  line-height: 1.07;
+  margin-bottom: 18px;
+}
+.article-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 13px; color: var(--gray); margin-bottom: 32px; }
+.article-meta span { display: flex; align-items: center; gap: 6px; }
+.article-hero-img {
+  width: 100%;
+  aspect-ratio: 16/7;
+  background: var(--green-light);
+  border-radius: var(--r-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 48px;
+  overflow: hidden;
+  position: relative;
+}
+.article-hero-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.article-hero-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(75,124,87,0.06) 0%, transparent 60%);
+}
+
+.article-sidebar { position: sticky; top: 88px; display: flex; flex-direction: column; gap: 24px; }
+.sidebar-widget { background: var(--gray-light); border-radius: var(--r-lg); padding: 24px; }
+.sidebar-widget h5 { font-size: 13px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+.toc-list { display: flex; flex-direction: column; gap: 8px; }
+.toc-list a { font-size: 14px; color: var(--gray-dark); padding: 4px 0; border-left: 2px solid transparent; padding-left: 12px; transition: all 0.18s; display: block; }
+.toc-list a:hover { color: var(--green); border-left-color: var(--green); }
+
+.article-cta-box {
+  background: var(--green);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  color: var(--white);
+}
+.article-cta-box h5 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.3; }
+.article-cta-box p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 18px; }
+
+.related-articles h5 { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 24px; letter-spacing: -0.3px; }
+.related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+@media (max-width: 1024px) {
+  .article-layout { grid-template-columns: 1fr; }
+  .article-sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
+  .sidebar-widget, .article-cta-box { flex: 1; min-width: 260px; }
+  .related-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .article-sidebar { flex-direction: column; }
+}
+</style>
+</head>
+<body class="page-offset">
+
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4b7c57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <span class="nav-logo-text">Vital<span>Scale</span> Digital</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="blog.html" class="active">Insights</a></li><li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right" style="display:flex;align-items:center;gap:8px;">
+        <a href="contact.html" class="btn btn--primary btn--sm">Free Online Presence Review</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Insights</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Free Online Presence Review</a>
+</div>
+
+<main>
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <div style="padding:28px 0 0;">
+      <div class="breadcrumb" style="color:var(--gray);">
+        <a href="index.html" style="color:var(--gray);">Home</a>
+        <span>›</span>
+        <a href="blog.html" style="color:var(--gray);">Insights</a>
+        <span>›</span>
+        <span style="color:var(--gray-dark);">Google Visibility for NDIS Providers</span>
+      </div>
+    </div>
+
+    <div class="article-layout">
+
+      <!-- Article content -->
+      <article>
+        <div class="article-header">
+          <div class="badge badge--green" style="margin-bottom:14px;">Online Visibility</div>
+          <h1>Why NDIS Providers Are Invisible on Google — And How to Fix It</h1>
+          <div class="article-meta">
+            <span>VitalScale Digital</span>
+            <span>·</span>
+            <span>8 min read</span>
+          </div>
+        </div>
+
+        <div class="article-hero-img" style="background:#1a2e1d;overflow:hidden;">
+          <img
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80&auto=format&fit=crop"
+            alt="Person searching on a laptop, representing NDIS providers visibility on Google"
+            style="width:100%;height:100%;object-fit:cover;opacity:0.75;display:block;"
+            loading="eager"
+          >
+          <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(15,18,16,0.45) 0%, transparent 60%);"></div>
+        </div>
+
+        <div class="article-body">
+          <p>When a family or support coordinator searches for NDIS providers in your area, what do they find? Probably not you — even if you've been operating for years and delivering excellent support.</p>
+
+          <p>This isn't unusual. After reviewing dozens of NDIS provider online presences across Australia, the same pattern keeps appearing: providers doing genuinely good work who are nearly invisible in local search, not because they've done anything wrong, but because nobody has ever shown them what's missing.</p>
+
+          <p>Here are the five most common reasons NDIS providers don't show up in Google — and what to do about each one.</p>
+
+          <h2>1. An unclaimed or incomplete Google Business Profile</h2>
+          <p>Your Google Business Profile (GBP) is the single most important piece of digital real estate for a local NDIS provider. It's what shows up in Google Maps, in the local results pack, and on the right-hand side of search results when someone searches your name.</p>
+
+          <p>The problem is that many providers either haven't claimed their listing, or have claimed it but filled it in so minimally that Google doesn't rank it. An incomplete profile — missing hours, services, photos, and a description — tells Google you're not a reliable result to show.</p>
+
+          <blockquote>A fully optimised Google Business Profile typically generates 5–7 times more profile views than an incomplete one, and significantly more direct enquiry actions like calls and website visits.</blockquote>
+
+          <p><strong>What to do:</strong> Claim your GBP if you haven't already (search your business name on Google and look for the "Claim this business" prompt). Fill out every section — business category, description, hours, services, and photos. This alone can move you from invisible to visible within weeks.</p>
+
+          <h2>2. No photos — or only old, low-quality ones</h2>
+          <p>Photos are one of the highest-impact things on a Google profile. Listings with photos receive significantly more clicks and direction requests than those without. For an NDIS provider, photos also provide something even more important than SEO: reassurance.</p>
+
+          <p>Families choosing a disability support provider are making a trust-sensitive decision. A photo of your office, your team, or your day programs shows them that you're real, established, and professional — before they've read a single word about your services.</p>
+
+          <p><strong>What to do:</strong> Add at least 8–10 genuine photos to your Google profile. Include your office or facility, your team (with permission), and examples of programs or activities where appropriate. Aim for clear, well-lit images — they don't need to be professional photography, but they should look considered.</p>
+
+          <h2>3. Few or no Google reviews</h2>
+          <p>Reviews are the first thing most families look at. A provider with no reviews looks unproven, regardless of how long they've been operating. A provider with a 3.2 rating creates concern. A provider with 15+ recent reviews averaging 4.5 stars creates immediate confidence.</p>
+
+          <p>The challenge for NDIS providers is that requesting reviews requires care — you need to consider participant consent, dignity, and privacy when thinking about who and how to approach. But it is absolutely possible to build a genuine review base without compromising these principles.</p>
+
+          <p><strong>What to do:</strong> Start with staff, partner organisations, and support coordinators who've worked with you. Ask them to leave a review based on their professional experience. For participants, only seek reviews where it's clearly appropriate, consensual, and comfortable for the individual — never pressure or incentivise. Build a simple, consistent process for asking rather than doing it ad hoc.</p>
+
+          <h2>4. Your website doesn't match what Google expects</h2>
+          <p>Google uses your website to understand what you do, where you operate, and whether you're a legitimate, established provider. If your website is missing suburb-specific content, doesn't load quickly on mobile, or doesn't clearly state the services you provide, you'll rank lower than providers whose websites do these things well.</p>
+
+          <p><strong>What to do:</strong> Make sure your website clearly lists every service you offer, the suburbs and regions you cover, and your contact details (particularly your address if you have a physical location). Ensure your site loads quickly on mobile — over 60% of searches for disability services happen on phones. Add schema markup if you're technically inclined, or work with someone who can.</p>
+
+          <h2>5. No consistent content or activity</h2>
+          <p>Google rewards businesses that stay active. Posting updates to your Google profile, publishing occasional articles or news, and maintaining fresh content signals to Google that you're an active, relevant business worth showing.</p>
+
+          <p>For NDIS providers, content also serves a dual purpose: it helps families understand your approach, your values, and what it would be like to work with you. A short article about how you support participants with a specific disability type, or an update about a new program you're running, can be both an SEO asset and a trust signal for potential participants and their families.</p>
+
+          <p><strong>What to do:</strong> Post a Google Business update at least once a fortnight — it could be a news update, a program highlight, or a seasonal message. Aim to publish one piece of website content per month. Consistency matters more than volume.</p>
+
+          <h2>The underlying pattern</h2>
+          <p>These five issues share something in common: none of them require significant budget or technical expertise to fix. They require time, attention, and a clear understanding of what Google (and the families using it) actually needs to see.</p>
+
+          <p>The providers who tend to rank well locally aren't necessarily the ones with the biggest organisations or the most sophisticated websites. They're the ones who've been deliberate about their digital presence — and consistent about maintaining it.</p>
+
+          <p>If you're not sure where to stand right now, the best first step is to Google yourself the way a family would. Search "NDIS provider [your suburb]" and see whether you appear — and if you do, look honestly at what shows up. That first impression is what families are seeing.</p>
+        </div>
+
+        <!-- Article CTA -->
+        <div style="background:var(--green-pale);border:1px solid rgba(75,124,87,0.15);border-radius:var(--r-lg);padding:32px;margin-top:48px;">
+          <h3 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:-0.3px;">Not sure how visible you actually are?</h3>
+          <p style="font-size:15px;color:var(--gray);margin-bottom:20px;line-height:1.65;">We offer a free, honest online presence review — specific to your provider, not a generic software scan. You'll know exactly where you stand and what to fix first.</p>
+          <a href="contact.html" class="btn btn--primary">Get a Free Online Presence Review <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <!-- Related -->
+        <div style="margin-top:64px;">
+          <div class="related-articles">
+            <h5>More NDIS Digital Insights</h5>
+            <div class="related-grid">
+              <div class="blog-card">
+                <div class="blog-card-img" style="background:#1a2e1d;overflow:hidden;position:relative;min-height:150px;">
+                  <img src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=500&q=70&auto=format&fit=crop" alt="Smartphone showing reviews" style="width:100%;height:100%;object-fit:cover;opacity:0.72;display:block;min-height:150px;">
+                </div>
+                <div class="blog-card-body"><div class="blog-cat">Reputation</div><h3>The Google Review Problem Every NDIS Provider Needs to Know About</h3><a href="article-reviews.html" class="blog-read-more" style="margin-top:12px;display:inline-flex;">Read article →</a></div>
+              </div>
+              <div class="blog-card">
+                <div class="blog-card-img" style="background:#1a2e1d;overflow:hidden;position:relative;min-height:150px;">
+                  <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=500&q=70&auto=format&fit=crop" alt="Laptop showing website design" style="width:100%;height:100%;object-fit:cover;opacity:0.72;display:block;min-height:150px;">
+                </div>
+                <div class="blog-card-body"><div class="blog-cat">Website</div><h3>What Makes an NDIS Website Actually Convert — And What Kills It</h3><a href="article-website-conversion.html" class="blog-read-more" style="margin-top:12px;display:inline-flex;">Read article →</a></div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="article-sidebar">
+        <div class="sidebar-widget">
+          <h5>In this article</h5>
+          <div class="toc-list">
+            <a href="#">1. Unclaimed Google Business Profile</a>
+            <a href="#">2. No photos or outdated photos</a>
+            <a href="#">3. Few or no reviews</a>
+            <a href="#">4. Website doesn't match expectations</a>
+            <a href="#">5. No consistent activity</a>
+            <a href="#">The underlying pattern</a>
+          </div>
+        </div>
+        <div class="article-cta-box">
+          <h5>Get a free online presence review</h5>
+          <p>We'll check your Google profile, local visibility, reviews, and website — and tell you honestly what we find.</p>
+          <a href="contact.html" class="btn btn--white btn--sm btn--full">Book Free Review</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <span class="footer-brand-logo">Vital<span>Scale</span> Digital</span>
+        <p class="footer-tagline">We help NDIS providers across Australia build an online presence that generates real enquiries.</p>
+        <p class="footer-abn">VitalScale Digital &nbsp;·&nbsp; ABN: 28 337 767 445 &nbsp;·&nbsp; Melbourne, Australia</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="service-visibility.html">Online Visibility & SEO</a></li><li><a href="service-website.html">Website Design</a></li><li><a href="service-reputation.html">Reputation & Reviews</a></li><li><a href="service-content.html">Content & Positioning</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VitalScale Digital. All rights reserved.</p>
+      <div class="footer-legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40); });
+const burger = document.getElementById('hamburger'), mMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => { burger.classList.toggle('open'); mMenu.classList.toggle('open'); });
+document.addEventListener('click', e => { if (!burger.contains(e.target) && !mMenu.contains(e.target)) { burger.classList.remove('open'); mMenu.classList.remove('open'); } });
+const obs = new IntersectionObserver(entries => { entries.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); obs.unobserve(el.target); } }); }, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

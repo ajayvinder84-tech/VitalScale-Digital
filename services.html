@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VitalScale Digital offers online visibility, website design, reputation management, and content positioning services exclusively for NDIS providers across Australia.">
+<title>Services for NDIS Providers — VitalScale Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.services-full-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 56px;
+}
+.service-full-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 44px 40px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.24s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.service-full-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--green);
+  transform: scaleX(0);
+  transition: transform 0.3s var(--ease);
+  transform-origin: left;
+}
+.service-full-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(75,124,87,0.2); }
+.service-full-card:hover::before { transform: scaleX(1); }
+
+.sfc-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; }
+.sfc-header h2 { font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: var(--ink); letter-spacing: -0.4px; line-height: 1.2; }
+.sfc-desc { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 24px; flex: 1; }
+.sfc-includes { margin-bottom: 28px; }
+.sfc-includes h4 { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 14px; }
+
+.faq-section { max-width: 760px; margin: 0 auto; }
+
+@media (max-width: 1024px) { .services-full-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .service-full-card { padding: 32px 24px; } }
+</style>
+</head>
+<body class="page-offset">
+
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4b7c57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <span class="nav-logo-text">Vital<span>Scale</span> Digital</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right" style="display:flex;align-items:center;gap:8px;">
+        <a href="contact.html" class="btn btn--primary btn--sm">Free Online Presence Review</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Insights</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Free Online Presence Review</a>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="eyebrow" style="color:var(--green);">What We Offer</div>
+      <h1>Services built for <em>NDIS providers</em></h1>
+      <p>Every service we offer is designed around one goal: helping NDIS providers get found, get trusted, and get enquiries from the families and coordinators they're best placed to support.</p>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="section-light">
+    <div class="container">
+
+      <div style="max-width:680px;margin:0 auto;text-align:center;padding:48px 0 24px;" class="fade-in">
+        <p class="lead" style="margin:0 auto;">We don't offer a bundled package of everything. We start with an audit, identify what's actually missing, and work on the things that will make the most difference for your specific situation.</p>
+      </div>
+
+      <div class="services-full-grid">
+
+        <!-- 1. Online Visibility & SEO -->
+        <div class="service-full-card fade-in">
+          <div class="sfc-header">
+            <div class="icon-box icon-box--green" style="flex-shrink:0;">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <h2>Online Visibility & Local SEO</h2>
+          </div>
+          <p class="sfc-desc">When a family searches "NDIS provider [suburb]" or a coordinator searches for support services in your area, you need to appear — and you need to look credible when you do. Local SEO for NDIS providers is about making sure the right people can find you at the moment they're looking.</p>
+          <p class="sfc-desc" style="margin-top:-8px;">Many providers have never had anyone look at their Google presence strategically. We fix that — starting with what's most broken and building from there.</p>
+          <div class="sfc-includes">
+            <h4>What's included</h4>
+            <ul class="check-list">
+              <li>Google Business Profile setup, claim, and full optimisation</li>
+              <li>Local search ranking analysis for your suburb and surrounding areas</li>
+              <li>Competitor visibility comparison</li>
+              <li>On-page SEO improvements for your existing website</li>
+              <li>NDIS directory listings review and optimisation</li>
+              <li>Ongoing monitoring and reporting</li>
+            </ul>
+          </div>
+          <a href="service-visibility.html" class="btn btn--primary" style="align-self:flex-start;">Learn more about this service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <!-- 2. Website Design -->
+        <div class="service-full-card fade-in delay-1">
+          <div class="sfc-header">
+            <div class="icon-box icon-box--green" style="flex-shrink:0;">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <h2>NDIS Website Design</h2>
+          </div>
+          <p class="sfc-desc">Your website is the single most important digital asset you have. For NDIS providers, a website needs to do more than look professional — it needs to communicate trust, explain your services clearly to families who are often in a difficult situation, and make it easy to get in touch.</p>
+          <p class="sfc-desc" style="margin-top:-8px;">We design and build websites specifically for NDIS providers: fast, mobile-optimised, accessibility-considered, and built to convert visits into enquiries rather than just traffic.</p>
+          <div class="sfc-includes">
+            <h4>What's included</h4>
+            <ul class="check-list">
+              <li>Custom website design tailored to your brand and audience</li>
+              <li>Mobile-first, responsive build</li>
+              <li>Clear service pages with NDIS-appropriate language</li>
+              <li>Working contact form with email delivery</li>
+              <li>Basic SEO foundations built in from the start</li>
+              <li>Ongoing maintenance and update support</li>
+            </ul>
+          </div>
+          <a href="service-website.html" class="btn btn--primary" style="align-self:flex-start;">Learn more about this service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <!-- 3. Reputation & Reviews -->
+        <div class="service-full-card fade-in delay-2">
+          <div class="sfc-header">
+            <div class="icon-box icon-box--green" style="flex-shrink:0;">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <h2>Reputation & Review Strategy</h2>
+          </div>
+          <p class="sfc-desc">Reviews are the first thing most families and coordinators check before reaching out to a provider. A provider with no reviews looks unproven. A provider with a low rating creates doubt. A provider with a consistent, recent review presence builds immediate confidence.</p>
+          <p class="sfc-desc" style="margin-top:-8px;">We help you build a genuine, consistent review base — in a way that respects participant privacy and dignity, and complies with NDIS practice standards. We also set up monitoring and response processes so your reputation is actively managed, not left to chance.</p>
+          <div class="sfc-includes">
+            <h4>What's included</h4>
+            <ul class="check-list">
+              <li>Review generation strategy and process (ethically guided)</li>
+              <li>Review request templates for staff, partners, and coordinators</li>
+              <li>Google review response framework and tone guide</li>
+              <li>Reputation monitoring setup across key platforms</li>
+              <li>Review profile optimisation across Google, Clickability, and directories</li>
+            </ul>
+          </div>
+          <a href="service-reputation.html" class="btn btn--primary" style="align-self:flex-start;">Learn more about this service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <!-- 4. Content & Positioning -->
+        <div class="service-full-card fade-in delay-3">
+          <div class="sfc-header">
+            <div class="icon-box icon-box--green" style="flex-shrink:0;">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h2>Content & Coordinator Visibility</h2>
+          </div>
+          <p class="sfc-desc">Support coordinators refer participants to providers they know and trust. Building visibility and credibility in the coordinator network — through LinkedIn presence, directory listings, and relevant content — is one of the most effective and underused growth strategies for NDIS providers.</p>
+          <p class="sfc-desc" style="margin-top:-8px;">We also help you communicate your services and values clearly through content that speaks to both families and coordinators — not generic marketing copy, but honest, sector-relevant writing that builds trust over time.</p>
+          <div class="sfc-includes">
+            <h4>What's included</h4>
+            <ul class="check-list">
+              <li>LinkedIn profile and company page optimisation</li>
+              <li>NDIS provider directory presence strategy</li>
+              <li>Content strategy for coordinators and family audiences</li>
+              <li>Website copy refinement for NDIS-specific messaging</li>
+              <li>Ongoing content calendar (articles, updates, posts)</li>
+            </ul>
+          </div>
+          <a href="service-content.html" class="btn btn--primary" style="align-self:flex-start;">Learn more about this service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-pad section-pale">
+    <div class="container">
+      <div style="text-align:center;max-width:560px;margin:0 auto 48px;" class="fade-in">
+        <div class="eyebrow" style="justify-content:center;">Common questions</div>
+        <h2 class="display-sm">Frequently asked questions</h2>
+      </div>
+      <div class="faq-section fade-in delay-1">
+        <div class="faq-item">
+          <div class="faq-question">Do you only work with NDIS providers?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></div></div>
+          <div class="faq-answer"><p>Yes. We focus exclusively on NDIS providers because this sector has specific digital needs, specific audiences (families and support coordinators), and specific compliance considerations that require a different approach to generic digital marketing. We've chosen to go deep on one sector rather than broad across many.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What does the free review actually involve?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></div></div>
+          <div class="faq-answer"><p>Before we speak, we review your Google Business Profile, your local search visibility (compared to nearby providers), your review presence, and your website's clarity and conversion flow. We come to the 30-minute conversation with specific observations — not a generic checklist. You'll get honest, actionable feedback whether or not you engage us.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Do you guarantee specific results like rankings or enquiry numbers?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></div></div>
+          <div class="faq-answer"><p>No, and we'd be cautious of anyone who does. Digital marketing outcomes depend on many factors — competition in your area, search volume, the nature of your services, and third-party platforms we don't control. What we can promise is clear work, transparent reporting, and a genuine focus on the metrics that matter for your business.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Can you help with NDIS compliance in marketing content?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></div></div>
+          <div class="faq-answer"><p>We understand the NDIS sector's requirements around participant privacy, dignity, and ethical marketing. All content we produce is written with these principles in mind. We are not legal advisors, and we recommend providers always review key marketing materials against their own compliance obligations — but we won't produce content that conflicts with NDIS practice standards.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Are your services available outside of Melbourne?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></div></div>
+          <div class="faq-answer"><p>Yes. We're based in Melbourne but work with NDIS providers across Victoria and nationally. All our work is conducted remotely, so your location doesn't affect what we can deliver for you.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Is there a lock-in contract?<div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></div></div>
+          <div class="faq-answer"><p>No. We offer both one-off project engagements and ongoing monthly support — and the terms for each are set out clearly before work begins. We'd rather earn your continued engagement through results than lock you in contractually.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="cta-band-inner fade-in">
+      <h2>Not sure which service you <em>actually need?</em></h2>
+      <p>Start with the free review. We'll look at your current situation and tell you honestly which gaps are worth addressing — and in what order.</p>
+      <a href="contact.html" class="btn btn--white btn--lg">Book My Free Online Presence Review <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <span class="footer-brand-logo">Vital<span>Scale</span> Digital</span>
+        <p class="footer-tagline">We help NDIS providers across Australia build an online presence that generates real enquiries.</p>
+        <p class="footer-abn">VitalScale Digital &nbsp;·&nbsp; ABN: 28 337 767 445 &nbsp;·&nbsp; Melbourne, Australia</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="service-visibility.html">Online Visibility & SEO</a></li><li><a href="service-website.html">Website Design</a></li><li><a href="service-reputation.html">Reputation & Reviews</a></li><li><a href="service-content.html">Content & Positioning</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VitalScale Digital. All rights reserved.</p>
+      <div class="footer-legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40);});
+const burger=document.getElementById('hamburger'),mMenu=document.getElementById('mobileMenu');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');mMenu.classList.toggle('open');});
+document.addEventListener('click',e=>{if(!burger.contains(e.target)&&!mMenu.contains(e.target)){burger.classList.remove('open');mMenu.classList.remove('open');}});
+const obs=new IntersectionObserver(entries=>{entries.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

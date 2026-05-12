@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Get a free online presence review from VitalScale Digital. We help NDIS providers across Australia get found online and generate more enquiries.">
+<title>Contact — VitalScale Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 72px;
+  align-items: start;
+  padding: var(--section-py) 0;
+}
+.contact-info { position: sticky; top: 88px; }
+.contact-info h1 {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.contact-info h1 em { font-style: italic; color: var(--green); }
+.contact-info > p { font-size: 17px; color: var(--gray); font-weight: 300; line-height: 1.72; max-width: 420px; margin-bottom: 40px; }
+
+.contact-detail-list { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+.contact-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.cd-icon {
+  width: 44px; height: 44px;
+  background: var(--green-light);
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cd-icon svg { width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cd-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 3px; }
+.cd-value { font-size: 15px; color: var(--ink); font-weight: 500; }
+.cd-value a { transition: color 0.18s; }
+.cd-value a:hover { color: var(--green); }
+
+.what-you-get {
+  background: var(--green-pale);
+  border: 1px solid rgba(75,124,87,0.15);
+  border-radius: var(--r-lg);
+  padding: 28px;
+}
+.what-you-get h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.2px; }
+
+.form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 48px;
+  box-shadow: var(--shadow-md);
+}
+.form-card-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--ink); letter-spacing: -0.5px; margin-bottom: 6px; }
+.form-card-sub { font-size: 15px; color: var(--gray); margin-bottom: 32px; line-height: 1.6; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.consent-row input[type="checkbox"] {
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+.consent-row span { font-size: 13px; color: var(--gray); line-height: 1.55; }
+.consent-row a { color: var(--green); text-decoration: underline; }
+
+@media (max-width: 1024px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+  .contact-info { position: static; }
+}
+@media (max-width: 768px) {
+  .form-card { padding: 28px 20px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body class="page-offset">
+
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4b7c57" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+        </div>
+        <span class="nav-logo-text">Vital<span>Scale</span> Digital</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="blog.html">Insights</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="nav-right" style="display:flex;align-items:center;gap:8px;">
+        <a href="contact.html" class="btn btn--primary btn--sm nav-cta">Free Online Presence Review</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Insights</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Free Online Presence Review</a>
+</div>
+
+<main>
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- LEFT: Info -->
+      <div class="contact-info fade-in visible">
+        <div class="eyebrow">Get in touch</div>
+        <h1>Let's talk about your <em>online presence</em></h1>
+        <p>Fill in the form and we'll be in touch within one business day. We'll review your online presence before we speak — so the conversation is specific and useful from the start.</p>
+
+        <div class="contact-detail-list">
+          <div class="contact-detail">
+            <div class="cd-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <div class="cd-label">Email</div>
+              <div class="cd-value"><a href="mailto:info@vitalscaledigital.com.au">info@vitalscaledigital.com.au</a></div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <div class="cd-label">Location</div>
+              <div class="cd-value">Melbourne, Victoria, Australia</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div>
+              <div class="cd-label">Response time</div>
+              <div class="cd-value">Within one business day</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="what-you-get">
+          <h4>What you'll get in the free review:</h4>
+          <ul class="check-list">
+            <li>Google profile review — what families see when they search</li>
+            <li>Local visibility check against nearby providers</li>
+            <li>Review and reputation snapshot</li>
+            <li>Website conversion check</li>
+            <li>3 specific priority actions</li>
+          </ul>
+          <p style="font-size:13px;color:var(--gray);margin-top:16px;line-height:1.55;">No cost. No obligation. If there's nothing urgent to improve, we'll tell you that honestly.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="form-card fade-in visible">
+        <div class="form-card-title">Send us a message</div>
+        <div class="form-card-sub">Tell us a bit about your organisation and what you're looking to improve — we'll come prepared.</div>
+
+        <div class="form-error-msg" id="formError">Something went wrong. Please try again or email us directly at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="95fcfbf3fad5e3fce1f4f9e6f6f4f9f0f1fcf2fce1f4f9bbf6faf8bbf4e0">info@vitalscaledigital.com.au</a></div>
+
+        <!--
+        ╔══════════════════════════════════════════════════════════════╗
+        ║   WEB3FORMS SETUP INSTRUCTIONS                               ║
+        ║                                                              ║
+        ║  1. Go to https://web3forms.com                              ║
+        ║  2. Enter: info@vitalscaledigital.com.au               ║
+        ║  3. Click "Create Access Key"                                ║
+        ║  4. Copy the key they provide                                ║
+        ║  5. Paste it in the value="" below                           ║
+        ║     replacing YOUR_WEB3FORMS_ACCESS_KEY_HERE                 ║
+        ║                                                              ║
+        ║  That's it — all form submissions will go to your inbox.     ║
+        ║  The service is free for unlimited submissions.              ║
+        ╚══════════════════════════════════════════════════════════════╝
+        -->
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+
+          <!-- ⚠️ REPLACE THE VALUE BELOW WITH YOUR WEB3FORMS KEY -->
+          <input type="hidden" name="access_key" value="ecb7a169-e6b4-4da0-af56-6a4f6334a8e7">
+
+          <!-- Email subject — customise if needed -->
+          <input type="hidden" name="subject" value="New Enquiry — VitalScale Digital">
+
+          <!-- Redirect to thank you page after submission -->
+          <input type="hidden" name="redirect" value="thankyou.html">
+
+          <!-- Honeypot anti-spam (keep hidden) -->
+          <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First name <span>*</span></label>
+              <input type="text" id="fname" name="first_name" placeholder="Sarah" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="lname">Last name <span>*</span></label>
+              <input type="text" id="lname" name="last_name" placeholder="Thompson" required autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address <span>*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@yourorganisation.com.au" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="org">Organisation name</label>
+            <input type="text" id="org" name="organisation" placeholder="e.g. Sunrise NDIS Services" autocomplete="organization">
+          </div>
+
+          <div class="form-group">
+            <label for="service">What can we help with?</label>
+            <select id="service" name="service_interest">
+              <option value="" disabled selected>Select a topic...</option>
+              <option value="Free Online Presence Review">Free Online Presence Review</option>
+              <option value="Online Visibility & SEO">Online Visibility & SEO</option>
+              <option value="Website Design">Website Design</option>
+              <option value="Reputation & Reviews">Reputation & Reviews</option>
+              <option value="Content & Positioning">Content & Positioning</option>
+              <option value="General Enquiry">General Enquiry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message <span>*</span></label>
+            <textarea id="message" name="message" placeholder="Tell us about your organisation and what you'd like to improve online..." required></textarea>
+          </div>
+
+          <label class="consent-row">
+            <input type="checkbox" name="consent" required>
+            <span>I agree to my information being stored and used to respond to my enquiry in line with the <a href="privacy.html">Privacy Policy</a>.</span>
+          </label>
+
+          <button type="submit" class="btn btn--primary btn--full btn--lg" id="submitBtn">
+            Send Message
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+
+        <div class="form-success-panel" id="formSuccess">
+          <div class="success-circle"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <h4 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:8px;">Message received.</h4>
+          <p style="font-size:15px;color:var(--gray);">We'll review your details and be in touch within one business day.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <span class="footer-brand-logo">Vital<span>Scale</span> Digital</span>
+        <p class="footer-tagline">We help NDIS providers across Australia build an online presence that generates real enquiries.</p>
+        <p class="footer-abn">VitalScale Digital &nbsp;·&nbsp; ABN: 28 337 767 445 &nbsp;·&nbsp; Melbourne, Australia</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="service-visibility.html">Online Visibility & SEO</a></li><li><a href="service-website.html">Website Design</a></li><li><a href="service-reputation.html">Reputation & Reviews</a></li><li><a href="service-content.html">Content & Positioning</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VitalScale Digital. All rights reserved.</p>
+      <div class="footer-legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40); });
+const burger = document.getElementById('hamburger');
+const mMenu  = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => { burger.classList.toggle('open'); mMenu.classList.toggle('open'); });
+document.addEventListener('click', e => { if (!burger.contains(e.target) && !mMenu.contains(e.target)) { burger.classList.remove('open'); mMenu.classList.remove('open'); } });
+
+const obs = new IntersectionObserver(entries => { entries.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); obs.unobserve(el.target); } }); }, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Form handling
+const form      = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const errMsg    = document.getElementById('formError');
+const successPn = document.getElementById('formSuccess');
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  errMsg.classList.remove('show');
+
+  // Basic validation
+  const required = form.querySelectorAll('[required]');
+  let valid = true;
+  required.forEach(field => {
+    if (!field.value.trim() || (field.type === 'checkbox' && !field.checked)) {
+      field.style.borderColor = '#e74c3c';
+      valid = false;
+    } else {
+      field.style.borderColor = '';
+    }
+  });
+  if (!valid) { errMsg.textContent = 'Please fill in all required fields and agree to the privacy policy.'; errMsg.classList.add('show'); return; }
+
+  submitBtn.textContent = 'Sending…';
+  submitBtn.disabled    = true;
+
+  try {
+    const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+    if (res.ok) {
+      form.style.display = 'none';
+      successPn.classList.add('show');
+      // If redirect is set in form, web3forms handles it automatically
+    } else { throw new Error(); }
+  } catch {
+    errMsg.textConte
