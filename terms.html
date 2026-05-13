@@ -136,7 +136,8 @@
         <p>For any questions about these Terms, please contact us at:</p>
         <p>
           <strong>VitalScale Digital</strong><br>
-          Email: <a href="mailto:info@vitalscaledigital.com.au">info@vitalscaledigital.com.au</a><br>
+          Email: <a href="mailto:ajay.singh@vitalscaledigital.com.au">ajay.singh@vitalscaledigital.com.au</a><br>
+          Phone: <a href="tel:+61406970615">0406 970 615</a><br>
           ABN: 28 337 767 445<br>
           Melbourne, Victoria, Australia
         </p>
@@ -147,7 +148,7 @@
           <strong>Effective date</strong><p>1 January 2025</p>
           <strong>Last updated</strong><p>1 January 2025</p>
           <strong>Governed by</strong><p>Laws of Victoria, Australia</p>
-          <strong>Questions?</strong><p><a href="/cdn-cgi/l/email-protection#adc4c3cbc2eddbc4d9ccc1dececcc1c8c9c4cac4d9ccc183cec2c083ccd8" style="color:var(--green);">info@vitalscaledigital.com.au</a></p>
+          <strong>Questions?</strong><p><a href="mailto:ajay.singh@vitalscaledigital.com.au" style="color:var(--green);">ajay.singh@vitalscaledigital.com.au</a><br><a href="tel:+61406970615" style="color:var(--green);">0406 970 615</a></p>
         </div>
       </aside>
     </div>
@@ -163,7 +164,7 @@
         <p class="footer-abn">VitalScale Digital &nbsp;·&nbsp; ABN: 28 337 767 445 &nbsp;·&nbsp; Melbourne, Australia</p>
       </div>
       <div class="footer-col"><h5>Services</h5><ul><li><a href="service-visibility.html">Online Visibility & SEO</a></li><li><a href="service-website.html">Website Design</a></li><li><a href="service-reputation.html">Reputation & Reviews</a></li><li><a href="service-content.html">Content & Positioning</a></li></ul></div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li><li><a href="tel:+61406970615" class="footer-phone-link">0406 970 615</a></li></ul></div>
       <div class="footer-col"><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
     </div>
     <div class="footer-bottom">
@@ -174,4 +175,14 @@
 </footer>
 
 <script>
-window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40)
+window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40); });
+const burger = document.getElementById('hamburger');
+const mMenu  = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => { burger.classList.toggle('open'); mMenu.classList.toggle('open'); });
+document.addEventListener('click', e => { if (!burger.contains(e.target) && !mMenu.contains(e.target)) { burger.classList.remove('open'); mMenu.classList.remove('open'); } });
+</script>
+
+<a class="whatsapp-float" href="https://wa.me/61406970615" target="_blank" rel="noopener" aria-label="Contact VitalScale Digital on WhatsApp">WhatsApp</a>
+
+</body>
+</html>

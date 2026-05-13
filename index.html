@@ -426,6 +426,14 @@
 }
 .contact-section h2 em { font-style: italic; color: var(--green); }
 .contact-section .section-desc { font-size: 0.88rem; color: var(--gray); margin-bottom: 32px; max-width: 480px; }
+.audit-contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 560px) minmax(230px, 320px);
+  gap: 40px;
+  align-items: center;
+  max-width: 940px;
+}
+.audit-contact-grid .contact-form-card { max-width: none; }
 .contact-form-card {
   background: var(--white);
   border: 1px solid var(--border);
@@ -433,6 +441,82 @@
   padding: 32px;
   max-width: 560px;
   box-shadow: 0 4px 24px rgba(15,18,16,0.07);
+}
+.audit-contact-panel { color: var(--gray-dark); }
+.audit-contact-note {
+  border-top: 1px solid rgba(75,124,87,0.18);
+  border-bottom: 1px solid rgba(75,124,87,0.18);
+  padding: 24px 0;
+}
+.audit-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.audit-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--green-light);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--green);
+  flex-shrink: 0;
+}
+.audit-profile-text strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.audit-profile-text span {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--gray);
+  line-height: 1.5;
+}
+.audit-panel-copy {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--gray-dark);
+  margin-bottom: 20px;
+}
+.audit-contact-list {
+  display: grid;
+  gap: 13px;
+  margin-bottom: 20px;
+}
+.audit-contact-item span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 3px;
+}
+.audit-contact-item a,
+.audit-contact-item p {
+  display: inline-block;
+  font-size: 0.86rem;
+  color: var(--ink);
+  line-height: 1.55;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.audit-contact-item a:hover { color: var(--green); }
+.audit-panel-foot {
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--gray);
+  margin-top: 4px;
 }
 .cf-group { margin-bottom: 16px; }
 .cf-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
@@ -510,6 +594,11 @@
 @media (max-width: 860px) {
   .fix-grid { grid-template-columns: 1fr 1fr; }
   .steps-row { grid-template-columns: 1fr; }
+  .audit-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 560px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -530,6 +619,7 @@
 
 @media (max-width: 600px) {
   .contact-form-card { padding: 20px 16px; }
+  .audit-contact-note { padding: 20px 0; }
   .steps-row { grid-template-columns: 1fr; }
   .fix-grid { grid-template-columns: 1fr; }
   .trust-card { padding: 20px; }
@@ -692,6 +782,7 @@
         </div>
 
       </div>
+
     </div>
   </section>
 
@@ -849,6 +940,7 @@
       <h2>Takes less than 2 minutes.<br><em>Could change a lot.</em></h2>
       <p class="section-desc">No calls. No pressure. Just honest feedback in your inbox within 2 business days.</p>
 
+      <div class="audit-contact-grid">
       <div class="contact-form-card">
         <form id="cf-form" novalidate>
           <input type="hidden" name="access_key" value="ecb7a169-e6b4-4da0-af56-6a4f6334a8e7">
@@ -879,6 +971,39 @@
           <p>I'll review your website personally and send clear feedback within 2 business days. No call, no pressure — just honest information you can act on.</p>
         </div>
       </div>
+
+        <aside class="audit-contact-panel" aria-label="Direct contact details">
+          <div class="audit-contact-note">
+            <div class="audit-profile">
+              <div class="audit-avatar" aria-hidden="true">A</div>
+              <div class="audit-profile-text">
+                <strong>Reviewed by Ajay Singh</strong>
+                <span>Registered Nurse · Melbourne</span>
+              </div>
+            </div>
+            <p class="audit-panel-copy">Prefer to ask a question first? You can reach me directly. I’ll point you in the right direction, even if the audit is enough.</p>
+            <div class="audit-contact-list">
+              <div class="audit-contact-item">
+                <span>Email</span>
+                <a href="mailto:ajay.singh@vitalscaledigital.com.au">ajay.singh@vitalscaledigital.com.au</a>
+              </div>
+              <div class="audit-contact-item">
+                <span>Phone</span>
+                <a href="tel:+61406970615">0406 970 615</a>
+              </div>
+              <div class="audit-contact-item">
+                <span>WhatsApp</span>
+                <a href="https://wa.me/61406970615" target="_blank" rel="noopener">Message directly</a>
+              </div>
+              <div class="audit-contact-item">
+                <span>Location</span>
+                <p>Melbourne, Australia</p>
+              </div>
+            </div>
+            <p class="audit-panel-foot">Quiet, practical feedback. No call required unless you ask for one.</p>
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -907,6 +1032,7 @@
             <li><a href="about.html">About Us</a></li>
             <li><a href="blog.html">Insights</a></li>
             <li><a href="#contact-form">Contact</a></li>
+            <li><a href="tel:+61406970615" class="footer-phone-link">0406 970 615</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -1018,6 +1144,8 @@
     }
 
   </script>
+
+  <a class="whatsapp-float" href="https://wa.me/61406970615" target="_blank" rel="noopener" aria-label="Contact VitalScale Digital on WhatsApp">WhatsApp</a>
 
 </body>
 </html>
