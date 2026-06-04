@@ -259,7 +259,7 @@ em.accent { font-style: italic; color: var(--green); }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 22px;
 }
 .nav-links a {
   font-size: 14px;
@@ -280,7 +280,11 @@ em.accent { font-style: italic; color: var(--green); }
   border-radius: 2px;
 }
 
-.nav-cta { gap: 8px; }
+.nav-cta { gap: 6px; }
+.nav-right .btn--sm {
+  padding-left: 14px;
+  padding-right: 14px;
+}
 
 .nav-hamburger {
   display: none;
