@@ -25,7 +25,7 @@
     .logo-icon .b1 { height: 10px; } .logo-icon .b2 { height: 17px; } .logo-icon .b3 { height: 13px; }
     .logo-text { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1; white-space: nowrap; }
     .logo-text .black { color: var(--text); } .logo-text .green { color: var(--green); }
-    .nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+    .nav-links { display: flex; align-items: center; gap: 1.25rem; list-style: none; }
     .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--text); transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--green); }
     .nav-cta { background: var(--green) !important; color: var(--white) !important; padding: 0.48rem 1rem; border-radius: 6px; font-size: 0.82rem !important; font-weight: 600 !important; transition: background 0.2s !important; white-space: nowrap; }
@@ -120,7 +120,7 @@
     .footer-bottom-links { display: flex; gap: 1.25rem; }
 
     /* RESPONSIVE */
-    @media (max-width: 860px) { .nav-links { display: none; } .hamburger { display: flex; } }
+    @media (max-width: 960px) { .nav-links { display: none; } .hamburger { display: flex; } }
     @media (max-width: 640px) {
       nav { padding: 0 1.25rem; }
       .meta { grid-template-columns: repeat(2, 1fr); }
@@ -153,11 +153,11 @@
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
+      <li><a href="services.html">Services</a></li><li><a href="trust-investment-guide/">Trust Guide</a></li>
       <li><a href="case-studies.html" class="active">Case Studies</a></li>
       <li><a href="blog.html">Insights</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="contact.html" class="nav-cta">Free Online Presence Review</a></li>
+      <li><a href="contact/">Contact</a></li>
+      <li><a href="contact/" class="nav-cta">Free Online Presence Review</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -167,10 +167,11 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
+  <a href="trust-investment-guide/">Trust Guide</a>
     <a href="case-studies.html">Case Studies</a>
     <a href="blog.html">Insights</a>
-    <a href="contact.html">Contact</a>
-    <a href="contact.html" class="m-cta">Free Online Presence Review</a>
+    <a href="contact/">Contact</a>
+    <a href="contact/" class="m-cta">Free Online Presence Review</a>
   </div>
 
   <!-- HERO -->
@@ -320,7 +321,7 @@
 
     <div class="cta-block">
       <p>Ready to find out what your website could be doing better?</p>
-      <a href="contact.html" class="btn-primary">Request a Free Website Review</a>
+      <a href="contact/" class="btn-primary">Request a Free Website Review</a>
       <p class="cta-note">No cost. No obligation. Just honest feedback.</p>
     </div>
 
@@ -346,9 +347,9 @@
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html">About Us</a></li><li><a href="trust-investment-guide/">Trust Guide</a></li>
           <li><a href="blog.html">Insights</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact/">Contact</a></li>
           <li><a href="tel:+61406970615" class="footer-phone-link">0406 970 615</a></li>
         </ul>
       </div>

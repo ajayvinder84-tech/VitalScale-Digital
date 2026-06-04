@@ -115,13 +115,13 @@
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="services.html">Services</a></li><li><a href="trust-investment-guide/">Trust Guide</a></li>
         <li><a href="case-studies.html">Case Studies</a></li>
         <li><a href="blog.html">Insights</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="contact/" class="active">Contact</a></li>
       </ul>
       <div class="nav-right" style="display:flex;align-items:center;gap:8px;">
-        <a href="contact.html" class="btn btn--primary btn--sm nav-cta">Free Online Presence Review</a>
+        <a href="contact/" class="btn btn--primary btn--sm nav-cta">Free Online Presence Review</a>
         <button class="nav-hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -129,9 +129,10 @@
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="trust-investment-guide/">Trust Guide</a>
   <a href="case-studies.html">Case Studies</a>
-  <a href="blog.html">Insights</a><a href="contact.html">Contact</a>
-  <a href="contact.html" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Free Online Presence Review</a>
+  <a href="blog.html">Insights</a><a href="contact/">Contact</a>
+  <a href="contact/" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Free Online Presence Review</a>
 </div>
 
 <main>
@@ -149,7 +150,7 @@
             <div class="cd-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             <div>
               <div class="cd-label">Email</div>
-              <div class="cd-value"><a href="mailto:ajay.singh@vitalscaledigital.com.au">ajay.singh@vitalscaledigital.com.au</a></div>
+              <div class="cd-value"><a href="mailto:info@vitalscaledigital.com.au">info@vitalscaledigital.com.au</a></div>
             </div>
           </div>
           <div class="contact-detail">
@@ -157,6 +158,13 @@
             <div>
               <div class="cd-label">Phone</div>
               <div class="cd-value"><a href="tel:+61406970615">0406 970 615</a></div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 01-12.6 7.4L3 20l1.1-5.2A8.5 8.5 0 1121 11.5z"/><path d="M8.6 8.9c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.3.1.5-.1.7l-.4.5c-.1.1-.2.3-.1.5.4.8 1.1 1.5 2 2 .2.1.3.1.5-.1l.6-.7c.2-.2.4-.2.7-.1l1.5.7c.3.1.4.3.4.6 0 .4-.2 1-.5 1.2-.4.3-1.7.8-3.8-.2-2.2-1-3.8-2.9-4.2-4.5-.4-1.2.1-1.8.3-2.1z"/></svg></div>
+            <div>
+              <div class="cd-label">WhatsApp</div>
+              <div class="cd-value"><a href="https://wa.me/61406970615" target="_blank" rel="noopener">Message us on WhatsApp</a></div>
             </div>
           </div>
           <div class="contact-detail">
@@ -193,14 +201,14 @@
         <div class="form-card-title">Send us a message</div>
         <div class="form-card-sub">Tell us a bit about your organisation and what you're looking to improve — we'll come prepared.</div>
 
-        <div class="form-error-msg" id="formError">Something went wrong. Please try again or email us directly at <a href="mailto:ajay.singh@vitalscaledigital.com.au">ajay.singh@vitalscaledigital.com.au</a></div>
+        <div class="form-error-msg" id="formError">Something went wrong. Please try again or email us directly at <a href="mailto:info@vitalscaledigital.com.au">info@vitalscaledigital.com.au</a></div>
 
         <!--
         ╔══════════════════════════════════════════════════════════════╗
         ║   WEB3FORMS SETUP INSTRUCTIONS                               ║
         ║                                                              ║
         ║  1. Go to https://web3forms.com                              ║
-        ║  2. Enter: ajay.singh@vitalscaledigital.com.au          ║
+        ║  2. Enter: info@vitalscaledigital.com.au                ║
         ║  3. Click "Create Access Key"                                ║
         ║  4. Copy the key they provide                                ║
         ║  5. Paste it in the value="" below                           ║
@@ -249,6 +257,7 @@
             <label for="service">What can we help with?</label>
             <select id="service" name="service_interest">
               <option value="" disabled selected>Select a topic...</option>
+              <option value="Book a Trust Review">Book a Trust Review</option>
               <option value="Free Online Presence Review">Free Online Presence Review</option>
               <option value="Online Visibility & SEO">Online Visibility & SEO</option>
               <option value="Website Design">Website Design</option>
@@ -294,7 +303,7 @@
         <p class="footer-abn">VitalScale Digital &nbsp;·&nbsp; ABN: 28 337 767 445 &nbsp;·&nbsp; Melbourne, Australia</p>
       </div>
       <div class="footer-col"><h5>Services</h5><ul><li><a href="service-visibility.html">Online Visibility & SEO</a></li><li><a href="service-website.html">Website Design</a></li><li><a href="service-reputation.html">Reputation & Reviews</a></li><li><a href="service-content.html">Content & Positioning</a></li></ul></div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li><li><a href="tel:+61406970615" class="footer-phone-link">0406 970 615</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="trust-investment-guide/">Trust Guide</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact/">Contact</a></li><li><a href="tel:+61406970615" class="footer-phone-link">0406 970 615</a></li></ul></div>
       <div class="footer-col"><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
     </div>
     <div class="footer-bottom">
@@ -348,7 +357,7 @@ form.addEventListener('submit', async e => {
       // If redirect is set in form, web3forms handles it automatically
     } else { throw new Error(); }
   } catch {
-    errMsg.innerHTML = 'Something went wrong. Please try again or email us directly at <a href="mailto:ajay.singh@vitalscaledigital.com.au">ajay.singh@vitalscaledigital.com.au</a>.';
+    errMsg.innerHTML = 'Something went wrong. Please try again or email us directly at <a href="mailto:info@vitalscaledigital.com.au">info@vitalscaledigital.com.au</a>.';
     errMsg.classList.add('show');
     submitBtn.textContent = 'Send Message';
     submitBtn.disabled = false;

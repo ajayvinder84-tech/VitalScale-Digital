@@ -589,6 +589,12 @@
 @media (max-width: 960px) {
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .hero-right-card { display: none; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-right .btn,
+  .nav-right .nav-cta,
+  #navbar .nav-cta,
+  #navbar a.btn--primary { display: none !important; }
 }
 
 @media (max-width: 860px) {
@@ -639,6 +645,359 @@
   .related-grid { grid-template-columns: 1fr !important; }
 }
 
+/* Atmospheric colour refinement: page-scoped, structure unchanged. */
+:root {
+  --green: #55765e;
+  --green-dark: #344d3c;
+  --green-mid: #456a51;
+  --green-light: #e8f0e9;
+  --green-pale: #f2f6ef;
+  --ink: #203127;
+  --gray-dark: #3a443d;
+  --gray: #5c665d;
+  --gray-light: #f2f4ef;
+  --border: #dde6dd;
+  --shadow-green: 0 6px 22px rgba(69, 106, 81, 0.18);
+}
+
+body {
+  background: #f8f8f3;
+}
+
+#navbar {
+  background: rgba(253, 252, 247, 0.97);
+  border-bottom-color: rgba(210, 222, 212, 0.82);
+}
+
+#navbar.scrolled {
+  box-shadow: 0 6px 22px rgba(24, 39, 31, 0.06);
+}
+
+.nav-logo-icon {
+  background: #edf3ee;
+}
+
+.nav-logo-icon svg {
+  stroke: #506f58;
+}
+
+.nav-logo-text {
+  color: #1d3025;
+}
+
+.nav-logo-text span {
+  color: #4f6e57;
+}
+
+.nav-links a {
+  color: #2f3c34;
+}
+
+.nav-hamburger span {
+  background: #1d3025;
+}
+
+.mobile-menu {
+  background: #fffdf8;
+  border-bottom-color: rgba(210, 222, 212, 0.82);
+}
+
+.btn--primary,
+.cf-submit,
+.hrc-header,
+.whatsapp-float {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.btn--primary:hover,
+.cf-submit:hover,
+.whatsapp-float:hover {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+}
+
+.btn--white {
+  color: var(--green-dark);
+  box-shadow: 0 8px 30px rgba(22, 34, 27, 0.13);
+}
+
+.hero {
+  background: linear-gradient(180deg, #203127 0%, #1f3028 58%, #1d2d25 100%);
+}
+
+.hero::before {
+  background-image: radial-gradient(rgba(255, 253, 248, 0.045) 1px, transparent 1px);
+}
+
+.hero-accent {
+  background: radial-gradient(circle, rgba(255, 253, 248, 0.055) 0%, transparent 68%);
+  opacity: 0.72;
+}
+
+.hero-pill {
+  background: rgba(255, 253, 248, 0.06);
+  border-color: rgba(255, 253, 248, 0.18);
+  color: rgba(255, 253, 248, 0.82);
+}
+
+.hero h1 em,
+.process-section h2 em,
+.final-cta h2 em {
+  color: #a7cca5;
+}
+
+.hero h1 {
+  color: #fffdf8;
+}
+
+.hero h1 em {
+  color: #b7d1b2;
+}
+
+.hero-sub {
+  color: rgba(255, 253, 248, 0.69);
+}
+
+.hero-micro {
+  color: rgba(255, 253, 248, 0.46);
+}
+
+.hero-trust-bar {
+  border-top-color: rgba(255, 253, 248, 0.12);
+}
+
+.hero-trust-bar .trust-item {
+  color: rgba(255, 253, 248, 0.58);
+}
+
+.hero-trust-bar .trust-dot {
+  background: #b7d1b2;
+}
+
+.hero .btn--primary {
+  background: #607f66;
+  border-color: #607f66;
+  box-shadow: none;
+}
+
+.hero .btn--primary:hover {
+  background: #55705c;
+  border-color: #55705c;
+}
+
+.hero-right-card {
+  background: rgba(255, 253, 248, 0.072);
+  border-color: rgba(255, 253, 248, 0.16);
+  box-shadow: 0 12px 30px rgba(12, 20, 15, 0.11);
+}
+
+.hero-right-card .hrc-header {
+  background: #506f58;
+}
+
+.hrc-badge {
+  background: rgba(255, 253, 248, 0.16);
+}
+
+.hrc-item {
+  border-bottom-color: rgba(255, 253, 248, 0.085);
+}
+
+.hrc-icon {
+  background: rgba(255, 253, 248, 0.075);
+}
+
+.hrc-icon svg {
+  stroke: #b7d1b2;
+}
+
+.hrc-text strong {
+  color: rgba(255, 253, 248, 0.92);
+}
+
+.hrc-text span {
+  color: rgba(255, 253, 248, 0.52);
+}
+
+.hrc-footer {
+  background: rgba(255, 253, 248, 0.045);
+  border-top-color: rgba(255, 253, 248, 0.095);
+}
+
+.hrc-footer-note {
+  color: rgba(255, 253, 248, 0.44);
+}
+
+.hrc-footer-cta {
+  color: #b7d1b2;
+}
+
+.problem-section,
+.trust-section {
+  background: #fbfaf6;
+}
+
+.fix-section,
+.contact-section {
+  background: #f2f6ef;
+}
+
+.problem-list,
+.fix-card,
+.trust-card,
+.contact-form-card {
+  background: #fffdf8;
+  border-color: rgba(218, 228, 218, 0.92);
+}
+
+.problem-list li {
+  border-bottom-color: rgba(218, 228, 218, 0.9);
+}
+
+.problem-list li:hover {
+  background: #eff5ee;
+}
+
+.fix-icon,
+.trust-avatar,
+.audit-avatar,
+.cf-success-icon {
+  background: #e8f0e9;
+}
+
+.process-section,
+.final-cta,
+.site-footer {
+  background: #21342a;
+}
+
+.process-section {
+  background: linear-gradient(180deg, #25392e 0%, #21342a 100%);
+}
+
+.steps-row {
+  background: rgba(255, 253, 248, 0.07);
+  border-color: rgba(255, 253, 248, 0.08);
+}
+
+.step {
+  background: rgba(255, 253, 248, 0.035);
+}
+
+.step:hover {
+  background: rgba(167, 204, 165, 0.11);
+}
+
+.step-num {
+  color: rgba(167, 204, 165, 0.24);
+  -webkit-text-stroke-color: rgba(167, 204, 165, 0.38);
+}
+
+.step p {
+  color: rgba(255, 253, 248, 0.58);
+}
+
+.trust-card {
+  box-shadow: 0 12px 36px rgba(32, 49, 39, 0.05);
+}
+
+.trust-sig {
+  border-top-color: rgba(218, 228, 218, 0.95);
+}
+
+.final-cta {
+  background: linear-gradient(180deg, #23372c 0%, #203127 100%);
+}
+
+.final-cta::before {
+  background-image: radial-gradient(rgba(180, 205, 183, 0.075) 1px, transparent 1px);
+}
+
+.final-cta p {
+  color: rgba(255, 253, 248, 0.58);
+}
+
+.final-urgency {
+  color: rgba(255, 253, 248, 0.34);
+}
+
+.audit-contact-note {
+  border-top-color: rgba(85, 118, 94, 0.18);
+  border-bottom-color: rgba(85, 118, 94, 0.18);
+}
+
+.cf-group input {
+  background: #fffdf8;
+  border-color: rgba(218, 228, 218, 0.95);
+}
+
+.cf-group input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(85, 118, 94, 0.11);
+}
+
+.site-footer {
+  color: rgba(255, 253, 248, 0.64);
+}
+
+.footer-main {
+  border-bottom-color: rgba(255, 253, 248, 0.08);
+}
+
+.footer-brand-logo,
+.footer-col ul li a:hover {
+  color: #fffdf8;
+}
+
+.footer-brand-logo span,
+.footer-col ul li a:hover,
+.footer-bottom a:hover {
+  color: #a7cca5;
+}
+
+.footer-col h5 {
+  color: rgba(255, 253, 248, 0.38);
+}
+
+.footer-col ul li a {
+  color: rgba(255, 253, 248, 0.56);
+}
+
+.footer-abn,
+.footer-bottom p,
+.footer-bottom a {
+  color: rgba(255, 253, 248, 0.32);
+}
+
+.whatsapp-float {
+  box-shadow: 0 8px 24px rgba(52, 77, 60, 0.22);
+}
+
+.whatsapp-float::before {
+  background: #e8f0e9;
+}
+
+.whatsapp-float:focus-visible {
+  outline-color: rgba(85, 118, 94, 0.35);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    background: #203127;
+  }
+
+  .process-section,
+  .final-cta {
+    background: #22362b;
+  }
+
+  .hero::before,
+  .final-cta::before {
+    background-size: 42px 42px;
+  }
+}
+
   </style>
 </head>
 <body class="page-offset">
@@ -658,13 +1017,13 @@
         <ul class="nav-links">
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="services.html">Services</a></li><li><a href="trust-investment-guide/">Trust Guide</a></li>
           <li><a href="case-studies.html">Case Studies</a></li>
           <li><a href="blog.html">Insights</a></li>
-          <li><a href="#contact-form">Contact</a></li>
+          <li><a href="contact/">Contact</a></li>
         </ul>
         <div class="nav-right" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-          <a href="contact.html" class="btn btn--primary btn--sm nav-cta">
+          <a href="#free-audit" class="btn btn--primary btn--sm nav-cta">
             Get Free Website Check
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
@@ -681,10 +1040,11 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
+  <a href="trust-investment-guide/">Trust Guide</a>
     <a href="case-studies.html">Case Studies</a>
     <a href="blog.html">Insights</a>
-    <a href="#contact-form">Contact</a>
-    <a href="contact.html" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Get Free Audit</a>
+    <a href="contact/">Contact</a>
+    <a href="#free-audit" class="btn btn--primary btn--full mobile-cta" style="margin-top:8px;">Get Free Audit</a>
   </div>
 
 
@@ -704,7 +1064,7 @@
           </p>
 
           <div class="hero-cta-group">
-            <a href="#contact-form" class="btn btn--primary btn--lg">
+            <a href="#free-audit" class="btn btn--primary btn--lg">
               Get My Free Audit
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -774,7 +1134,7 @@
           </div>
           <div class="hrc-footer">
             <span class="hrc-footer-note">Sent to your inbox · No call needed</span>
-            <a href="#contact-form" class="hrc-footer-cta">
+            <a href="#free-audit" class="hrc-footer-cta">
               Get mine
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -923,7 +1283,7 @@
     <div class="final-cta-inner fade-in">
       <h2>More families could be<br>contacting you <em>this week.</em></h2>
       <p>Find out exactly what's stopping them. Free, honest, no pressure.</p>
-      <a href="#contact-form" class="btn btn--white btn--lg">
+      <a href="#free-audit" class="btn btn--white btn--lg">
         Get My Free Audit
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -933,10 +1293,10 @@
 
 
 
-  <!-- CONTACT FORM -->
-  <section class="contact-section" id="contact-form">
+  <!-- FREE AUDIT FORM -->
+  <section class="contact-section" id="free-audit">
     <div class="container">
-      <div class="eyebrow">Get your free audit</div>
+      <div class="eyebrow">Free Website Trust Audit</div>
       <h2>Takes less than 2 minutes.<br><em>Could change a lot.</em></h2>
       <p class="section-desc">No calls. No pressure. Just honest feedback in your inbox within 2 business days.</p>
 
@@ -944,7 +1304,7 @@
       <div class="contact-form-card">
         <form id="cf-form" novalidate>
           <input type="hidden" name="access_key" value="ecb7a169-e6b4-4da0-af56-6a4f6334a8e7">
-          <input type="hidden" name="subject" value="Website Audit Request — VitalScale Digital">
+          <input type="hidden" name="subject" value="Free Website Trust Audit Request — VitalScale Digital">
           <input type="hidden" name="from_name" value="VitalScale Digital Website">
           <input type="checkbox" name="botcheck" style="display:none">
           <div class="cf-group">
@@ -985,7 +1345,7 @@
             <div class="audit-contact-list">
               <div class="audit-contact-item">
                 <span>Email</span>
-                <a href="mailto:ajay.singh@vitalscaledigital.com.au">ajay.singh@vitalscaledigital.com.au</a>
+                <a href="mailto:info@vitalscaledigital.com.au">info@vitalscaledigital.com.au</a>
               </div>
               <div class="audit-contact-item">
                 <span>Phone</span>
@@ -1029,9 +1389,9 @@
         <div class="footer-col">
           <h5>Company</h5>
           <ul>
-            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html">About Us</a></li><li><a href="trust-investment-guide/">Trust Guide</a></li>
             <li><a href="blog.html">Insights</a></li>
-            <li><a href="#contact-form">Contact</a></li>
+            <li><a href="contact/">Contact</a></li>
             <li><a href="tel:+61406970615" class="footer-phone-link">0406 970 615</a></li>
           </ul>
         </div>

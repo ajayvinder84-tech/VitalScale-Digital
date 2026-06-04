@@ -259,7 +259,7 @@ em.accent { font-style: italic; color: var(--green); }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
 .nav-links a {
   font-size: 14px;
@@ -785,6 +785,15 @@ em.accent { font-style: italic; color: var(--green); }
   .footer-brand { grid-column: 1 / -1; }
   .process-line { grid-template-columns: repeat(2, 1fr); gap: 40px; }
   .process-line::before { display: none; }
+}
+
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-right .btn,
+  .nav-right .nav-cta,
+  #navbar .nav-cta,
+  #navbar a.btn--primary { display: none !important; }
 }
 
 @media (max-width: 768px) {
