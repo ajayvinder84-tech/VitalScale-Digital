@@ -1,0 +1,234 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/*
+ * VitalScale Digital design system.
+ * Colour balance: ~70-75% white/warm neutral, 15-20% green, 5-10% dark emphasis.
+ */
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand scale */
+  --color-deep: var(--deep);
+  --color-deep-foreground: var(--deep-foreground);
+  --color-vital: var(--vital);
+  --color-brandgreen: var(--brandgreen);
+  --color-sage: var(--sage);
+  --color-pale: var(--pale);
+  /* Light tint of the primary brand green, for badges and quiet fills */
+  --color-primary-light: var(--pale);
+  --color-surface: var(--surface);
+  --color-neutral-surface: var(--neutral-surface);
+  --color-ink: var(--ink);
+  --color-charcoal: var(--charcoal);
+
+  --shadow-soft:
+    0 1px 2px oklch(0.234 0.008 153 / 4%), 0 8px 24px -12px oklch(0.234 0.008 153 / 10%);
+  --shadow-lift:
+    0 2px 4px oklch(0.234 0.008 153 / 5%), 0 18px 40px -18px oklch(0.234 0.008 153 / 16%);
+}
+
+:root {
+  --radius: 14px;
+
+  --deep: oklch(0.3819 0.0607 163.85); /* #1F4D3A */
+  --deep-foreground: oklch(0.9817 0.0091 161.36);
+  --vital: oklch(0.4802 0.0752 163.8); /* #2F6B52 */
+  --brandgreen: oklch(0.5407 0.0787 150.87); /* #4B7C57 */
+  --sage: oklch(0.733 0.0531 154.61); /* #8FB39A */
+  --pale: oklch(0.9595 0.0198 159.75); /* #E7F6ED */
+  --surface: oklch(0.9817 0.0091 161.36); /* #F4FBF7 */
+  --neutral-surface: oklch(0.9781 0.0017 145.56); /* #F7F8F7 */
+  --ink: oklch(0.234 0.0082 153.27); /* #1B1F1C */
+  --charcoal: oklch(0.3218 0.0108 156.56); /* #2F3531 */
+
+  --background: oklch(0.993 0.0017 145.56); /* #FCFDFC */
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--vital);
+  --primary-foreground: oklch(0.9817 0.0091 161.36);
+  --secondary: var(--neutral-surface);
+  --secondary-foreground: var(--charcoal);
+  --muted: var(--neutral-surface);
+  --muted-foreground: oklch(0.5348 0.0152 159.57); /* #66706A */
+  --accent: var(--pale);
+  --accent-foreground: var(--deep);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.8969 0.0101 155.08); /* #D8DFDA */
+  --input: oklch(0.8969 0.0101 155.08);
+  --ring: var(--vital);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    overflow-x: clip;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-vital);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-pale);
+    color: var(--color-deep);
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-vital);
+}
+
+@utility hairline {
+  height: 1px;
+  width: 100%;
+  background: var(--color-border);
+}
+
+/* Editorial type scale */
+@utility display-1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.028em;
+  line-height: 1.03;
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+}
+
+@utility display-2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.026em;
+  line-height: 1.08;
+  font-size: clamp(1.95rem, 3.6vw, 3rem);
+}
+
+@utility display-3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  font-size: clamp(1.35rem, 2vw, 1.6rem);
+}
+
+@utility lead {
+  font-size: clamp(1.0625rem, 1.15vw, 1.1875rem);
+  line-height: 1.72;
+  color: var(--color-charcoal);
+}
+
+@utility measure {
+  max-width: 62ch;
+}
+
+@utility measure-tight {
+  max-width: 48ch;
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Motion is an enhancement: never hide content when scripting is unavailable. */
+@media (scripting: none) {
+  [data-reveal-item],
+  [data-bento-tile],
+  [data-scene-step] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
