@@ -202,7 +202,7 @@ function ConceptSite({
   services: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-lift">
+    <div className="mx-auto w-full min-w-0 max-w-full overflow-hidden rounded-2xl border border-border bg-card shadow-lift">
       {/* Browser chrome */}
       <div className="border-b border-border bg-surface px-4 py-3">
         <div className="flex items-center gap-3">
@@ -321,7 +321,7 @@ function NewProviders() {
       {/* Hero */}
       <section className="bg-surface py-24 md:py-32">
         <Container>
-          <div className="grid gap-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-24">
+          <div className="grid grid-cols-[minmax(0,1fr)] gap-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-24">
             <Reveal>
               <Eyebrow>For new and early-stage NDIS providers</Eyebrow>
               <h1 className="mt-6 text-[2.4rem] leading-[1.05] font-extrabold text-ink sm:text-[3.25rem]">
@@ -353,7 +353,7 @@ function NewProviders() {
               </dl>
             </Reveal>
 
-            <Reveal delay={80}>
+            <Reveal delay={80} className="min-w-0 w-full max-w-full">
               <ConceptSite
                 name="Havenbridge Care"
                 domain="havenbridgecare.com.au"

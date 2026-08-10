@@ -66,12 +66,12 @@ function Contact() {
       </section>
 
       <Section>
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-20">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-20">
           {/* Form column is intentionally static — never animate form fields, labels or submit. */}
           <div className="min-w-0">
             {sent ? (
               <div
-                className="w-full rounded-2xl border border-border bg-card p-7 md:p-9"
+                className="mx-auto w-full min-w-0 max-w-full rounded-2xl border border-border bg-card p-7 md:p-9"
                 role="status"
                 aria-live="polite"
               >
@@ -84,7 +84,7 @@ function Contact() {
               </div>
             ) : (
               <form
-                className="w-full rounded-2xl border border-border bg-card p-7 md:p-9"
+                className="mx-auto w-full min-w-0 max-w-full rounded-2xl border border-border bg-card p-7 md:p-9"
                 onSubmit={async (event) => {
                   event.preventDefault();
                   const form = event.currentTarget;
@@ -115,7 +115,7 @@ function Contact() {
                   }
                 }}
               >
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid min-w-0 gap-5 sm:grid-cols-2 [&>*]:min-w-0">
                   <div className="grid gap-2 sm:col-span-2">
                     <Label htmlFor="name">Name</Label>
                     <Input id="name" name="name" required maxLength={100} autoComplete="name" />
@@ -188,7 +188,7 @@ function Contact() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="mt-6 w-full sm:w-auto"
+                  className="mt-6 w-full px-4 text-center whitespace-normal sm:w-auto sm:px-7 sm:whitespace-nowrap"
                   disabled={submitting}
                 >
                   {submitting ? "Sending…" : "Request my Free Website Review"}
@@ -200,38 +200,38 @@ function Contact() {
             )}
           </div>
 
-          <Reveal delay={80}>
-            <div className="space-y-8">
-              <div>
+          <Reveal delay={80} className="min-w-0 max-w-full">
+            <div className="min-w-0 max-w-full space-y-8">
+              <div className="min-w-0 max-w-full">
                 <h2 className="font-display text-xl font-bold text-ink">Prefer to ask first?</h2>
                 <p className="mt-4 text-[0.9375rem] leading-relaxed text-charcoal">
                   You’re welcome to reach out directly before requesting a review.
                 </p>
-                <p className="mt-4 text-[0.9375rem] leading-relaxed text-charcoal">
+                <p className="mt-4 flex min-w-0 max-w-full flex-wrap items-center gap-x-2 gap-y-1 text-[0.9375rem] leading-relaxed text-charcoal">
                   <a
                     href="tel:+61406970615"
-                    className="text-deep underline decoration-border underline-offset-4 transition-colors hover:text-vital"
+                    className="whitespace-nowrap text-deep underline decoration-border underline-offset-4 transition-colors hover:text-vital"
                   >
                     0406 970 615
                   </a>
-                  <span className="px-2 text-muted-foreground">·</span>
+                  <span className="hidden text-muted-foreground sm:inline">·</span>
                   <a
                     href="mailto:info@vitalscaledigital.com.au"
-                    className="text-deep underline decoration-border underline-offset-4 transition-colors hover:text-vital"
+                    className="max-w-full [overflow-wrap:anywhere] text-deep underline decoration-border underline-offset-4 transition-colors hover:text-vital"
                   >
                     info@vitalscaledigital.com.au
                   </a>
-                  <span className="px-2 text-muted-foreground">·</span>
+                  <span className="hidden text-muted-foreground sm:inline">·</span>
                   <a
                     href="https://wa.me/61406970615"
-                    className="text-deep underline decoration-border underline-offset-4 transition-colors hover:text-vital"
+                    className="whitespace-nowrap text-deep underline decoration-border underline-offset-4 transition-colors hover:text-vital"
                   >
                     WhatsApp
                   </a>
                 </p>
               </div>
               <div className="hairline" />
-              <div>
+              <div className="min-w-0 max-w-full">
                 <h2 className="font-display text-xl font-bold text-ink">What to expect</h2>
                 <p className="mt-4 text-[0.9375rem] leading-relaxed text-charcoal">
                   We’ll talk through your services, locations, audience and current website, then
@@ -240,7 +240,7 @@ function Contact() {
               </div>
               <div className="hairline" />
 
-              <div>
+              <div className="min-w-0 max-w-full">
                 <h2 className="font-display text-xl font-bold text-ink">Pricing</h2>
                 <p className="mt-4 text-[0.9375rem] leading-relaxed text-charcoal">
                   Website pricing depends on the size of the website, the amount of content
