@@ -37,6 +37,19 @@ The production host must run the generated Cloudflare Worker and serve the stati
 `.output/public`. Do not deploy only the static directory: the contact form and server-rendered
 routes require the Worker runtime.
 
+## Rebuild test Worker
+
+`wrangler.jsonc` intentionally deploys this branch as the separate
+`vitalscale-digital-rebuild` Worker on `workers.dev`. It contains no custom-domain routes and does
+not modify the existing Cloudflare Pages project.
+
+```sh
+bun run deploy:rebuild
+```
+
+After the first deployment, add `WEB3FORMS_ACCESS_KEY` as an encrypted Worker secret before testing
+the contact form. Do not attach the production domain until the rebuild has been approved.
+
 ## Built with
 
 - TanStack Start
