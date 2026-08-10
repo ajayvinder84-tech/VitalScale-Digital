@@ -37,11 +37,11 @@ The production host must run the generated Cloudflare Worker and serve the stati
 `.output/public`. Do not deploy only the static directory: the contact form and server-rendered
 routes require the Worker runtime.
 
-## Rebuild test Worker
+## Production Worker
 
-`wrangler.jsonc` intentionally deploys this branch as the separate
-`vitalscale-digital-rebuild` Worker on `workers.dev`. It contains no custom-domain routes and does
-not modify the existing Cloudflare Pages project.
+`wrangler.jsonc` deploys the application as the `vitalscale-digital-rebuild` Worker. The Worker
+continues to provide a `workers.dev` test URL and is configured as the origin for
+`vitalscaledigital.com.au` and `www.vitalscaledigital.com.au`.
 
 ```sh
 bun run deploy:rebuild
