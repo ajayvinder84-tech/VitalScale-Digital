@@ -17,22 +17,25 @@ export const NAV_LINKS = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-export function Logo({ className }: { className?: string }) {
+export function Logo({
+  className,
+  placement = "header",
+}: {
+  className?: string;
+  placement?: "header" | "footer";
+}) {
   return (
     <Link
       to="/"
-      className={cn("flex min-w-0 items-center gap-2.5", className)}
+      className={cn("flex min-w-0 items-center", className)}
       aria-label="VitalScale Digital — home"
     >
-      <img src="/favicon.png" alt="" aria-hidden="true" className="h-8 w-8 shrink-0" />
-      <span className="flex min-w-0 flex-col leading-none">
-        <span className="font-display text-[1.0625rem] font-extrabold tracking-tight text-ink">
-          VitalScale
-        </span>
-        <span className="text-[0.6875rem] font-medium tracking-[0.18em] text-muted-foreground uppercase">
-          Digital
-        </span>
-      </span>
+      <img
+        src="/images/vitalscale-digital-logo.png"
+        alt=""
+        aria-hidden="true"
+        className={cn("w-auto shrink-0", placement === "footer" ? "h-24" : "h-[52px]")}
+      />
     </Link>
   );
 }

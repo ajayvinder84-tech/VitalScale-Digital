@@ -23,8 +23,8 @@ export const Route = createFileRoute("/about")({
       },
       { property: "og:url", content: "https://vitalscaledigital.com.au/about" },
       { property: "og:site_name", content: "VitalScale Digital" },
-      { property: "og:image", content: `${SITE_URL}/og.png` },
-      { name: "twitter:image", content: `${SITE_URL}/og.png` },
+      { property: "og:image", content: `${SITE_URL}/images/vitalscale-digital-logo.png` },
+      { name: "twitter:image", content: `${SITE_URL}/images/vitalscale-digital-logo.png` },
       { name: "twitter:title", content: "About VitalScale Digital" },
       {
         name: "twitter:description",

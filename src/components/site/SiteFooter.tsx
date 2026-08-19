@@ -10,7 +10,7 @@ export function SiteFooter() {
       <div className="container-page py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
           <div className="max-w-md">
-            <Logo />
+            <Logo placement="footer" />
             <p className="mt-6 text-[0.9375rem] leading-relaxed text-charcoal">
               VitalScale Digital designs and redesigns websites for NDIS providers who want to be
               easier to understand and easier to trust.
