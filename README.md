@@ -47,8 +47,11 @@ continues to provide a `workers.dev` test URL and is configured as the origin fo
 bun run deploy:rebuild
 ```
 
+Cloudflare Workers Builds deploys this repository: the Worker's **Settings > Build** connects it to
+GitHub, and every push to the production branch (`main`) is built and deployed by Cloudflare.
+
 After the first deployment, add `WEB3FORMS_ACCESS_KEY` as an encrypted Worker secret before testing
-the contact form. Do not attach the production domain until the rebuild has been approved.
+the contact form. Worker secrets persist across deployments.
 
 ## Built with
 
