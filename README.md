@@ -47,8 +47,18 @@ continues to provide a `workers.dev` test URL and is configured as the origin fo
 bun run deploy:rebuild
 ```
 
+Every push to `main` deploys automatically through `.github/workflows/deploy.yml`, which lints,
+typechecks, builds and runs `bun run deploy:rebuild`. It can also be re-run by hand from the
+repository's **Actions** tab. The workflow needs two repository secrets under **Settings > Secrets
+and variables > Actions**:
+
+- `CLOUDFLARE_API_TOKEN`: an API token created from the **Edit Cloudflare Workers** template, with
+  the `vitalscaledigital.com.au` zone included and **Zone > DNS > Edit** added so the custom
+  domains can be attached.
+- `CLOUDFLARE_ACCOUNT_ID`: the account ID shown on the Cloudflare dashboard overview.
+
 After the first deployment, add `WEB3FORMS_ACCESS_KEY` as an encrypted Worker secret before testing
-the contact form. Do not attach the production domain until the rebuild has been approved.
+the contact form. Worker secrets persist across deployments.
 
 ## Built with
 
