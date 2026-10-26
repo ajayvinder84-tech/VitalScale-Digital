@@ -7,13 +7,20 @@ checked" date in every footer, come from `src/data/ndis-news.json`.
 Every push to `main` is built and deployed to https://vitalscaledigital.com.au by Cloudflare Workers
 Builds within a few minutes. Treat a push to `main` as publishing.
 
+## Working with Ajay
+
+Ajay isn't technical. Keep messages short and in plain English, and explain any technical word in a
+few simple words. Check with Ajay before anything goes live. Put every question for Ajay at the very
+bottom of the message, in simple words, so it isn't missed. (The Monday routine below is the one
+exception: it publishes the file Ajay already approved at 10am without asking again.)
+
 ## Routine: update NDIS news
 
 Run this when the Monday 12:30pm scheduled task starts, or when Ajay types "update NDIS news".
-Ajay's 10am approval is the go-live decision: publish only the exact file he approved.
+Ajay's 10am approval is the go-live decision: publish only the exact file Ajay approved.
 
-- Approved file: `C:\Users\Ajayv\Documents\VitalScale\NDIS_News\approved\ndis-news.json`
-- Log: `C:\Users\Ajayv\Documents\VitalScale\NDIS_News\deploy_log.md` (append; start each entry
+- Approved file: `D:\VitalScale\NDIS_News\approved\ndis-news.json`
+- Log: `D:\VitalScale\NDIS_News\deploy_log.md` (append; start each entry
   with today's date and time)
 - "Today" always means today's date in Melbourne (Australia/Melbourne).
 
