@@ -1,16 +1,19 @@
 # VitalScale Digital
 
 The website for [vitalscaledigital.com.au](https://vitalscaledigital.com.au): plain HTML and CSS
-in `site/`, served by a small Cloudflare Worker (`src/worker.js`) that also sends the enquiry
-forms.
+in `site/`, built into `dist/` and served by a small Cloudflare Worker (`src/worker.js`) that also
+sends the enquiry forms.
 
 ## Layout
 
-- `site/`: every page, image, stylesheet and script, published as-is. Pages are served without
-  the `.html` extension (`/policies` serves `policies.html`).
+- `site/`: every page, image, stylesheet and script. The build copies it to `dist/`, which is what
+  gets published. Pages are served without the `.html` extension (`/policies` serves
+  `policies.html`).
+- `src/data/ndis-news.json`: the NDIS news panel's content (see below).
+- `scripts/build.mjs`: validates the news file and builds `dist/`.
 - `site/_redirects`: sends addresses from the previous site to the closest page on this one.
 - `site/404.html`: shown for any address that doesn't exist.
-- `src/worker.js`: handles `POST /api/enquiry` and passes every other request to `site/`.
+- `src/worker.js`: handles `POST /api/enquiry` and passes every other request to `dist/`.
 - `wrangler.jsonc`: the `vitalscale-digital-rebuild` Worker, attached to `vitalscaledigital.com.au`
   and `www.vitalscaledigital.com.au`.
 
@@ -36,6 +39,11 @@ Each page's form posts to `/api/enquiry`, which validates the fields and forward
 
 ## NDIS changes panel
 
-The "NDIS changes" panel on the home page and the policies page says it is checked every Monday.
-When it is updated, change the panel in both `site/index.html` and `site/policies.html`, and the
-"last checked" date in those panels and in the footer of every page.
+The "NDIS changes" panel on the home and policies pages, and the "last checked" date in every
+footer, are built from `src/data/ndis-news.json`. `bun run build` (or `node scripts/build.mjs`)
+validates that file, copies `site/` to `dist/`, and fills the `{{NDIS_NEWS}}` and
+`{{NDIS_LAST_CHECKED}}` placeholders. A file that fails validation fails the build, so Cloudflare
+keeps the current version live.
+
+Weekly updates only change the data file. The steps are in `CLAUDE.md` under "Routine: update
+NDIS news".
