@@ -1,0 +1,14 @@
+# Addresses from the previous site, sent to the closest page on this one.
+/ndis-website-design /websites 301
+/services /websites 301
+/work /websites 301
+/how-we-help / 301
+/new-providers / 301
+/new-ndis-providers / 301
+/about / 301
+/contact /#book 301
+/insights / 301
+/insights/* / 301
+/privacy-policy /privacy 301
+/terms-of-use / 301
+/terms / 301
