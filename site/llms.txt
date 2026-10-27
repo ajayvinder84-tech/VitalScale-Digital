@@ -1,0 +1,15 @@
+# VitalScale Digital
+
+> Calm, nurse-led help for NDIS providers in Australia: social media growth, NDIS policy writing for the new rules, safe AI for repetitive admin, and credible websites. Founded by Ajay Singh, a Registered Nurse. Plain English, fixed prices, and no promises of registration or audit outcomes.
+
+## Services
+
+- [Social media growth](https://vitalscaledigital.com.au/social): posts planned, written, designed and scheduled for NDIS providers, reported on enquiries rather than likes.
+- [Policy writing](https://vitalscaledigital.com.au/policies): NDIS policies rewritten for the new changes, with an audit-ready evidence system that shows each policy is actually happening.
+- [Safe AI](https://vitalscaledigital.com.au/ai): AI set up around existing admin, using Australian-hosted tools that don't train on your data, with staff always checking and deciding.
+- [Websites](https://vitalscaledigital.com.au/websites): credible, fast, accessible websites that tell families and support coordinators what a provider does and how to refer.
+
+## About
+
+- [Home](https://vitalscaledigital.com.au/): overview of services, the current NDIS changes checked against official sources every Monday, and a free 20-minute review.
+- [Privacy policy](https://vitalscaledigital.com.au/privacy): how enquiry details are collected and used.
