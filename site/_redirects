@@ -7,8 +7,8 @@
 /new-ndis-providers / 301
 /about / 301
 /contact /#book 301
-/insights / 301
-/insights/* / 301
+/insights /blog 301
+/insights/* /blog 301
 /privacy-policy /privacy 301
 /terms-of-use / 301
 /terms / 301

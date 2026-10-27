@@ -28,7 +28,7 @@ const news = loadNews();
 
 rmSync(distDir, { recursive: true, force: true });
 cpSync(siteDir, distDir, { recursive: true });
-for (const name of readdirSync(distDir).filter((file) => file.endsWith(".html"))) {
+for (const name of htmlFiles(distDir)) {
   const path = join(distDir, name);
   let html = readFileSync(path, "utf8");
   if (NEWS_PAGES.includes(name) && !html.includes(NEWS_TOKEN)) fail(`site/${name} is missing ${NEWS_TOKEN}`);
@@ -37,6 +37,15 @@ for (const name of readdirSync(distDir).filter((file) => file.endsWith(".html"))
   writeFileSync(path, html);
 }
 console.log(`Built dist/: ${news.items.length} NDIS news item(s), last checked ${formatDate(news.last_checked)}.`);
+
+// Every .html file under dir, as paths relative to it with forward slashes (blog/post.html).
+function htmlFiles(dir, prefix = "") {
+  return readdirSync(join(dir, prefix), { withFileTypes: true }).flatMap((entry) => {
+    const name = prefix ? `${prefix}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) return htmlFiles(dir, name);
+    return entry.name.endsWith(".html") ? [name] : [];
+  });
+}
 
 function loadNews() {
   let news;
