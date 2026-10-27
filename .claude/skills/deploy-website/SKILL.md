@@ -53,7 +53,8 @@ website: handover for the website builder" (https://claude.ai/artifact/7A1wcSXkB
 
 ## Checks before asking Ajay
 
-1. `bun install --frozen-lockfile` and `bun run build` pass, and `grep -r "{{" dist` finds nothing.
+1. `bun install --frozen-lockfile` and `bun run build` pass, and `grep -rlI "{{" dist` finds nothing
+   (`-I` skips images, whose bytes can contain `{{` by chance).
 2. Preview with `bunx wrangler dev --port 8789`. Restart it after every build, because it keeps
    serving the old files. Stop it in a command of its own:
    `pgrep -f "[w]rangler dev" | xargs -r kill`. A `pkill` in the same command as the start kills the
