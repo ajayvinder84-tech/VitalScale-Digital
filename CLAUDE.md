@@ -19,8 +19,8 @@ exception: it publishes the file Ajay already approved at 10am without asking ag
 Run this when the Monday 12:30pm scheduled task starts, or when Ajay types "update NDIS news".
 Ajay's 10am approval is the go-live decision: publish only the exact file Ajay approved.
 
-- Approved file: `D:\VitalScale\NDIS_News\approved\ndis-news.json`
-- Log: `D:\VitalScale\NDIS_News\deploy_log.md` (append; start each entry
+- Approved file: `D:\Claude Code\VitalScale\NDIS News\approved\ndis-news.json`
+- Log: `D:\Claude Code\VitalScale\NDIS News\deploy_log.md` (append; start each entry
   with today's date and time)
 - "Today" always means today's date in Melbourne (Australia/Melbourne).
 
@@ -34,7 +34,7 @@ Ajay's 10am approval is the go-live decision: publish only the exact file Ajay a
      `status`, `source_url`, `source_published`
    - `approved_by` is "Ajay"
    - `last_checked` is a real `YYYY-MM-DD` date within the last 7 days, and not in the future
-   - at most 5 items; every `status` is `VERIFIED` or `EXPECTED` (never `REPORTED`)
+   - at most 4 items; every `status` is `VERIFIED` or `EXPECTED` (never `REPORTED`)
    - every `source_url` starts with `https://` and is on ndiscommission.gov.au, ndis.gov.au,
      health.gov.au, a ministers.\*.gov.au site or legislation.gov.au
    - no empty fields; each item's text (headline, what's changing, who it affects, when, what to

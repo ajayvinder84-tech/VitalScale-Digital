@@ -20,7 +20,7 @@ const ITEM_FIELDS = ["headline", "whats_changing", "who_it_affects", "when", "wh
 const TEXT_FIELDS = ["headline", "whats_changing", "who_it_affects", "when", "what_to_do"];
 const STATUSES = ["VERIFIED", "EXPECTED"];
 const OFFICIAL_HOSTS = ["ndiscommission.gov.au", "ndis.gov.au", "health.gov.au", "legislation.gov.au"];
-const MAX_ITEMS = 5;
+const MAX_ITEMS = 4;
 const MAX_WORDS = 80;
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -102,15 +102,14 @@ function renderPanel({ items, last_checked }) {
   return `${body}\n    ${stamp}`;
 }
 
+// Each item is one short line (when + headline) with a "Learn more" link to the official page.
+// The other fields stay in the data file for the researcher's records but aren't shown.
 function renderItem(item) {
   const tag = item.status === "EXPECTED" ? ` <span class="tag tag-signal">Expected, not final</span>` : "";
   const host = new URL(item.source_url).hostname.replace(/^www\./, "");
   return `      <div class="record-row news-item"><dt>${escape(item.when)}</dt><dd>
         <h3 class="news-headline">${escape(item.headline)}${tag}</h3>
-        <p>${escape(item.whats_changing)}</p>
-        <p><span class="news-label">Who it affects:</span> ${escape(item.who_it_affects)}</p>
-        <p><span class="news-label">What to do:</span> ${escape(item.what_to_do)}</p>
-        <p class="news-source"><a href="${escape(item.source_url)}" target="_blank" rel="noopener">Official source on ${escape(host)}<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+        <a class="news-link" href="${escape(item.source_url)}" target="_blank" rel="noopener">Learn more<span class="visually-hidden"> on ${escape(host)} (opens in a new tab)</span></a>
       </dd></div>`;
 }
 
