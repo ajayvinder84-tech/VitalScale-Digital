@@ -3,6 +3,7 @@
 
 const FIELD_LIMITS = { name: 100, email: 255, business: 150, message: 600 };
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MIN_FILL_MS = 3000;
 
 export default {
   async fetch(request, env) {
@@ -25,8 +26,12 @@ async function handleEnquiry(request, env) {
     return json({ success: false, error: "Invalid form submission." }, 400);
   }
 
-  // Honeypot: the botcheck field is hidden from people, so only bots fill it in.
+  // Bot checks. People never see the botcheck field, so only bots fill it in. And site.js
+  // records how long the form was open: nobody fills it in under 3 seconds. Bots are told
+  // it worked, so they don't retry.
   if (form.get("botcheck")) return json({ success: true });
+  const elapsed = Number(form.get("elapsed"));
+  if (form.get("elapsed") && elapsed >= 0 && elapsed < MIN_FILL_MS) return json({ success: true });
 
   const data = {};
   for (const [field, limit] of Object.entries(FIELD_LIMITS)) {
@@ -40,6 +45,13 @@ async function handleEnquiry(request, env) {
     return json({ success: false, error: "Please enter a valid email address." }, 400);
   }
   const page = String(form.get("page") ?? "").trim().slice(0, 30) || "unknown";
+  const consent = form.get("marketing_consent") === "yes";
+  const consentText = String(form.get("consent_text") ?? "").trim().slice(0, 400);
+  const received = new Date().toLocaleString("en-AU", {
+    timeZone: "Australia/Melbourne",
+    dateStyle: "full",
+    timeStyle: "short",
+  });
 
   if (!env.WEB3FORMS_ACCESS_KEY) {
     console.error("WEB3FORMS_ACCESS_KEY is not set");
@@ -53,12 +65,15 @@ async function handleEnquiry(request, env) {
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
         access_key: env.WEB3FORMS_ACCESS_KEY,
-        subject: `New website enquiry (${page} page) — VitalScale Digital`,
+        subject: `New website enquiry (${page} page): marketing ${consent ? "YES" : "NO"} — VitalScale Digital`,
         from_name: "VitalScale Digital Website",
         name: data.name,
         email: data.email,
         "Business name": data.business,
         Enquiry: data.message,
+        "Marketing consent": consent ? "YES" : "NO",
+        "Consent wording": consent ? consentText : "Box not ticked",
+        Received: `${received} (Melbourne time)`,
         "Sent from page": page,
       }),
     });

@@ -1,7 +1,11 @@
+var loadedAt = Date.now();
+
 document.addEventListener("submit", function (e) {
   var form = e.target.closest("form.enquiry");
   if (!form) return;
   e.preventDefault();
+  // Bot check: how long the form was open, measured on the visitor's own clock.
+  if (form.elements.elapsed) form.elements.elapsed.value = String(Date.now() - loadedAt);
   var status = form.querySelector(".form-status");
   var btn = form.querySelector("button[type=submit]");
   btn.disabled = true; status.textContent = "Sending…";

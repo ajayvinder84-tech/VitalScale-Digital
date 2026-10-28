@@ -347,6 +347,14 @@ tr:last-child td { border-bottom: 0; }
 
 .form-note { font-size: 0.85rem; color: var(--grey-on-dark); }
 .form-note a { color: var(--white); }
+.consent { display: grid; gap: 6px; font-size: 0.9rem; color: var(--grey-on-dark); }
+.consent label { display: flex; gap: 12px; align-items: flex-start; line-height: 1.45; color: var(--white); cursor: pointer; }
+.consent input[type="checkbox"] { width: 20px; height: 20px; margin: 1px 0 0; flex-shrink: 0; accent-color: #9CC7A6; }
+.consent details { margin-left: 32px; }
+.consent summary { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.consent ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; }
+/* Bot trap: off-screen for people, still a normal-looking field to bots */
+.trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .policy { display: grid; gap: 14px; }
 .policy h2 { font-size: var(--step-2); margin-top: 28px; }
 .policy h2:first-child { margin-top: 0; }
