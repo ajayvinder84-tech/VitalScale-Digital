@@ -112,13 +112,28 @@
 </div>
 <form class="enquiry" action="/api/enquiry" method="post">
 <input type="hidden" name="page" value="websites">
-<input type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
+<div class="trap" aria-hidden="true"><label for="botcheck-websites">Leave this empty</label><input type="text" id="botcheck-websites" name="botcheck" tabindex="-1" autocomplete="off"></div>
+<input type="hidden" name="elapsed" value="">
+<input type="hidden" name="consent_text" value="Yes, add me to Ajay's list for NDIS tips, updates and occasional offers by email. (About once a month by email; until I unsubscribe.)">
 <div class="field"><label for="name-websites">Full name</label><input id="name-websites" name="name" type="text" autocomplete="name" required></div>
 <div class="field"><label for="email-websites">Email</label><input id="email-websites" name="email" type="email" autocomplete="email" required></div>
 <div class="field"><label for="biz-websites">Business name</label><input id="biz-websites" name="business" type="text" autocomplete="organization" required></div>
 <div class="field"><label for="msg-websites">Your enquiry</label><textarea id="msg-websites" name="message" rows="3" maxlength="600" placeholder="A short message about what you need" required></textarea></div>
+<div class="consent">
+<label><input type="checkbox" name="marketing_consent" value="yes" aria-describedby="consent-terms-websites"><span>Yes, add me to Ajay's list for NDIS tips, updates and occasional offers by email.</span></label>
+<details id="consent-terms-websites">
+<summary>See details</summary>
+<ul>
+<li><strong>Who:</strong> VitalScale Digital (Ajay Singh).</li>
+<li><strong>What:</strong> NDIS tips, updates and occasional offers about our services.</li>
+<li><strong>How often:</strong> about once a month by email.</li>
+<li><strong>How long:</strong> until you unsubscribe.</li>
+<li><strong>How to stop:</strong> click "unsubscribe" in any email.</li>
+</ul>
+</details>
+</div>
 <button class="btn btn-light" type="submit">Send enquiry</button>
-<p class="form-note">We only use your details to reply to you. See our <a href="privacy.html">privacy policy</a>.</p>
+<p class="form-note">We use your details to reply to you, and only add you to our list if you tick the box. See our <a href="privacy.html">privacy policy</a>.</p>
 <p class="form-status" role="status" aria-live="polite"></p>
 </form>
 </div></div></section>
