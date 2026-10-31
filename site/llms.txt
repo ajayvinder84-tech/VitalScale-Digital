@@ -11,7 +11,7 @@
 
 ## Guides
 
-- [How to start an NDIS business in Australia](https://vitalscaledigital.com.au/blog/how-to-start-an-ndis-business): an honest step-by-step guide for 2026–27 covering business basics, registered vs unregistered, the 2026–27 rule changes, getting paid and finding your first participant.
+{{BLOG_GUIDES}}
 
 ## About
 

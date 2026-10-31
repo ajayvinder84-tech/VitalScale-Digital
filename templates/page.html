@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{URL}}">
+<meta property="og:type" content="{{OG_TYPE}}">
+<meta property="og:site_name" content="VitalScale Digital">
+<meta property="og:locale" content="en_AU">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:url" content="{{URL}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:image:alt" content="{{OG_IMAGE_ALT}}">
+<meta name="twitter:card" content="summary_large_image">
+{{JSON_LD}}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="/index.html"><img src="/logo-primary.svg" alt="VitalScale Digital" width="120" height="37"></a>
+<nav class="nav" aria-label="Main"><a href="/index.html">All services</a><a href="/social.html">Social media</a><a href="/policies.html">Policies</a><a href="/ai.html">Safe AI</a><a href="/websites.html">Websites</a><a href="/blog.html" aria-current="page">Blog</a><a href="#book">Contact</a></nav>
+<a class="btn btn-primary" href="#book">Book a free review</a>
+</div></header>
+<main>
+{{MAIN}}
+<section id="book"><div class="wrap"><div class="cta cta-form">
+<div class="cta-copy">
+<h2>{{FORM_HEADING}}</h2>
+<p>{{FORM_TEXT}}</p>
+<p class="small">Ajay will reply to you personally.</p>
+</div>
+<form class="enquiry" action="/api/enquiry" method="post">
+<input type="hidden" name="page" value="{{FORM_PAGE}}">
+<div class="trap" aria-hidden="true"><label for="botcheck-{{FORM_PAGE}}">Leave this empty</label><input type="text" id="botcheck-{{FORM_PAGE}}" name="botcheck" tabindex="-1" autocomplete="off"></div>
+<input type="hidden" name="elapsed" value="">
+<input type="hidden" name="consent_text" value="Yes, add me to Ajay's list for NDIS tips, updates and occasional offers by email. (About once a month by email; until I unsubscribe.)">
+<div class="field"><label for="name-{{FORM_PAGE}}">Full name</label><input id="name-{{FORM_PAGE}}" name="name" type="text" autocomplete="name" required></div>
+<div class="field"><label for="email-{{FORM_PAGE}}">Email</label><input id="email-{{FORM_PAGE}}" name="email" type="email" autocomplete="email" required></div>
+<div class="field"><label for="biz-{{FORM_PAGE}}">Business name</label><input id="biz-{{FORM_PAGE}}" name="business" type="text" autocomplete="organization" required></div>
+<div class="field"><label for="msg-{{FORM_PAGE}}">Your enquiry</label><textarea id="msg-{{FORM_PAGE}}" name="message" rows="3" maxlength="600" placeholder="A short message about what you need" required></textarea></div>
+<div class="consent">
+<label><input type="checkbox" name="marketing_consent" value="yes" aria-describedby="consent-terms-{{FORM_PAGE}}"><span>Yes, add me to Ajay's list for NDIS tips, updates and occasional offers by email.</span></label>
+<details id="consent-terms-{{FORM_PAGE}}">
+<summary>See details</summary>
+<ul>
+<li><strong>Who:</strong> VitalScale Digital (Ajay Singh).</li>
+<li><strong>What:</strong> NDIS tips, updates and occasional offers about our services.</li>
+<li><strong>How often:</strong> about once a month by email.</li>
+<li><strong>How long:</strong> until you unsubscribe.</li>
+<li><strong>How to stop:</strong> click "unsubscribe" in any email.</li>
+</ul>
+</details>
+</div>
+<button class="btn btn-light" type="submit">Send enquiry</button>
+<p class="form-note">We use your details to reply to you, and only add you to our list if you tick the box. See our <a href="/privacy.html">privacy policy</a>.</p>
+<p class="form-status" role="status" aria-live="polite"></p>
+</form>
+</div></div></section>
+</main>
+<footer class="site-footer"><div class="wrap">
+<a class="footer-logo" href="/index.html"><img src="/logo-reversed.svg" alt="VitalScale Digital" width="120" height="37"></a>
+<div class="footer-links"><a href="/index.html">All services</a><a href="/social.html">Social media</a><a href="/policies.html">Policies</a><a href="/ai.html">Safe AI</a><a href="/websites.html">Websites</a><a href="/blog.html">Blog</a><a href="/privacy.html">Privacy policy</a></div>
+<p>VitalScale Digital helps NDIS providers with social media, policy writing, safe AI and credible websites. We don't give legal advice, and no one can guarantee registration or audit outcomes, so we never promise them. Regulatory information on this site is checked against official NDIS sources every Monday (last checked {{NDIS_LAST_CHECKED}}). Always confirm current requirements with the <a href="https://www.ndiscommission.gov.au/" target="_blank" rel="noopener">NDIS Commission</a>.</p>
+<p>Sample work on this site is made for fictional providers and is labelled as such.</p>
+<p>&copy; 2026 VitalScale Digital</p>
+</div></footer>
+<script src="/site.js"></script>
+</body>
+</html>

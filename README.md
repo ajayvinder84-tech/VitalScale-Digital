@@ -47,3 +47,12 @@ keeps the current version live.
 
 Weekly updates only change the data file. The steps are in `CLAUDE.md` under "Routine: update
 NDIS news".
+
+## Blog
+
+Each post is a folder in `content/blog/`: `post.md` (a `---` block with `title`, `description`,
+`keyword`, `category`, `checked` and `date`, then the article in Markdown) and an optional
+`cover.jpg` with `photo_alt` (and `photo_credit`). `scripts/blog.mjs` builds each post's page at
+`/blog/<slug>`, the `/blog` list, and the blog entries in `sitemap.xml` and `llms.txt`. A post
+appears once its `date` arrives, and the build stops if a post is missing details or a
+`## Sources` section. Weekly publishing is "Routine: publish the weekly blog" in `CLAUDE.md`.

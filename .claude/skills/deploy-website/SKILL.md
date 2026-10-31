@@ -32,6 +32,14 @@ says: short, plain English, questions at the bottom.
 - No trackers, cookies, new dependencies or secrets in the repo.
 - Never edit or commit `dist/`. The build makes it.
 
+## Blog posts
+
+Posts are `content/blog/<slug>/post.md` plus an optional `cover.jpg`; the build makes their pages,
+so never hand-write a blog page in `site/`. The weekly flow is "Routine: publish the weekly blog" in
+`CLAUDE.md`. The page layout for posts and the blog list is `templates/page.html` plus
+`renderPostPage` and `renderListPage` in `scripts/blog.mjs`: a change to the site's header, menu or
+footer must be made there too.
+
 ## Taking over work from the website builder
 
 The builder designs in Ajay's claude.ai page "VitalScale Digital"

@@ -1,11 +1,13 @@
-// Builds the site into dist/: copies site/, then fills the NDIS news panel ({{NDIS_NEWS}})
-// and every "last checked" date ({{NDIS_LAST_CHECKED}}) from src/data/ndis-news.json.
+// Builds the site into dist/: copies site/, builds the blog from content/blog (see blog.mjs),
+// then fills the NDIS news panel ({{NDIS_NEWS}}) and every "last checked" date
+// ({{NDIS_LAST_CHECKED}}) from src/data/ndis-news.json.
 // The data file is validated first, so a bad file fails the build and nothing is deployed.
 // Uses only Node built-ins so it runs anywhere Node 18+ (or Bun) is installed.
 
 import { cpSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildBlog } from "./blog.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const siteDir = join(root, "site");
@@ -28,15 +30,19 @@ const news = loadNews();
 
 rmSync(distDir, { recursive: true, force: true });
 cpSync(siteDir, distDir, { recursive: true });
+const blogSummary = buildBlog({ root, distDir, fail });
 for (const name of htmlFiles(distDir)) {
   const path = join(distDir, name);
   let html = readFileSync(path, "utf8");
   if (NEWS_PAGES.includes(name) && !html.includes(NEWS_TOKEN)) fail(`site/${name} is missing ${NEWS_TOKEN}`);
   html = html.replaceAll(NEWS_TOKEN, renderPanel(news)).replaceAll(DATE_TOKEN, formatDate(news.last_checked));
-  if (/\{\{[A-Z_]+\}\}/.test(html)) fail(`site/${name} has an unknown {{PLACEHOLDER}}`);
+  if (/\{\{[A-Z_]+\}\}/.test(html)) fail(`${name} has an unknown {{PLACEHOLDER}}`);
   writeFileSync(path, html);
 }
-console.log(`Built dist/: ${news.items.length} NDIS news item(s), last checked ${formatDate(news.last_checked)}.`);
+for (const name of ["sitemap.xml", "llms.txt"]) {
+  if (/\{\{[A-Z_]+\}\}|<!-- [A-Z_]+ -->/.test(readFileSync(join(distDir, name), "utf8"))) fail(`${name} has an unfilled placeholder`);
+}
+console.log(`Built dist/: ${blogSummary}; ${news.items.length} NDIS news item(s), last checked ${formatDate(news.last_checked)}.`);
 
 // Every .html file under dir, as paths relative to it with forward slashes (blog/post.html).
 function htmlFiles(dir, prefix = "") {
