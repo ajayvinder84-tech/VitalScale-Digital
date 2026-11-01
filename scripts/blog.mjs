@@ -12,6 +12,15 @@ const REQUIRED = ["title", "description", "keyword", "category", "checked", "dat
 const OPTIONAL = ["slug", "photo_alt", "photo_credit", "photo_credit_url"];
 const COVER_NAMES = ["cover.jpg", "cover.jpeg", "cover.png", "cover.webp"];
 const MAX_COVER_BYTES = 1024 * 1024;
+const ORG = `${BASE}/#organization`;
+const PERSON = `${BASE}/#ajay`;
+// Who runs the site, repeated on every blog page so search engines and AI tools can tie the
+// guides to VitalScale and to Ajay. The static pages in site/ carry the same entities.
+const ENTITIES = [
+  { "@type": "Organization", "@id": ORG, name: "VitalScale Digital", url: `${BASE}/`, logo: { "@type": "ImageObject", url: `${BASE}/logo-primary.svg` }, founder: { "@id": PERSON } },
+  { "@type": "Person", "@id": PERSON, name: "Ajay Singh", jobTitle: "Registered Nurse and founder", image: `${BASE}/photos/ajay.jpg`, url: `${BASE}/#founder`, worksFor: { "@id": ORG } },
+  { "@type": "WebSite", "@id": `${BASE}/#website`, url: `${BASE}/`, name: "VitalScale Digital", inLanguage: "en-AU", publisher: { "@id": ORG } },
+];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export function buildBlog({ root, distDir, fail }) {
@@ -92,6 +101,7 @@ function loadPost(folder, folderName, text, fail) {
     coverFile,
     coverName: coverName ? `${slug}${coverName.slice(coverName.indexOf("."))}` : null,
     html,
+    faq: extractFaq(match[2]),
     toc: toc.filter((item) => !/^sources\b/i.test(item.text)),
     minutes: Math.max(1, Math.round(words / 220)),
   };
@@ -240,13 +250,15 @@ ${post.html}
   ${more.length ? `<div class="more-guides"><h2>More guides</h2><div class="post-grid">${more.map(card).join("")}</div></div>` : ""}
 </div></section>
 </article>`;
-  const ld = {
-    "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, description: post.description,
-    datePublished: post.date, dateModified: post.checked > post.date ? post.checked : post.date, inLanguage: "en-AU",
-    image: cover ? BASE + cover : `${BASE}/og-image.png`, mainEntityOfPage: url, keywords: post.keyword,
-    author: { "@type": "Person", name: "Ajay Singh", jobTitle: "Registered Nurse", url: `${BASE}/` },
-    publisher: { "@type": "Organization", name: "VitalScale Digital", logo: { "@type": "ImageObject", url: `${BASE}/logo-primary.svg` } },
-  };
+  const ld = graph([
+    { "@type": "BlogPosting", "@id": `${url}#article`, headline: post.title, description: post.description,
+      datePublished: post.date, dateModified: post.checked > post.date ? post.checked : post.date, inLanguage: "en-AU",
+      image: cover ? BASE + cover : `${BASE}/og-image.png`, mainEntityOfPage: url, keywords: post.keyword,
+      articleSection: post.category, author: { "@id": PERSON }, publisher: { "@id": ORG } },
+    breadcrumbs(url, ["Blog", `${BASE}/blog`], [post.title, url]),
+    ...(post.faq.length ? [{ "@type": "FAQPage", "@id": `${url}#faq`, url, mainEntity: post.faq.map(({ q, a }) =>
+      ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }] : []),
+  ]);
   return fill(template, {
     TITLE: pageTitle(post.title), DESCRIPTION: post.description, URL: url, OG_TYPE: "article",
     OG_IMAGE: cover ? BASE + cover : `${BASE}/og-image.png`, OG_IMAGE_ALT: post.photo_alt || "VitalScale Digital: calm, nurse-led help for NDIS providers",
@@ -277,9 +289,12 @@ function renderListPage(template, posts) {
   </a>` : `<p class="muted">The first guide is on its way. Check back on Friday.</p>`}
   ${rest.length ? `<div class="post-grid">${rest.map(card).join("")}</div>` : ""}
 </div></section>`;
-  const ld = { "@context": "https://schema.org", "@type": "Blog", name: "VitalScale Digital blog", url: `${BASE}/blog`,
-    publisher: { "@type": "Organization", name: "VitalScale Digital" },
-    blogPost: posts.map((post) => ({ "@type": "BlogPosting", headline: post.title, url: `${BASE}/blog/${post.slug}`, datePublished: post.date })) };
+  const ld = graph([
+    { "@type": "Blog", "@id": `${BASE}/blog#blog`, name: "VitalScale Digital blog", url: `${BASE}/blog`, inLanguage: "en-AU",
+      publisher: { "@id": ORG }, author: { "@id": PERSON },
+      blogPost: posts.map((post) => ({ "@type": "BlogPosting", headline: post.title, url: `${BASE}/blog/${post.slug}`, datePublished: post.date })) },
+    breadcrumbs(`${BASE}/blog`, ["Blog", `${BASE}/blog`]),
+  ]);
   return fill(template, {
     TITLE: "NDIS provider guides and blog | VitalScale Digital",
     DESCRIPTION: "Plain-English guides for NDIS providers from a Registered Nurse, checked against official NDIS sources. A new guide every Friday.",
@@ -314,6 +329,35 @@ function fill(template, values) {
     if (!(key in values)) return whole; // left for the main build (e.g. NDIS_LAST_CHECKED)
     return ["MAIN", "JSON_LD"].includes(key) ? values[key] : escape(values[key]);
   });
+}
+
+function graph(nodes) {
+  return { "@context": "https://schema.org", "@graph": [...ENTITIES, ...nodes] };
+}
+
+function breadcrumbs(url, ...trail) {
+  return { "@type": "BreadcrumbList", "@id": `${url}#breadcrumb`, itemListElement: [["Home", `${BASE}/`], ...trail]
+    .map(([name, item], i) => ({ "@type": "ListItem", position: i + 1, name, item })) };
+}
+
+// Turns a "Common questions" (or "FAQ") section into FAQ data: each ### question with the text under it.
+function extractFaq(markdown) {
+  const faq = [];
+  let inside = false;
+  let current = null;
+  for (const line of markdown.replace(/\r\n?/g, "\n").split("\n")) {
+    const h2 = line.match(/^##\s+(.+)/);
+    if (h2) { inside = /^(common questions|frequently asked questions|faqs?)\b/i.test(h2[1].trim()); current = null; continue; }
+    if (!inside) continue;
+    const h3 = line.match(/^###\s+(.+)/);
+    if (h3) { current = { q: plainText(h3[1]), a: [] }; faq.push(current); continue; }
+    if (current && line.trim() && !/^(#|>|\|)/.test(line)) current.a.push(plainText(line.replace(/^\s*([-*+]|\d+[.)])\s+/, "")));
+  }
+  return faq.filter((item) => item.q && item.a.length).map((item) => ({ q: item.q, a: item.a.join(" ") }));
+}
+
+function plainText(text) {
+  return text.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/\*\*|[*`]/g, "").trim();
 }
 
 function jsonLd(data) {

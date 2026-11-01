@@ -158,6 +158,11 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 @media (max-width: 860px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { .steps { grid-template-columns: minmax(0, 1fr); } }
 
+/* Common questions */
+.faq { display: grid; gap: 0 clamp(28px, 5vw, 72px); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.faq-item { border-top: 1px solid var(--line); padding-block: 22px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+@media (max-width: 760px) { .faq { grid-template-columns: minmax(0, 1fr); } }
+
 /* Quotes */
 .quotes { display: grid; gap: 20px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 900px) { .quotes { grid-template-columns: minmax(0, 1fr); } }
@@ -300,7 +305,7 @@ tr:last-child td { border-bottom: 0; }
 
 /* Image cards (ref: blog cards) */
 .service { padding: 0; overflow: hidden; }
-.service-img { display: block; width: 100%; aspect-ratio: 4 / 3; max-width: 100%; object-fit: cover; }
+.service-img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; max-width: 100%; object-fit: cover; }
 .service-body { padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
 .link-arrow { margin-top: auto; align-self: flex-start; font-weight: 500; text-decoration: underline; text-underline-offset: 6px; padding-top: 6px; }
 .link-arrow::after { content: "\2192"; display: inline-block; margin-left: 8px; transition: transform .2s; }

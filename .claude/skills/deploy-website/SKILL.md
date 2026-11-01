@@ -52,6 +52,12 @@ website: handover for the website builder" (https://claude.ai/artifact/7A1wcSXkB
    - a proper `<head>`: the artifact's `index.html` arrives wrapped in a preview skeleton, so rebuild
      its head like the other pages, and drop any `claude:` meta tags
    - the title, description, canonical, Open Graph and icon tags on every page
+   - the structured data (`<script type="application/ld+json">`) in every page's head, and the
+     "Common questions" section (`id="questions"`) it describes. If a question's wording changes,
+     change it in both places: the build stops if a question in the data isn't on the page.
+   - `width` and `height` on every photo, with the top photo loaded first (`fetchpriority="high"`,
+     never `loading="lazy"`). If a photo's CSS sets only its width, add `height: auto`, or the
+     `height` attribute stretches it.
    - the form wiring: `action="/api/enquiry" method="post"`, the fields `name`, `email`, `business`,
      `message`, `page` and the hidden `botcheck`, and no `data-preview`
    - the `{{NDIS_NEWS}}` placeholder in the panels on `index.html` and `policies.html`, and
@@ -74,7 +80,8 @@ website: handover for the website builder" (https://claude.ai/artifact/7A1wcSXkB
 4. Post to `/api/enquiry`: missing fields give 400, and a filled `botcheck` gives 200. A real send
    gives 502 locally, because the cloud container can't reach Web3Forms. That's expected: Ajay tests
    the live form.
-5. Every page has its search tags, and new pages are in `site/sitemap.xml` and `site/llms.txt`.
+5. Every page has its search tags and structured data, and new pages are in `site/sitemap.xml` and
+   `site/llms.txt`. `site/_headers` holds the security headers and photo caching.
 6. `bunx wrangler deploy --dry-run --outdir <scratchpad>/dry` succeeds.
 7. Every NDIS fact matches an official source, and nothing promises registration or audit results.
 

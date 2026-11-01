@@ -37,12 +37,41 @@ for (const name of htmlFiles(distDir)) {
   if (NEWS_PAGES.includes(name) && !html.includes(NEWS_TOKEN)) fail(`site/${name} is missing ${NEWS_TOKEN}`);
   html = html.replaceAll(NEWS_TOKEN, renderPanel(news)).replaceAll(DATE_TOKEN, formatDate(news.last_checked));
   if (/\{\{[A-Z_]+\}\}/.test(html)) fail(`${name} has an unknown {{PLACEHOLDER}}`);
+  checkStructuredData(name, html);
   writeFileSync(path, html);
 }
+const sitemapFile = join(distDir, "sitemap.xml");
+writeFileSync(sitemapFile, readFileSync(sitemapFile, "utf8").replaceAll("{{NDIS_LAST_CHECKED_ISO}}", news.last_checked));
 for (const name of ["sitemap.xml", "llms.txt"]) {
   if (/\{\{[A-Z_]+\}\}|<!-- [A-Z_]+ -->/.test(readFileSync(join(distDir, name), "utf8"))) fail(`${name} has an unfilled placeholder`);
 }
 console.log(`Built dist/: ${blogSummary}; ${news.items.length} NDIS news item(s), last checked ${formatDate(news.last_checked)}.`);
+
+// Each page's structured data must be valid JSON, and every question in it must be one of the
+// questions shown on the page (search engines ignore, or penalise, FAQ data that isn't visible).
+function checkStructuredData(name, html) {
+  const shown = new Set([...html.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => plainText(m[1])));
+  for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let data;
+    try {
+      data = JSON.parse(json);
+    } catch (error) {
+      fail(`${name} has broken structured data (application/ld+json): ${error.message}`);
+    }
+    for (const node of data["@graph"] ?? [data]) {
+      for (const question of node.mainEntity ?? []) {
+        if (question["@type"] === "Question" && !shown.has(plainText(question.name))) {
+          fail(`${name}: the FAQ question "${question.name}" isn't shown on the page`);
+        }
+      }
+    }
+  }
+}
+
+function plainText(text) {
+  return text.replace(/<[^>]+>/g, "").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+}
 
 // Every .html file under dir, as paths relative to it with forward slashes (blog/post.html).
 function htmlFiles(dir, prefix = "") {

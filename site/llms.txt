@@ -2,6 +2,16 @@
 
 > Calm, nurse-led help for NDIS providers in Australia: social media growth, NDIS policy writing for the new rules, safe AI for repetitive admin, and credible websites. Founded by Ajay Singh, a Registered Nurse. Plain English, fixed prices, and no promises of registration or audit outcomes.
 
+## Key facts
+
+- Founded and run by Ajay Singh, a Registered Nurse. Clients deal with Ajay directly, from the first review to the finished work.
+- Works with NDIS providers across Australia.
+- Every job has a fixed price, with what's included and what isn't written down before work starts.
+- Never promises NDIS registration or audit results, and doesn't act as an auditor: audits must be done by an approved quality auditor.
+- Safe AI rules: only Australian-hosted tools that don't train on client data, no participant information in public chatbots, and staff check and sign off everything AI drafts. VitalScale never holds participants' information.
+- The NDIS changes on the home page are checked against official NDIS sources every Monday.
+- Contact: a free 20-minute review, booked through the form at https://vitalscaledigital.com.au/#book.
+
 ## Services
 
 - [Social media growth](https://vitalscaledigital.com.au/social): posts planned, written, designed and scheduled for NDIS providers, reported on enquiries rather than likes.
