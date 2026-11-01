@@ -28,10 +28,14 @@ async function handleEnquiry(request, env) {
 
   // Bot checks. People never see the botcheck field, so only bots fill it in. And site.js
   // records how long the form was open: nobody fills it in under 3 seconds. Bots are told
-  // it worked, so they don't retry.
+  // it worked, so they don't retry. Spam bots that post the form without running site.js
+  // send no time at all, so those are turned away too.
   if (form.get("botcheck")) return json({ success: true });
   const elapsed = Number(form.get("elapsed"));
-  if (form.get("elapsed") && elapsed >= 0 && elapsed < MIN_FILL_MS) return json({ success: true });
+  if (!form.get("elapsed") || !Number.isFinite(elapsed)) {
+    return json({ success: false, error: "Please turn on JavaScript to send this form." }, 400);
+  }
+  if (elapsed < MIN_FILL_MS) return json({ success: true });
 
   const data = {};
   for (const [field, limit] of Object.entries(FIELD_LIMITS)) {
