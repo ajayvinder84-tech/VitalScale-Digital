@@ -216,6 +216,7 @@ tr:last-child td { border-bottom: 0; }
 .footer-logo img { height: 44px; width: auto; display: block; margin-bottom: 8px; }
 .footer-links { display: flex; gap: 10px 26px; flex-wrap: wrap; }
 .footer-links a { color: var(--white); }
+.footer-social span { color: var(--grey-on-dark); }
 .site-footer a { color: var(--white); }
 .site-footer p { max-width: 90ch; }
 
