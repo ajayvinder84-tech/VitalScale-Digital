@@ -543,10 +543,13 @@ tr:last-child td { border-bottom: 0; }
 /* WhatsApp: floating chat button, plus the number in the contact panel and footer */
 .whatsapp-float {
   position: fixed; z-index: 20; right: max(18px, env(safe-area-inset-right, 0px)); bottom: max(18px, env(safe-area-inset-bottom, 0px));
-  display: inline-flex; align-items: center; gap: 10px; padding: 12px; border-radius: 999px; background: #25D366; color: #fff;
-  text-decoration: none; font-weight: 600; box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.45); transition: transform 0.2s;
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px; border-radius: 999px;
+  background: var(--ink); color: var(--white); border: 1.5px solid rgba(255, 255, 255, 0.9);
+  text-decoration: none; font-weight: 600; box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
 }
-.whatsapp-float:hover { transform: translateY(-2px); }
+/* In the website's colours until someone points at it or tabs to it, then WhatsApp green */
+.whatsapp-float:hover, .whatsapp-float:focus-visible { transform: translateY(-2px); background: #25D366; border-color: #25D366; }
 .whatsapp-float-label { padding-right: 8px; }
 @media (max-width: 760px) { .whatsapp-float-label { display: none; } }
 .cta-chat { color: var(--grey-on-dark); }
