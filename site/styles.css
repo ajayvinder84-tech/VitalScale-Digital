@@ -218,7 +218,7 @@ tr:last-child td { border-bottom: 0; }
 .footer-links a { color: var(--white); }
 .footer-social { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .footer-social span { color: var(--grey-on-dark); margin-right: 6px; }
-.site-footer .social-link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--line-dark); border-radius: 999px; text-decoration: none; transition: background-color 0.2s, border-color 0.2s; }
+.site-footer .social-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line-dark); border-radius: 50%; text-decoration: none; transition: background-color 0.2s, border-color 0.2s; }
 .site-footer .social-link:hover, .site-footer .social-link:focus-visible { background: rgba(255, 255, 255, 0.08); border-color: var(--grey-on-dark); }
 .social-link svg { flex: none; }
 .site-footer a { color: var(--white); }
