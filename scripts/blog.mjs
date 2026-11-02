@@ -17,8 +17,10 @@ const PERSON = `${BASE}/#ajay`;
 // Who runs the site, repeated on every blog page so search engines and AI tools can tie the
 // guides to VitalScale and to Ajay. The static pages in site/ carry the same entities.
 const ENTITIES = [
-  { "@type": "Organization", "@id": ORG, name: "VitalScale Digital", url: `${BASE}/`, logo: { "@type": "ImageObject", url: `${BASE}/logo-primary.svg` }, founder: { "@id": PERSON } },
-  { "@type": "Person", "@id": PERSON, name: "Ajay Singh", jobTitle: "Registered Nurse and founder", image: `${BASE}/photos/ajay.jpg`, url: `${BASE}/#founder`, worksFor: { "@id": ORG } },
+  { "@type": "Organization", "@id": ORG, name: "VitalScale Digital", url: `${BASE}/`, logo: { "@type": "ImageObject", url: `${BASE}/logo-primary.svg` }, founder: { "@id": PERSON },
+    sameAs: ["https://www.linkedin.com/company/vitalscale-digital/", "https://www.facebook.com/profile.php?id=61585755002903", "https://www.instagram.com/vital.scale.digital/"] },
+  { "@type": "Person", "@id": PERSON, name: "Ajay Singh", jobTitle: "Registered Nurse and founder", image: `${BASE}/photos/ajay.jpg`, url: `${BASE}/#founder`, worksFor: { "@id": ORG },
+    sameAs: ["https://www.linkedin.com/in/ajay-vitalscaledigital/"] },
   { "@type": "WebSite", "@id": `${BASE}/#website`, url: `${BASE}/`, name: "VitalScale Digital", inLanguage: "en-AU", publisher: { "@id": ORG } },
 ];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
