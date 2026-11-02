@@ -527,20 +527,13 @@ tr:last-child td { border-bottom: 0; }
   .hero::before { background: linear-gradient(180deg, rgba(14, 28, 27, 0.9) 0%, rgba(14, 28, 27, 0.8) 100%); }
 }
 
-/* Key facts: a light row of four under "Why VitalScale" on the home page */
-.facts { list-style: none; margin: clamp(48px, 6vw, 80px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-.facts li { padding: 28px 24px 0; border-left: 1px solid var(--line); }
-.facts li:first-child { border-left: 0; padding-left: 0; }
+/* Key facts: four soft boxes under "Why VitalScale" on the home page */
+.facts { list-style: none; margin: clamp(48px, 6vw, 80px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.facts li { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
 .facts strong { display: block; color: var(--ink); font-size: clamp(1.5rem, 1rem + 1.2vw, 2.1rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 6px; }
 .facts strong::before { content: ""; display: block; width: 28px; height: 2px; border-radius: 2px; background: var(--gold); margin-bottom: 16px; }
 .facts span { color: var(--grey); font-size: 0.95rem; }
-@media (max-width: 900px) {
-  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
-  .facts li, .facts li:first-child { border-left: 0; padding: 24px 0 0; }
-}
-/* PREVIEW ONLY: option B, soft cards */
-.facts.cards { border-top: 0; gap: 16px; }
-.facts.cards li, .facts.cards li:first-child { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+@media (max-width: 900px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* Home page services: a numbered list instead of three cards */
 #services .grid-3 { grid-template-columns: minmax(0, 1fr); gap: 0; counter-reset: svc; }
