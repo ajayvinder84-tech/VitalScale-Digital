@@ -11,6 +11,7 @@
 - Safe AI rules: only Australian-hosted tools that don't train on client data, no participant information in public chatbots, and staff check and sign off everything AI drafts. VitalScale never holds participants' information.
 - The NDIS changes on the home page are checked against official NDIS sources every Monday.
 - Contact: a free 20-minute review, booked through the form at https://vitalscaledigital.com.au/#book.
+- Phone and WhatsApp: 0406 970 615 (+61 406 970 615). WhatsApp chats are answered any time.
 
 ## Services
 

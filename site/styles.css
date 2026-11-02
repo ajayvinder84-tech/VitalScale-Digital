@@ -539,3 +539,16 @@ tr:last-child td { border-bottom: 0; }
 .eyebrow { color: var(--teal); }
 .cta, .site-footer { background: var(--ink); }
 .cta .btn-primary, .cta button[type="submit"] { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
+
+/* WhatsApp: floating chat button, plus the number in the contact panel and footer */
+.whatsapp-float {
+  position: fixed; z-index: 20; right: max(18px, env(safe-area-inset-right, 0px)); bottom: max(18px, env(safe-area-inset-bottom, 0px));
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px; border-radius: 999px; background: #25D366; color: #fff;
+  text-decoration: none; font-weight: 600; box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.45); transition: transform 0.2s;
+}
+.whatsapp-float:hover { transform: translateY(-2px); }
+.whatsapp-float-label { padding-right: 8px; }
+@media (max-width: 760px) { .whatsapp-float-label { display: none; } }
+.cta-chat { color: var(--grey-on-dark); }
+.cta-chat a { color: var(--white); }
+.footer-contact a { font-weight: 600; }
