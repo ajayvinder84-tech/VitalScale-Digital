@@ -263,7 +263,7 @@ ${post.html}
   ]);
   return fill(template, {
     TITLE: pageTitle(post.title), DESCRIPTION: post.description, URL: url, OG_TYPE: "article",
-    OG_IMAGE: cover ? BASE + cover : `${BASE}/og-image.png`, OG_IMAGE_ALT: post.photo_alt || "VitalScale Digital: calm, nurse-led help for NDIS providers",
+    OG_IMAGE: cover ? BASE + cover : `${BASE}/og/blog.jpg`, OG_IMAGE_ALT: post.photo_alt || "VitalScale Digital blog: plain-English guides for NDIS providers",
     JSON_LD: jsonLd(ld), MAIN: main, FORM_PAGE: `blog-${post.slug}`.slice(0, 30).replace(/-$/, ""),
     FORM_HEADING: "Got a question about your NDIS business?",
     FORM_TEXT: "Tell us where you're up to. Ajay reads every message and replies personally. No obligation and no sales pressure.",
@@ -300,8 +300,8 @@ function renderListPage(template, posts) {
   return fill(template, {
     TITLE: "NDIS provider guides and blog | VitalScale Digital",
     DESCRIPTION: "Plain-English guides for NDIS providers from a Registered Nurse, checked against official NDIS sources. A new guide every Friday.",
-    URL: `${BASE}/blog`, OG_TYPE: "website", OG_IMAGE: `${BASE}/og-image.png`,
-    OG_IMAGE_ALT: "VitalScale Digital: calm, nurse-led help for NDIS providers", JSON_LD: jsonLd(ld), MAIN: main, FORM_PAGE: "blog",
+    URL: `${BASE}/blog`, OG_TYPE: "website", OG_IMAGE: `${BASE}/og/blog.jpg`,
+    OG_IMAGE_ALT: "VitalScale Digital blog: plain-English guides for NDIS providers", JSON_LD: jsonLd(ld), MAIN: main, FORM_PAGE: "blog",
     FORM_HEADING: "Got a question we should answer?",
     FORM_TEXT: "Tell us what you're stuck on. Ajay reads every message and replies personally, and the most common questions become our next guides.",
   });
