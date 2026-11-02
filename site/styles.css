@@ -527,13 +527,6 @@ tr:last-child td { border-bottom: 0; }
   .hero::before { background: linear-gradient(180deg, rgba(14, 28, 27, 0.9) 0%, rgba(14, 28, 27, 0.8) 100%); }
 }
 
-/* Key facts strip under the home page's top section */
-.key-facts { background: var(--ink); color: var(--white); padding-block: 34px; border-top: 1px solid #22403D; }
-.key-facts ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
-.key-facts strong { display: block; color: var(--gold); font-size: clamp(1.6rem, 1rem + 1.6vw, 2.4rem); letter-spacing: -0.03em; font-weight: 500; line-height: 1.2; }
-.key-facts span { color: #A9B5B1; font-size: 0.92rem; }
-@media (max-width: 900px) { .key-facts ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-
 /* Home page services: a numbered list instead of three cards */
 #services .grid-3 { grid-template-columns: minmax(0, 1fr); gap: 0; counter-reset: svc; }
 #services .service {
