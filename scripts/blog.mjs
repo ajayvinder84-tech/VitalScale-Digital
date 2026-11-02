@@ -40,7 +40,7 @@ export function buildBlog({ root, distDir, fail }) {
   writeFileSync(join(distDir, "blog.html"), renderListPage(template, posts));
 
   replaceToken(join(distDir, "sitemap.xml"), "<!-- BLOG_POSTS -->", posts.map((post) =>
-    `<url><loc>${BASE}/blog/${post.slug}</loc><lastmod>${post.checked > post.date ? post.checked : post.date}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`).join("\n  "), fail);
+    `<url><loc>${BASE}/blog/${post.slug}</loc><lastmod>${lastUpdated(post)}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`).join("\n  "), fail);
   replaceToken(join(distDir, "llms.txt"), "{{BLOG_GUIDES}}", posts.length
     ? posts.map((post) => `- [${post.title}](${BASE}/blog/${post.slug}): ${post.description}`).join("\n")
     : "- The first guide is coming soon.", fail);
@@ -227,7 +227,7 @@ function renderPostPage(template, post, more) {
   <p class="lede">${escape(post.description)}</p>
   <div class="post-meta">
     <img class="avatar" src="/photos/ajay.jpg" alt="" width="48" height="48">
-    <p><strong>Ajay Singh</strong>, Registered Nurse<br><span>${formatDate(post.date)} · ${post.minutes} min read · Facts checked ${formatDate(post.checked)}</span></p>
+    <p>Written by <strong>Ajay Singh</strong>, Registered Nurse<br><span>Published ${formatDate(post.date)} · Last updated ${formatDate(lastUpdated(post))} · ${post.minutes} min read</span></p>
   </div>
 </div></section>
 <div class="wrap"><figure class="post-cover">${cover
@@ -241,20 +241,15 @@ ${post.html}
 </div></section>
 <section class="band"><div class="wrap">
   <div class="author-card">
-    <img src="/photos/ajay.jpg" alt="Ajay Singh, Registered Nurse" width="120" height="150" loading="lazy">
-    <div class="stack">
-      <span class="eyebrow">About the author</span>
-      <h2>Ajay Singh, Registered Nurse</h2>
-      <p class="muted">Ajay founded VitalScale Digital to help good NDIS providers spend less time on paperwork and be found by the people looking for them. Every guide is checked against official NDIS sources.</p>
-      <a class="link-arrow" href="#book">Ask Ajay a question</a>
-    </div>
+    <img src="/photos/ajay.jpg" alt="Ajay Singh, Registered Nurse" width="64" height="64" loading="lazy">
+    <p class="author-line"><strong>Ajay Singh, Registered Nurse</strong> · Founder of VitalScale Digital</p>
   </div>
   ${more.length ? `<div class="more-guides"><h2>More guides</h2><div class="post-grid">${more.map(card).join("")}</div></div>` : ""}
 </div></section>
 </article>`;
   const ld = graph([
     { "@type": "BlogPosting", "@id": `${url}#article`, headline: post.title, description: post.description,
-      datePublished: post.date, dateModified: post.checked > post.date ? post.checked : post.date, inLanguage: "en-AU",
+      datePublished: post.date, dateModified: lastUpdated(post), inLanguage: "en-AU",
       image: cover ? BASE + cover : `${BASE}/og-image.png`, mainEntityOfPage: url, keywords: post.keyword,
       articleSection: post.category, author: { "@id": PERSON }, publisher: { "@id": ORG } },
     breadcrumbs(url, ["Blog", `${BASE}/blog`], [post.title, url]),
@@ -331,6 +326,11 @@ function fill(template, values) {
     if (!(key in values)) return whole; // left for the main build (e.g. NDIS_LAST_CHECKED)
     return ["MAIN", "JSON_LD"].includes(key) ? values[key] : escape(values[key]);
   });
+}
+
+// A post was last updated when it was published or when its facts were last checked, whichever is later.
+function lastUpdated(post) {
+  return post.checked > post.date ? post.checked : post.date;
 }
 
 function graph(nodes) {
