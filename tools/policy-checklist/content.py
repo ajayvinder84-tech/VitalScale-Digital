@@ -35,6 +35,8 @@ SOURCES = {
                 "https://www.ndiscommission.gov.au/about-us/ndis-commission-reform-hub/mandatory-registration"),
     "sil": ("NDIS Commission: Mandatory registration for supported independent living",
             "https://www.ndiscommission.gov.au/about-us/ndis-commission-reform-hub/mandatory-registration/mandatory-registration-sil/SIL-4"),
+    "bsp": ("NDIS Commission: Rules for specialist behaviour support providers and NDIS behaviour support practitioners",
+            "https://www.ndiscommission.gov.au/rules-and-standards/behaviour-support-and-restrictive-practices/rules-for-specialist-behaviour-support-providers-NDIS-behaviour-support-practitioners"),
     "rp": ("NDIS Commission: Rules for implementing providers (restrictive practices)",
            "https://www.ndiscommission.gov.au/rules-and-standards/behaviour-support-and-restrictive-practices/rules-implementing-providers"),
     "reform": ("NDIS Commission: NDIS Practice Standards reform",
@@ -56,6 +58,7 @@ SOURCE_SHORT = {
     "faqs": "Department of Health provider FAQs",
     "mandreg": "NDIS Commission: mandatory registration",
     "sil": "NDIS Commission: SIL registration",
+    "bsp": "NDIS Commission: behaviour support provider rules",
     "rp": "NDIS Commission: restrictive practices rules",
     "reform": "NDIS Commission: Practice Standards reform",
 }
@@ -131,7 +134,7 @@ PARTS = [
                 "policy": "Records and claiming procedure",
                 "proof": [
                     "Every invoice or claim matches a support record: who, what, when and for how long.",
-                    "Records of NDIS payments and receipts kept for 7 years. This has been law since 27 August 2026.",
+                    "Records of each claim and the support behind it kept for 7 years. This applies to claims made since 27 August 2026.",
                     "Invoices sent promptly. From 1 December 2026, NDIS claims must be made within 90 days of the support, so lodge any older claims before then.",
                 ],
                 "nurse": "Write notes the way nurses chart: at the time, factual and signed. A note written days later is weak evidence.",
@@ -157,7 +160,7 @@ PARTS = [
                 "proof": [
                     "Prices are clear before support starts.",
                     "A service agreement, ideally written: what you'll provide, when, the cost and how either side can end it. Registered providers give the participant a signed copy, or record why there isn't one. Smart for everyone.",
-                    "You don't charge participants more than other customers for the same goods, unless there's a reasonable justification. This is part of the Code of Conduct.",
+                    "You don't charge or advertise a higher price to participants than to other customers for the same goods, unless there's a reasonable justification. This is part of the Code of Conduct.",
                 ],
                 "sources": ["fairpricing", "qi"],
             },
@@ -166,8 +169,8 @@ PARTS = [
                 "tags": ["reg", "enc", "ver"],
                 "policy": "Worker screening and pre-employment checks procedure",
                 "proof": [
-                    "Registered: an NDIS Worker Screening Check for every worker in a risk-assessed role, with a record you can show.",
-                    "Unregistered: not legally required, but the NDIS Commission strongly encourages it, and self-managing participants can ask for it.",
+                    "Registered: an NDIS Worker Screening Check for key personnel and every worker in a risk-assessed role, with a written list of those roles and a record you can show.",
+                    "Unregistered: not legally required, but the NDIS Commission recommends it, and self-managing participants can ask for it.",
                     "Identity, right to work, qualifications and references checked before the first shift.",
                 ],
                 "sources": ["mandatory", "unreg", "verif"],
@@ -237,6 +240,7 @@ PARTS = [
                     "A plan to keep critical supports going in an emergency, such as a fire, flood, heatwave or disease outbreak.",
                     "Participants and their supporters consulted, with extra planning for people who rely on you most.",
                     "The plan tested, reviewed and explained to workers.",
+                    "A verification audit checks for an emergency plan as part of your risk management. Consulting participants and testing the plan are checked at a certification audit.",
                 ],
                 "sources": ["qi", "verif"],
             },
@@ -248,7 +252,7 @@ PARTS = [
                     "Who is responsible for what, written down, even if it's just you.",
                     "A conflicts of interest register.",
                     "A continuous improvement register fed by feedback, complaints and incidents, plus an internal audit schedule.",
-                    "Changes that affect your services, like a new business structure, notified through the NDIS Commission Portal.",
+                    "Changes that affect your services, like selling the business or new key personnel, notified through the NDIS Commission Portal. A sale must be notified as soon as possible.",
                 ],
                 "sources": ["qi", "mandatory"],
             },
@@ -379,7 +383,7 @@ PARTS = [
                     "Use of regulated restrictive practices reported to the NDIS Commission every month. Unauthorised use is a reportable incident.",
                     "Workers trained to carry out the plan, and use of restrictive practices monitored so it can be reduced.",
                 ],
-                "sources": ["unreg", "rp", "qi"],
+                "sources": ["unreg", "bsp", "rp", "qi"],
             },
             {
                 "title": "Supported independent living (SIL)",
@@ -449,4 +453,4 @@ DISCLAIMER = ("This checklist is a general guide, not legal advice, and it doesn
 
 # Source order for the full list at the bottom of the page and the PDF
 SOURCE_ORDER = ["unreg", "mandatory", "qi", "verif", "irules", "ercode", "fairpricing", "oaic",
-                "act", "finalchanges", "faqs", "rp", "sil", "reform"]
+                "act", "finalchanges", "faqs", "bsp", "rp", "sil", "reform"]
