@@ -12,7 +12,7 @@ document.addEventListener("submit", function (e) {
   fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
     .then(function (r) {
       if (!r.ok) throw new Error();
-      form.reset(); status.textContent = "Thanks, your enquiry has been sent. Ajay will reply to you personally.";
+      form.reset(); status.textContent = form.getAttribute("data-success") || "Thanks, your enquiry has been sent. Ajay will reply to you personally.";
     })
     .catch(function () { status.textContent = "Sorry, that didn't send. Please try again in a moment."; })
     .finally(function () { btn.disabled = false; });

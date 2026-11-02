@@ -20,6 +20,10 @@
 - [Safe AI](https://vitalscaledigital.com.au/safe-ai-for-ndis-providers): AI set up around existing admin, using Australian-hosted tools that don't train on your data, with staff always checking and deciding.
 - [Websites](https://vitalscaledigital.com.au/ndis-website-design): credible, fast, accessible websites that tell families and support coordinators what a provider does and how to refer.
 
+## Free resources
+
+- [NDIS policy checklist](https://vitalscaledigital.com.au/ndis-policy-checklist): a free checklist of the policies NDIS providers need, registered or unregistered, with what an auditor wants to see and the official source for each item. Checked against official sources on 3 November 2026. PDF: https://vitalscaledigital.com.au/downloads/ndis-policy-checklist.pdf
+
 ## Guides
 
 {{BLOG_GUIDES}}
