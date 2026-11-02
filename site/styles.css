@@ -1,6 +1,7 @@
 /* Layout: editorial black-and-white (ref: Ajay's "Circle" example). Huge tight DM Sans headlines,
    underlined nav, black pill buttons with arrows, full-width black panels in place of photos,
-   warm-white bands for rhythm. Deliberately single-theme: every colour is set explicitly. */
+   warm-white bands for rhythm. Deliberately single-theme: every colour is set explicitly.
+   Since Nov 2026 the "Dark hero theme" block at the end restyles the header and top section. */
 :root {
   --black: #1F2B28;      /* brand Ink, used as black */
   --white: #FFFFFF;
@@ -455,3 +456,86 @@ tr:last-child td { border-bottom: 0; }
 @media (max-width: 520px) { .author-card { grid-template-columns: minmax(0, 1fr); } }
 .more-guides { margin-top: clamp(40px, 6vw, 64px); }
 .more-guides h2 { font-size: var(--step-2); }
+
+/* ==========================================================================
+   Dark hero theme (Nov 2026): white header with an outlined logo, a dark top
+   section over the page's own photo, gold accents from the VS icon, and a
+   three-line menu on phones. These rules sit last so they win over the above.
+   ========================================================================== */
+:root { --ink: #0E1C1B; --gold: #E0A526; --teal: #1F5B5A; --on-gold: #13201F; }
+
+/* Header: logo in a thin rounded outline with a soft shadow, gold button */
+.brand { border: 1.5px solid var(--black); border-radius: 14px; padding: 8px 16px; background: var(--white); box-shadow: 0 8px 20px -12px rgba(31, 43, 40, 0.45); }
+.brand img { height: 40px; }
+.site-header .btn-primary { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
+
+/* Phone menu: the links fold behind a three-line button (only when JavaScript runs) */
+.nav-toggle { display: none; }
+@media (max-width: 760px) {
+  .brand img { height: 40px; }
+  .site-header .wrap { padding-block: 12px; }
+  .js .nav-toggle {
+    display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px;
+    border: 1.5px solid var(--black); border-radius: 12px; background: var(--white); cursor: pointer; padding: 0;
+  }
+  .nav-toggle-bars, .nav-toggle-bars::before, .nav-toggle-bars::after {
+    display: block; width: 20px; height: 2px; border-radius: 2px; background: var(--black); transition: transform 0.2s, opacity 0.2s;
+  }
+  .nav-toggle-bars { position: relative; }
+  .nav-toggle-bars::before, .nav-toggle-bars::after { content: ""; position: absolute; left: 0; }
+  .nav-toggle-bars::before { top: -6px; }
+  .nav-toggle-bars::after { top: 6px; }
+  .nav-open .nav-toggle-bars { background: transparent; }
+  .nav-open .nav-toggle-bars::before { transform: translateY(6px) rotate(45deg); }
+  .nav-open .nav-toggle-bars::after { transform: translateY(-6px) rotate(-45deg); }
+  .js .nav { display: none; order: 3; flex-basis: 100%; flex-direction: column; gap: 0; padding-bottom: 6px; }
+  .js .nav-open .nav { display: flex; }
+  .js .nav a { padding: 13px 2px; border-top: 1px solid var(--line); font-size: 1.05rem; }
+}
+
+/* Dark top section: the page's photo sits behind a dark wash that fades to the right */
+.hero { position: relative; isolation: isolate; overflow: hidden; background: var(--ink); color: var(--white); }
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(90deg, rgba(14, 28, 27, 0.95) 0%, rgba(14, 28, 27, 0.82) 40%, rgba(14, 28, 27, 0.35) 75%, rgba(14, 28, 27, 0.12) 100%);
+}
+.hero .photo-hero { position: absolute; inset: 0; z-index: -2; margin: 0; max-width: none; aspect-ratio: auto; border-radius: 0; background: var(--ink); }
+.hero .eyebrow { color: var(--gold); display: inline-flex; align-items: center; gap: 10px; }
+.hero .eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); }
+.hero-copy h1 { color: var(--white); }
+.hero-copy .lede { color: #C9D3D0; }
+.hero .btn-primary { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
+.hero .btn-ghost, .hero .scroll-down { color: var(--white); border-color: rgba(255, 255, 255, 0.55); }
+.hero .record { background: rgba(14, 28, 27, 0.78); border: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(12px); }
+.hero .record-row dt { color: var(--gold); }
+.hero .update-stamp .dot { background: var(--gold); }
+@media (max-width: 760px) {
+  .hero::before { background: linear-gradient(180deg, rgba(14, 28, 27, 0.9) 0%, rgba(14, 28, 27, 0.8) 100%); }
+}
+
+/* Key facts strip under the home page's top section */
+.key-facts { background: var(--ink); color: var(--white); padding-block: 34px; border-top: 1px solid #22403D; }
+.key-facts ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.key-facts strong { display: block; color: var(--gold); font-size: clamp(1.6rem, 1rem + 1.6vw, 2.4rem); letter-spacing: -0.03em; font-weight: 500; line-height: 1.2; }
+.key-facts span { color: #A9B5B1; font-size: 0.92rem; }
+@media (max-width: 900px) { .key-facts ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Home page services: a numbered list instead of three cards */
+#services .grid-3 { grid-template-columns: minmax(0, 1fr); gap: 0; counter-reset: svc; }
+#services .service {
+  counter-increment: svc; display: grid; grid-template-columns: 90px 320px minmax(0, 1fr); gap: 32px; align-items: center;
+  border: 0; border-top: 1px solid #D9D8D1; border-radius: 0; padding: 32px 0; background: transparent;
+}
+#services .service:last-child { border-bottom: 1px solid #D9D8D1; }
+#services .service::before { content: "0" counter(svc); font-size: 3.2rem; font-weight: 500; letter-spacing: -0.04em; color: var(--gold); }
+#services .service-img { border-radius: 14px; aspect-ratio: 16 / 10; }
+#services .service .tagline { font-size: clamp(1.5rem, 1rem + 1.2vw, 2.1rem); }
+@media (max-width: 900px) {
+  #services .service { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  #services .service::before { font-size: 2.4rem; }
+}
+
+/* Lower sections: teal labels, dark ink form panel and footer */
+.eyebrow { color: var(--teal); }
+.cta, .site-footer { background: var(--ink); }
+.cta .btn-primary, .cta button[type="submit"] { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }

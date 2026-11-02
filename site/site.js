@@ -17,3 +17,17 @@ document.addEventListener("submit", function (e) {
     .catch(function () { status.textContent = "Sorry, that didn't send. Please try again in a moment."; })
     .finally(function () { btn.disabled = false; });
 });
+
+// Phone menu: the three-line button opens and closes the links. Choosing a link,
+// or pressing Escape, closes it again.
+var header = document.querySelector(".site-header");
+var navToggle = header && header.querySelector(".nav-toggle");
+if (navToggle) {
+  var setMenu = function (open) {
+    header.classList.toggle("nav-open", open);
+    navToggle.setAttribute("aria-expanded", String(open));
+  };
+  navToggle.addEventListener("click", function () { setMenu(!header.classList.contains("nav-open")); });
+  header.querySelector(".nav").addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
+}
