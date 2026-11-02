@@ -7,7 +7,7 @@
 import { cpSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildBlog } from "./blog.mjs";
+import { breadcrumbs, buildBlog, fill, graph, jsonLd } from "./blog.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const siteDir = join(root, "site");
@@ -16,7 +16,7 @@ const dataFile = join(root, "src", "data", "ndis-news.json");
 
 const NEWS_TOKEN = "{{NDIS_NEWS}}";
 const DATE_TOKEN = "{{NDIS_LAST_CHECKED}}";
-const NEWS_PAGES = ["index.html", "policies.html"];
+const NEWS_PAGES = ["index.html", "ndis-policies-and-procedures.html"];
 const FILE_FIELDS = ["last_checked", "approved_by", "approved_on", "items"];
 const ITEM_FIELDS = ["headline", "whats_changing", "who_it_affects", "when", "what_to_do", "status", "source_url", "source_published"];
 const TEXT_FIELDS = ["headline", "whats_changing", "who_it_affects", "when", "what_to_do"];
@@ -31,6 +31,7 @@ const news = loadNews();
 rmSync(distDir, { recursive: true, force: true });
 cpSync(siteDir, distDir, { recursive: true });
 const blogSummary = buildBlog({ root, distDir, fail });
+writeFileSync(join(distDir, "ndis-changes.html"), renderChangesPage(readFileSync(join(root, "templates", "page.html"), "utf8"), news));
 for (const name of htmlFiles(distDir)) {
   const path = join(distDir, name);
   let html = readFileSync(path, "utf8");
@@ -153,11 +154,59 @@ function renderPanel({ items, last_checked }) {
     ? `<dl class="record-body">\n${items.map(renderItem).join("\n")}\n    </dl>`
     : `<p class="news-empty">No major NDIS changes this week.</p>`;
   const stamp = `<p class="update-stamp"><span class="dot" aria-hidden="true"></span><span>Updated every Monday</span><span aria-hidden="true">·</span><span>Last checked: <strong>${formatDate(last_checked)}</strong></span></p>`;
-  return `${body}\n    ${stamp}`;
+  const more = `<p class="news-more"><a href="/ndis-changes.html">See the full details of each change</a></p>`;
+  return `${body}\n    ${stamp}\n    ${more}`;
 }
 
 // Each item is one short line (when + headline) with a "Learn more" link to the official page.
 // The other fields stay in the data file for the researcher's records but aren't shown.
+// The /ndis-changes page: every item in full (what's changing, who it affects, when, what to
+// do and the official source), rebuilt from the same approved file as the panel.
+function renderChangesPage(template, { items, last_checked }) {
+  const url = "https://vitalscaledigital.com.au/ndis-changes";
+  const title = "NDIS Changes 2026: What Providers Need to Know | VitalScale";
+  const description = "The NDIS changes and reforms that affect providers, in plain English, checked against official NDIS sources every Monday.";
+  const cards = items.map((item) => {
+    const host = new URL(item.source_url).hostname.replace(/^www\./, "");
+    const tag = item.status === "EXPECTED" ? `<span class="tag tag-signal">Expected, not final</span>` : "";
+    return `<article class="change">
+    <div class="change-head"><span class="change-when">${escape(item.when)}</span>${tag}</div>
+    <h2>${escape(item.headline)}</h2>
+    <dl class="change-facts">
+      <div><dt>What's changing</dt><dd>${escape(item.whats_changing)}</dd></div>
+      <div><dt>Who it affects</dt><dd>${escape(item.who_it_affects)}</dd></div>
+      <div><dt>What to do</dt><dd>${escape(item.what_to_do)}</dd></div>
+    </dl>
+    <p class="change-source"><a href="${escape(item.source_url)}" target="_blank" rel="noopener">Read it on ${escape(host)}<span class="visually-hidden"> (opens in a new tab)</span></a><span aria-hidden="true">·</span>Published ${formatDate(item.source_published)}</p>
+  </article>`;
+  }).join("\n  ");
+  const main = `<section class="hero"><div class="wrap">
+  <div class="hero-copy">
+    <span class="eyebrow">Updated every Monday</span>
+    <h1>NDIS changes 2026: what providers need to know.</h1>
+    <p class="lede">The NDIS changes and reforms that affect providers, in plain English. Each one is checked against official NDIS sources every Monday. Last checked: <strong>${formatDate(last_checked)}</strong>.</p>
+  </div>
+</div></section>
+<section class="band"><div class="wrap">
+  <div class="changes">
+  ${items.length ? cards : `<p class="news-empty">No major NDIS changes this week.</p>`}
+  </div>
+  <p class="muted small changes-note">This is general information, not legal advice. Always check the official source before you act.</p>
+</div></section>`;
+  const ld = graph([
+    { "@type": "WebPage", "@id": `${url}#webpage`, url, name: title, description, dateModified: last_checked, inLanguage: "en-AU",
+      isPartOf: { "@id": "https://vitalscaledigital.com.au/#website" }, breadcrumb: { "@id": `${url}#breadcrumb` } },
+    breadcrumbs(url, ["NDIS changes", url]),
+  ]);
+  return fill(template, {
+    TITLE: title, DESCRIPTION: description, URL: url, OG_TYPE: "website", OG_IMAGE: "https://vitalscaledigital.com.au/og/ndis-changes.jpg",
+    OG_IMAGE_ALT: "VitalScale Digital: NDIS changes 2026, what providers need to know", JSON_LD: jsonLd(ld), MAIN: main, FORM_PAGE: "ndis-changes",
+    FORM_HEADING: "Not sure what these changes mean for you?",
+    FORM_TEXT: "Tell us about your business. Ajay will tell you plainly which changes matter for you and what to do first.",
+  }).replace('<a href="/blog.html" aria-current="page">Blog</a>', '<a href="/blog.html">Blog</a>')
+    .replace('<a href="/ndis-changes.html">NDIS changes</a>', '<a href="/ndis-changes.html" aria-current="page">NDIS changes</a>');
+}
+
 function renderItem(item) {
   const tag = item.status === "EXPECTED" ? ` <span class="tag tag-signal">Expected, not final</span>` : "";
   const host = new URL(item.source_url).hostname.replace(/^www\./, "");

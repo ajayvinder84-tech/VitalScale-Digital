@@ -63,7 +63,8 @@ website: handover for the website builder" (https://claude.ai/artifact/7A1wcSXkB
      `height` attribute stretches it.
    - the form wiring: `action="/api/enquiry" method="post"`, the fields `name`, `email`, `business`,
      `message`, `page` and the hidden `botcheck`, and no `data-preview`
-   - the `{{NDIS_NEWS}}` placeholder in the panels on `index.html` and `policies.html`, and
+   - the `{{NDIS_NEWS}}` placeholder in the panels on `index.html` and
+     `ndis-policies-and-procedures.html`, and
      `{{NDIS_LAST_CHECKED}}` in every footer. Never hard-code news.
    - links that start with `/` in pages inside folders such as `blog/`
 3. Resize any image wider than 1600px (Pillow is installed): JPEG, quality 80.
@@ -78,7 +79,8 @@ website: handover for the website builder" (https://claude.ai/artifact/7A1wcSXkB
    shell running it.
 3. With Playwright (preinstalled; set `NO_PROXY=localhost`), load every page at 1366px and 390px.
    Look for page errors, local files returning 4xx, broken images and sideways scrolling. Check that
-   `/ndis-website-design` redirects to `/websites`, `/insights/*` to `/blog`, and an unknown address
+   the old service addresses (`/social`, `/policies`, `/ai`, `/websites`) redirect to their keyword
+   addresses, `/insights/*` to `/blog`, and an unknown address
    shows the 404 page.
 4. Post to `/api/enquiry`: missing fields give 400, and a filled `botcheck` gives 200. A real send
    gives 502 locally, because the cloud container can't reach Web3Forms. That's expected: Ajay tests

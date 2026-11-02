@@ -1,8 +1,9 @@
 # VitalScale Digital website
 
 Plain HTML site in `site/`, built into `dist/` by `scripts/build.mjs` and served by the Cloudflare
-Worker in `src/worker.js`. The "NDIS changes" panel on the home and policies pages, and the "last
-checked" date in every footer, come from `src/data/ndis-news.json`.
+Worker in `src/worker.js`. The "NDIS changes" panel on the home and policies pages, the full
+`/ndis-changes` page, and the "last checked" date in every footer, all come from
+`src/data/ndis-news.json`.
 Blog posts live in `content/blog/<slug>/post.md` (with an optional `cover.jpg`); `scripts/blog.mjs`
 turns them into the pages at `/blog` and `/blog/<slug>`.
 

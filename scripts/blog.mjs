@@ -327,18 +327,18 @@ function designCover(post) {
 
 // --- Helpers ---
 
-function fill(template, values) {
+export function fill(template, values) {
   return template.replace(/\{\{([A-Z_]+)\}\}/g, (whole, key) => {
     if (!(key in values)) return whole; // left for the main build (e.g. NDIS_LAST_CHECKED)
     return ["MAIN", "JSON_LD"].includes(key) ? values[key] : escape(values[key]);
   });
 }
 
-function graph(nodes) {
+export function graph(nodes) {
   return { "@context": "https://schema.org", "@graph": [...ENTITIES, ...nodes] };
 }
 
-function breadcrumbs(url, ...trail) {
+export function breadcrumbs(url, ...trail) {
   return { "@type": "BreadcrumbList", "@id": `${url}#breadcrumb`, itemListElement: [["Home", `${BASE}/`], ...trail]
     .map(([name, item], i) => ({ "@type": "ListItem", position: i + 1, name, item })) };
 }
@@ -363,7 +363,7 @@ function plainText(text) {
   return text.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/\*\*|[*`]/g, "").trim();
 }
 
-function jsonLd(data) {
+export function jsonLd(data) {
   return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
 }
 

@@ -7,8 +7,9 @@ sends the enquiry forms.
 ## Layout
 
 - `site/`: every page, image, stylesheet and script. The build copies it to `dist/`, which is what
-  gets published. Pages are served without the `.html` extension (`/policies` serves
-  `policies.html`).
+  gets published. Pages are served without the `.html` extension (`/ndis-website-design` serves
+  `ndis-website-design.html`). The service pages use the words providers search for in their
+  addresses; the old ones (`/social`, `/policies`, `/ai`, `/websites`) redirect in `site/_redirects`.
 - `src/data/ndis-news.json`: the NDIS news panel's content (see below).
 - `scripts/build.mjs`: validates the news file and builds `dist/`.
 - `site/_redirects`: sends addresses from the previous site to the closest page on this one.
@@ -39,8 +40,8 @@ Each page's form posts to `/api/enquiry`, which validates the fields and forward
 
 ## NDIS changes panel
 
-The "NDIS changes" panel on the home and policies pages, and the "last checked" date in every
-footer, are built from `src/data/ndis-news.json`. `bun run build` (or `node scripts/build.mjs`)
+The "NDIS changes" panel on the home and policies pages, the full `/ndis-changes` page, and the
+"last checked" date in every footer, are built from `src/data/ndis-news.json`. `bun run build` (or `node scripts/build.mjs`)
 validates that file, copies `site/` to `dist/`, and fills the `{{NDIS_NEWS}}` and
 `{{NDIS_LAST_CHECKED}}` placeholders. A file that fails validation fails the build, so Cloudflare
 keeps the current version live.

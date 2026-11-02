@@ -1,7 +1,15 @@
+# The service pages moved to addresses with the words people search for (Nov 2026).
+/social /ndis-marketing 301
+/social.html /ndis-marketing 301
+/policies /ndis-policies-and-procedures 301
+/policies.html /ndis-policies-and-procedures 301
+/ai /safe-ai-for-ndis-providers 301
+/ai.html /safe-ai-for-ndis-providers 301
+/websites /ndis-website-design 301
+/websites.html /ndis-website-design 301
 # Addresses from the previous site, sent to the closest page on this one.
-/ndis-website-design /websites 301
-/services /websites 301
-/work /websites 301
+/services /ndis-website-design 301
+/work /ndis-website-design 301
 /how-we-help / 301
 /new-providers / 301
 /new-ndis-providers / 301
