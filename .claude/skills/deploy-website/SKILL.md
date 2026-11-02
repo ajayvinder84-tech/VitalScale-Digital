@@ -55,8 +55,9 @@ website: handover for the website builder" (https://claude.ai/artifact/7A1wcSXkB
    - the share preview cards in `site/og/` (1200x630 JPGs with each page's headline and photo).
      If a page's headline or photo changes, make a new card to match.
    - the structured data (`<script type="application/ld+json">`) in every page's head, and the
-     "Common questions" section (`id="questions"`) it describes. If a question's wording changes,
-     change it in both places: the build stops if a question in the data isn't on the page.
+     "Common questions" section (`id="questions"`) it describes. If a question or answer changes,
+     change it in both places: the build stops unless both match the page word for word.
+     Ajay's research on the questions providers really ask is in `research/`.
    - `width` and `height` on every photo, with the top photo loaded first (`fetchpriority="high"`,
      never `loading="lazy"`). If a photo's CSS sets only its width, add `height: auto`, or the
      `height` attribute stretches it.

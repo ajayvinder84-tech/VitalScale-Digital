@@ -47,10 +47,11 @@ for (const name of ["sitemap.xml", "llms.txt"]) {
 }
 console.log(`Built dist/: ${blogSummary}; ${news.items.length} NDIS news item(s), last checked ${formatDate(news.last_checked)}.`);
 
-// Each page's structured data must be valid JSON, and every question in it must be one of the
-// questions shown on the page (search engines ignore, or penalise, FAQ data that isn't visible).
+// Each page's structured data must be valid JSON, and every question and answer in it must be
+// shown on the page word for word (search engines ignore, or penalise, FAQ data that isn't visible).
 function checkStructuredData(name, html) {
   const shown = new Set([...html.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => plainText(m[1])));
+  const pageText = flatText(html.replace(/<script[\s\S]*?<\/script>/g, " "));
   for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     let data;
     try {
@@ -60,12 +61,21 @@ function checkStructuredData(name, html) {
     }
     for (const node of data["@graph"] ?? [data]) {
       for (const question of node.mainEntity ?? []) {
-        if (question["@type"] === "Question" && !shown.has(plainText(question.name))) {
-          fail(`${name}: the FAQ question "${question.name}" isn't shown on the page`);
+        if (question["@type"] !== "Question") continue;
+        if (!shown.has(plainText(question.name))) fail(`${name}: the FAQ question "${question.name}" isn't shown on the page`);
+        if (!pageText.includes(flatText(question.acceptedAnswer?.text ?? ""))) {
+          fail(`${name}: the answer to "${question.name}" doesn't match the page word for word`);
         }
       }
     }
   }
+}
+
+// Page text with tags turned into spaces, so an answer split over paragraphs or links still matches.
+// Screen-reader-only extras such as "(opens in a new tab)" are left out.
+function flatText(text) {
+  const visible = text.replace(/<span class="visually-hidden">[\s\S]*?<\/span>/g, "");
+  return plainText(visible.replace(/<[^>]+>/g, " ")).replace(/\s+([.,!?;:])/g, "$1");
 }
 
 function plainText(text) {
