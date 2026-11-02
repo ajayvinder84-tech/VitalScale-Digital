@@ -242,7 +242,7 @@ ${post.html}
 </div></section>
 <section class="band"><div class="wrap">
   <div class="author-card">
-    <img src="/photos/ajay.jpg" alt="Ajay Singh, Registered Nurse" width="120" height="150" loading="lazy">
+    <img src="/photos/ajay.jpg" alt="Ajay Singh, Registered Nurse" width="64" height="64" loading="lazy">
     <p class="author-line"><strong>Ajay Singh, Registered Nurse</strong> · Founder of VitalScale Digital</p>
   </div>
   ${more.length ? `<div class="more-guides"><h2>More guides</h2><div class="post-grid">${more.map(card).join("")}</div></div>` : ""}
