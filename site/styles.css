@@ -548,26 +548,22 @@ tr:last-child td { border-bottom: 0; }
 .cta, .site-footer { background: var(--ink); }
 .cta .btn-primary, .cta button[type="submit"] { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
 
-/* WhatsApp: a small black button floating near the top right, drifting gently up and down,
-   plus the number in the contact panel and footer */
+/* WhatsApp: a slim black tab on the right edge, near the top. It slides in once when the
+   page opens, and widens a little when someone points at it. Also the number in the contact
+   panel and footer. */
 .whatsapp-float {
-  position: fixed; z-index: 20; right: max(18px, env(safe-area-inset-right, 0px)); top: 112px;
-  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%;
-  background: var(--ink); color: var(--white); border: 1.5px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.5);
-  animation: wa-drift 5s ease-in-out infinite; transition: background-color 0.25s, border-color 0.25s;
+  position: fixed; z-index: 20; right: 0; top: 140px; display: grid; place-items: center;
+  width: 50px; height: 56px; border-radius: 16px 0 0 16px; background: #0A0F0E; color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.14); border-right: 0; box-shadow: -10px 14px 30px -16px rgba(0, 0, 0, 0.6);
+  animation: wa-peek 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both; transition: width 0.25s, background-color 0.25s;
 }
-/* A soft ring that slowly breathes out from the button */
-.whatsapp-float::after {
-  content: ""; position: absolute; inset: -1.5px; border-radius: 50%; border: 1px solid var(--gold);
-  animation: wa-ring 5s ease-out infinite; pointer-events: none;
-}
+/* A thin gold line down the tab's left edge */
+.whatsapp-float::after { content: ""; position: absolute; top: 10px; bottom: 10px; left: 0; width: 2px; border-radius: 2px; background: var(--gold); }
 .whatsapp-float svg { width: 26px; height: 26px; }
-.whatsapp-float:hover, .whatsapp-float:focus-visible { background: #25D366; border-color: #25D366; animation-play-state: paused; }
-@keyframes wa-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-@keyframes wa-ring { 0% { transform: scale(1); opacity: 0.5; } 60%, 100% { transform: scale(1.6); opacity: 0; } }
-@media (max-width: 760px) { .whatsapp-float { top: 96px; right: 14px; width: 46px; height: 46px; } .whatsapp-float svg { width: 23px; height: 23px; } }
-@media (prefers-reduced-motion: reduce) { .whatsapp-float, .whatsapp-float::after { animation: none; } }
+.whatsapp-float:hover, .whatsapp-float:focus-visible { width: 60px; background: #25D366; }
+@keyframes wa-peek { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@media (max-width: 760px) { .whatsapp-float { top: 120px; width: 44px; height: 50px; } .whatsapp-float svg { width: 23px; height: 23px; } }
+@media (prefers-reduced-motion: reduce) { .whatsapp-float { animation: none; } }
 .cta-chat { color: var(--grey-on-dark); }
 .cta-chat a { color: var(--white); }
 .footer-contact a { font-weight: 600; }
