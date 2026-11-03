@@ -163,7 +163,7 @@ page = f"""<!doctype html>
 <script type="application/ld+json">{json_ld}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
 <link rel="stylesheet" href="styles.css">
-<link rel="icon" href="/favicon.png" type="image/png" sizes="96x96">
+<link rel="icon" href="/icon-vs.png" type="image/png" sizes="96x96">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body class="page-checklist">
