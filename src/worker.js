@@ -122,13 +122,18 @@ async function sendChecklistEmail(env, { name, email }) {
       sender: { name: "Ajay at VitalScale Digital", email: env.CHECKLIST_FROM_EMAIL },
       replyTo: { name: "Ajay Singh", email: env.CHECKLIST_FROM_EMAIL },
       to: [{ email, name }],
-      subject: "Your free NDIS policy checklist",
+      subject: "Your NDIS policy checklist",
       textContent: lines.join("\n\n"),
       htmlContent: `<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.6;color:#1F2B28">${html}</div>`,
       tags: ["policy-checklist"],
     }),
   });
-  if (!response.ok) console.error("Brevo didn't send the checklist email", response.status, await response.text().catch(() => ""));
+  if (!response.ok) {
+    console.error("Brevo didn't send the checklist email", response.status, await response.text().catch(() => ""));
+    return;
+  }
+  const sent = await response.json().catch(() => ({}));
+  console.log("Checklist email sent by Brevo", sent.messageId || "");
 }
 
 function escapeHtml(text) {

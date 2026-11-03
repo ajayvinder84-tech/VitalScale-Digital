@@ -134,7 +134,8 @@ def consent_block(sfx):
 </details>
 </div>"""
 
-PDF_SUCCESS = "Thanks! Your checklist is downloading now."
+PDF_SUCCESS = ("Thanks! Your checklist is downloading now. We've also emailed you a copy. "
+               "If it isn't in your inbox, check the Updates or Promotions tab.")
 
 pdf_link = f'href="{C.PDF_PATH}" download="{C.PDF_NAME}"'
 get_pdf = 'href="#updates"'   # the PDF is given out after the email form is sent
