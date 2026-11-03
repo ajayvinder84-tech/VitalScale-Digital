@@ -9,8 +9,8 @@
 /photos/*
   Cache-Control: public, max-age=604800
 
-/blog/covers/*
+/blog/images/*
   Cache-Control: public, max-age=604800
 
-/blog/images/*
+/blog/covers/*
   Cache-Control: public, max-age=604800
