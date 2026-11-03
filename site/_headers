@@ -11,3 +11,7 @@
 
 /blog/covers/*
   Cache-Control: public, max-age=604800
+
+# The free checklist PDF is given out after the email form, so keep it out of search results.
+/downloads/*
+  X-Robots-Tag: noindex

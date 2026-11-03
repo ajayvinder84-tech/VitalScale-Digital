@@ -1,4 +1,5 @@
-// NDIS policy checklist page: counts the ticks and clears them. Nothing is saved or sent anywhere.
+// NDIS policy checklist page: counts the ticks and clears them (nothing is saved or sent anywhere),
+// and starts the PDF download once the "Get the checklist" form has been sent.
 (function () {
   var boxes = document.querySelectorAll(".cl-box");
   var count = document.querySelector("[data-cl-count]");
@@ -17,4 +18,14 @@
     update();
   });
   update();
+})();
+(function () {
+  var unlock = document.getElementById("cl-unlock");
+  if (!unlock) return;
+  document.addEventListener("enquiry:sent", function (e) {
+    if (!e.target.closest || !e.target.closest("#updates")) return;
+    unlock.hidden = false;
+    var link = unlock.querySelector("a[download]");
+    if (link) link.click();
+  });
 })();

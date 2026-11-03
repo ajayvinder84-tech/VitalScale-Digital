@@ -94,6 +94,9 @@
 .field select:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; border-color: var(--white); }
 .field select option { color: var(--black); background: var(--white); }
 
+/* The download that appears once the "Get the checklist" form is sent */
+.cl-unlock:not([hidden]) { display: grid; justify-items: start; gap: 8px; margin-top: 4px; }
+
 @media (prefers-reduced-motion: reduce) { .cl-item { transition: none; } }
 
 /* Printing the page: just the checklist */

@@ -134,10 +134,10 @@ def consent_block(sfx):
 </details>
 </div>"""
 
-PDF_SUCCESS = ("Thanks! Ajay will email you the checklist within one business day. "
-               "Want it now? Use the Download the PDF button at the top of this page.")
+PDF_SUCCESS = "Thanks! Your checklist is downloading now."
 
 pdf_link = f'href="{C.PDF_PATH}" download="{C.PDF_NAME}"'
+get_pdf = 'href="#updates"'   # the PDF is given out after the email form is sent
 
 page = f"""<!doctype html>
 <html lang="en-AU">
@@ -177,10 +177,10 @@ page = f"""<!doctype html>
     <ul class="hero-points">
       <li>{C.TOTAL} items in three parts: every provider, registered, and specific supports</li>
       <li>What an auditor wants to see, not just the policy name</li>
-      <li>Free to use and download. No email needed.</li>
+      <li>Free. Enter your email and the PDF downloads straight away.</li>
     </ul>
     <div class="btn-row">
-      <a class="btn btn-primary" {pdf_link}>Download the PDF</a>
+      <a class="btn btn-primary" {get_pdf}>Get the free PDF</a>
       <a class="btn btn-ghost" href="#checklist">Start the checklist</a>
     </div>
     <p class="hero-meta">By Ajay Singh, Registered Nurse · Checked against official sources on {C.LAST_CHECKED}</p>
@@ -209,16 +209,15 @@ page = f"""<!doctype html>
     <nav class="cl-jump" aria-label="Checklist parts">{jump}</nav>
     <p class="cl-progress" aria-live="polite"><span><strong data-cl-count>0</strong> of {C.TOTAL} ticked</span><button type="button" class="cl-clear">Clear ticks</button></p>
   </div>
-  <p class="cl-note small muted">Your ticks aren't saved on this page. <a {pdf_link}>Download the PDF</a> to keep a copy you can tick and file.</p>
+  <p class="cl-note small muted">Your ticks aren't saved on this page. <a {get_pdf}>Get the free PDF</a> to keep a copy you can tick and file.</p>
 {chr(10).join(parts_html)}
 </div></section>
 
 <section id="updates"><div class="wrap"><div class="cta cta-form">
 <div class="cta-copy">
-<span class="cta-eyebrow">Free updates</span>
-<h2>Get the checklist by email, and the new version when the rules change.</h2>
-<p>The Practice Standards are under review, so this checklist will change. Leave your details and Ajay will email you the PDF, then the updated version when the rules move.</p>
-<p class="small">Rather not give your email? That's fine. <a {pdf_link}>Download the PDF</a> straight away.</p>
+<span class="cta-eyebrow">Free PDF</span>
+<h2>Get the PDF checklist, and the new version when the rules change.</h2>
+<p>Enter your details and the PDF downloads straight away. The Practice Standards are under review, so this checklist will change. We'll email you the updated version when the rules move.</p>
 </div>
 <form class="enquiry" action="/api/enquiry" method="post" data-success="{a(PDF_SUCCESS)}">
 <input type="hidden" name="page" value="policy-checklist-pdf">
@@ -237,9 +236,10 @@ page = f"""<!doctype html>
 <option value="Checklist request: other">Other</option>
 </select></div>
 {consent_block("checklist-pdf")}
-<button class="btn btn-light" type="submit">Email me the checklist</button>
-<p class="form-note">We'll use your details to send you the checklist and tell you when it's updated. We only add you to the monthly list if you tick the box. See our <a href="privacy.html">privacy policy</a>.</p>
+<button class="btn btn-light" type="submit">Get the checklist</button>
+<p class="form-note">We'll use your details to email you when the checklist is updated. We only add you to the monthly list if you tick the box. See our <a href="privacy.html">privacy policy</a>.</p>
 <p class="form-status" role="status" aria-live="polite"></p>
+<div class="cl-unlock" id="cl-unlock" hidden><a class="btn btn-primary" {pdf_link}>Download the PDF</a><p class="small">Didn't start? Tap the button.</p></div>
 </form>
 </div></div></section>
 
@@ -298,7 +298,8 @@ page = f"""<!doctype html>
 
 (OUT / "site" / "ndis-policy-checklist.html").write_text(page, encoding="utf-8")
 
-js = """// NDIS policy checklist page: counts the ticks and clears them. Nothing is saved or sent anywhere.
+js = """// NDIS policy checklist page: counts the ticks and clears them (nothing is saved or sent anywhere),
+// and starts the PDF download once the "Get the checklist" form has been sent.
 (function () {
   var boxes = document.querySelectorAll(".cl-box");
   var count = document.querySelector("[data-cl-count]");
@@ -317,6 +318,16 @@ js = """// NDIS policy checklist page: counts the ticks and clears them. Nothing
     update();
   });
   update();
+})();
+(function () {
+  var unlock = document.getElementById("cl-unlock");
+  if (!unlock) return;
+  document.addEventListener("enquiry:sent", function (e) {
+    if (!e.target.closest || !e.target.closest("#updates")) return;
+    unlock.hidden = false;
+    var link = unlock.querySelector("a[download]");
+    if (link) link.click();
+  });
 })();
 """
 (OUT / "site" / "checklist.js").write_text(js, encoding="utf-8")

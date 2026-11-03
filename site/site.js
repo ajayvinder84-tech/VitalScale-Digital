@@ -13,6 +13,7 @@ document.addEventListener("submit", function (e) {
     .then(function (r) {
       if (!r.ok) throw new Error();
       form.reset(); status.textContent = form.getAttribute("data-success") || "Thanks, your enquiry has been sent. Ajay will reply to you personally.";
+      form.dispatchEvent(new CustomEvent("enquiry:sent", { bubbles: true }));
     })
     .catch(function () { status.textContent = "Sorry, that didn't send. Please try again in a moment."; })
     .finally(function () { btn.disabled = false; });
