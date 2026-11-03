@@ -5,7 +5,7 @@ keyword: NDIS inducements
 category: Policies
 checked: 2026-11-03
 date: 2026-11-03
-photo_alt: Line drawing of a wrapped gift with a tag that says 20 Nov
+photo_alt: NDIS inducements ban: what providers can still give, from 20 November 2026, with a line drawing of a gift tagged 20.11.26
 ---
 
 > **Quick answer:** From 20 November 2026, mostly no. The NDIS inducements ban makes it an offence for any provider, registered or unregistered, to give or offer anything that's reasonably likely to get someone to start, keep or increase using their services, whether it goes to the participant, their family or someone who refers to you. Genuine discounts and your own branded merchandise, like a cap or tote bag, are still allowed, but the Government says cash, gift cards, alcohol, tobacco and electronic devices are banned in all cases.

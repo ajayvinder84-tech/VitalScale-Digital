@@ -1,6 +1,7 @@
 // Draws the cover and three small line drawings for the blog post "NDIS inducements ban: can
 // providers still give gifts?" in the site's colours, and saves them into the post's folder.
-// The drawings sit beside the writing rather than repeating it, so they carry almost no words.
+// The drawings inside the article sit beside the writing rather than repeating it, so they carry
+// almost no words. The cover is on the site's dark ink, with the headline.
 // To change one, edit it below and run:
 //   node tools/blog-graphics/ndis-inducements-gifts.cjs
 // (needs Playwright with Chromium, which the cloud sessions already have).
@@ -60,8 +61,8 @@ function who() {
     <circle cx="300" cy="135" r="96" fill="${TEAL}" opacity=".07"/>
     <g stroke="${INK}" stroke-width="2" stroke-linejoin="round" fill="${WHITE}">
       <rect x="68" y="118" width="92" height="76" rx="4"/>
-      <path d="M60 118l10-26h104l10 26z" fill="${PAPER}"/>
-      <path d="M60 118c0 9 13 9 15 0c2 9 13 9 15 0c2 9 13 9 15 0c2 9 13 9 15 0c2 9 13 9 15 0c2 9 13 9 15 0c2 9 13 9 15 0" fill="none" transform="translate(4 0) scale(.97 1)"/>
+      <path d="M62 118l8-24h88l8 24z" fill="${PAPER}"/>
+      <path d="M62 118a8.5 7 0 0 0 17 0a8.5 7 0 0 0 17 0a8.5 7 0 0 0 17 0a8.5 7 0 0 0 17 0a8.5 7 0 0 0 17 0a8.5 7 0 0 0 17 0" fill="${PAPER}"/>
       <rect x="99" y="152" width="30" height="42" rx="3" fill="${PAPER}"/>
     </g>
     <path d="M176 150h66" ${dash}/>
@@ -94,20 +95,35 @@ function marketing() {
     <path d="M424 166l34 34" stroke="${INK}" stroke-width="7"/></g>`);
 }
 
-// The cover, 1600 x 900. The blog crops it to a wide strip on computers and to 4:3 on phones,
-// so the drawing sits in the middle.
+// The cover, 1600 x 900, on the site's dark ink. The blog crops it to a wide strip on computers
+// and to 4:3 on phones, so everything important sits inside the middle 1200 x 700.
 function cover() {
-  return svg(1600, 900, `
-    <circle cx="800" cy="470" r="330" fill="${TEAL}" opacity=".07"/>
-    <circle cx="1040" cy="250" r="12" fill="${GOLD}" opacity=".6"/><circle cx="540" cy="300" r="8" fill="${TEAL}" opacity=".35"/>
-    <circle cx="1110" cy="640" r="7" fill="${TEAL}" opacity=".35"/><circle cx="500" cy="660" r="10" fill="${GOLD}" opacity=".45"/>
-    ${gift(630, 330, 340, 330, 7)}
-    <path d="M800 330C870 300 960 320 1010 380" fill="none" stroke="${INK}" stroke-width="3" stroke-dasharray="3 10" stroke-linecap="round"/>
-    <g transform="translate(990 372) rotate(10)">
-      <path d="M0 22L22 0h118a12 12 0 0 1 12 12v44a12 12 0 0 1-12 12H22z" fill="${WHITE}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
-      <circle cx="24" cy="34" r="6" fill="none" stroke="${INK}" stroke-width="3"/>
-      <text x="86" y="45" fill="${TEAL}" font-size="28" font-weight="600" text-anchor="middle">20 Nov</text>
-    </g>`, PAPER);
+  const DARK = "#0E1C1B";
+  const logo = readFileSync(join(ROOT, "site", "logo-reversed.svg")).toString("base64");
+  return `<div class="cover">
+<style>
+.cover{width:1600px;height:900px;background:${DARK};position:relative;overflow:hidden;color:#fff}
+.cover:before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 85% 20%,rgba(31,91,90,.75) 0%,transparent 65%),radial-gradient(50% 60% at 10% 100%,rgba(224,165,38,.12) 0%,transparent 60%)}
+.copy{position:absolute;left:230px;top:235px;width:800px;display:grid;gap:24px}
+.e{font-size:24px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:${GOLD};display:flex;align-items:center;gap:14px}
+.e:before{content:"";width:12px;height:12px;border-radius:50%;background:${GOLD}}
+.h{font-size:84px;font-weight:500;letter-spacing:-.04em;line-height:1.02}
+.h span{border:4px solid ${GOLD};border-radius:16px;padding:0 10px;display:inline-block;line-height:1}
+.s{font-size:32px;color:#C9D3D0}
+.logo{position:absolute;left:230px;bottom:118px;height:46px;opacity:.9}
+.gift{position:absolute;right:215px;top:235px;width:340px;height:389px}
+</style>
+<div class="copy"><div class="e">NDIS changes · Policies</div><div class="h">NDIS <span>inducements</span> ban</div><div class="s">What providers can still give, from 20 November 2026</div></div>
+<img class="logo" src="data:image/svg+xml;base64,${logo}" alt="">
+<svg class="gift" width="420" height="480" viewBox="0 0 420 480" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect x="40" y="212" width="340" height="238" rx="18" stroke="${GOLD}" stroke-width="6"/>
+  <rect x="20" y="140" width="380" height="70" rx="14" stroke="${GOLD}" stroke-width="6"/>
+  <path d="M210 212v238" stroke="${GOLD}" stroke-width="6"/>
+  <path d="M210 140c-40-70-130-80-130-25 0 30 60 25 130 25zM210 140c40-70 130-80 130-25 0 30-60 25-130 25z" stroke="${GOLD}" stroke-width="6"/>
+  <g transform="translate(250 300) rotate(-8)"><rect x="0" y="0" width="150" height="64" rx="10" fill="${DARK}" stroke="#fff" stroke-opacity=".8" stroke-width="3"/>
+  <text x="75" y="42" text-anchor="middle" font-family="DM Sans" font-size="26" font-weight="600" fill="#fff" stroke="none">20.11.26</text></g>
+</svg>
+</div>`;
 }
 
 function svg(w, h, body, bg = PAPER) {
@@ -116,16 +132,16 @@ function svg(w, h, body, bg = PAPER) {
 
 (async () => {
   const browser = await chromium.launch();
-  const shoot = async (markup, file, w, h, scale) => {
+  const shoot = async (markup, file, w, h, scale, selector = "svg") => {
     const page = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: scale });
-    await page.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${FONTS}*{margin:0}body{width:${w}px;height:${h}px}svg{display:block}</style></head><body>${markup}</body></html>`);
+    await page.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${FONTS}*{margin:0;box-sizing:border-box}body{width:${w}px;height:${h}px;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}svg{display:block}</style></head><body>${markup}</body></html>`);
     await page.evaluate(() => document.fonts.ready);
     const jpg = file.endsWith(".jpg");
-    await page.locator("svg").screenshot({ path: join(OUT, file), type: jpg ? "jpeg" : "png", ...(jpg ? { quality: 88 } : {}) });
+    await page.locator(selector).first().screenshot({ path: join(OUT, file), type: jpg ? "jpeg" : "png", ...(jpg ? { quality: 88 } : {}) });
     await page.close();
     console.log("saved", file);
   };
-  await shoot(cover(), "cover.jpg", 1600, 900, 1);
+  await shoot(cover(), "cover.jpg", 1600, 900, 1, ".cover");
   await shoot(calendar(), "calendar.png", 600, 260, 2);
   await shoot(who(), "who-it-covers.png", 600, 260, 2);
   await shoot(marketing(), "marketing-check.png", 600, 260, 2);
