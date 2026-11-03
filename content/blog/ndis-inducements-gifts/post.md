@@ -5,6 +5,7 @@ keyword: NDIS inducements
 category: Policies
 checked: 2026-11-03
 date: 2026-11-03
+photo_alt: NDIS inducements ban: what providers can still give, from 20 November 2026, with a line drawing of a gift tagged 20.11.26
 ---
 
 > **Quick answer:** From 20 November 2026, mostly no. The NDIS inducements ban makes it an offence for any provider, registered or unregistered, to give or offer anything that's reasonably likely to get someone to start, keep or increase using their services, whether it goes to the participant, their family or someone who refers to you. Genuine discounts and your own branded merchandise, like a cap or tote bag, are still allowed, but the Government says cash, gift cards, alcohol, tobacco and electronic devices are banned in all cases.
@@ -14,6 +15,8 @@ date: 2026-11-03
 A new section of the NDIS Act, section 73VA, bans NDIS inducements from 20 November 2026. It was added by the National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Act 2026, which became law on 20 August 2026. It's one of the 2026 NDIS legislation changes made by that Act.
 
 You might see 27 November elsewhere, including on a government timeline. The Act itself starts the ban the day after 3 months from Royal Assent, which is 20 November, so plan for that date.
+
+![Line drawing of a November 2026 calendar with the 20th circled, next to a wrapped gift](calendar.png)
 
 The ban applies to every NDIS provider, registered or unregistered. Under the Act, an NDIS provider includes anyone paid from a participant's NDIS funding, other than the participant. That covers sole traders, small teams, large organisations and plan managers.
 
@@ -30,6 +33,8 @@ Section 73VA has a three-part test. You breach it if you:
 3. give something reasonably likely to get that person to engage you to start or keep supporting a participant, add a support, increase the amount or intensity of a support, or manage a participant's plan funding
 
 Gifts to participants are the obvious case, but two details catch people out. First, the Act says "it does not matter whether the person is the participant". A gift to a parent, a nominee or anyone else counts the same way. Second, you're responsible for gifts you get someone else to give for you, such as a staff member, a related business or an agency running a giveaway on your page.
+
+![Line drawing of a provider's shop passing a gift to three different people](who-it-covers.png)
 
 An offer is enough. A web page promising a gift card to new participants breaches the rule even if nobody ever claims it.
 
@@ -83,6 +88,8 @@ Whether a particular arrangement breaches section 73VA depends on its facts. If 
 ## Where inducements hide in your marketing
 
 Most providers would never hand a participant a wad of cash. The risk is the marketing set up months ago and forgotten: a pinned Facebook post, a website banner, a box of welcome packs in the office.
+
+![Line drawing of a website and a phone post both showing a gift, with a magnifying glass over them](marketing-check.png)
 
 | Where to look | Risky example | Safer option |
 |---|---|---|
