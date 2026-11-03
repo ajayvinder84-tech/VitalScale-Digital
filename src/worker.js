@@ -1,24 +1,28 @@
 // Serves the static site in ./site and handles the enquiry forms at /api/enquiry.
 // Enquiries are forwarded to Web3Forms with the WEB3FORMS_ACCESS_KEY Worker secret.
+// When someone asks for the free policy checklist, Brevo also emails them the link to it, but only
+// once the BREVO_API_KEY secret and the CHECKLIST_FROM_EMAIL variable are both set in Cloudflare.
 
 const FIELD_LIMITS = { name: 100, email: 255, business: 150, message: 600 };
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_FILL_MS = 3000;
+const CHECKLIST_PAGE = "policy-checklist-pdf";
+const CHECKLIST_PDF = "https://vitalscaledigital.com.au/downloads/ndis-policy-checklist.pdf";
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === "/api/enquiry") {
       if (request.method !== "POST") {
         return new Response("Method not allowed", { status: 405, headers: { Allow: "POST" } });
       }
-      return handleEnquiry(request, env);
+      return handleEnquiry(request, env, ctx);
     }
     return env.ASSETS.fetch(request);
   },
 };
 
-async function handleEnquiry(request, env) {
+async function handleEnquiry(request, env, ctx) {
   let form;
   try {
     form = await request.formData();
@@ -90,7 +94,45 @@ async function handleEnquiry(request, env) {
     console.error("Web3Forms submission failed", response.status);
     return sendFailed();
   }
+  // The checklist email goes out in the background, so the page's download never waits for it.
+  if (page === CHECKLIST_PAGE && env.BREVO_API_KEY && env.CHECKLIST_FROM_EMAIL) {
+    ctx.waitUntil(sendChecklistEmail(env, data).catch((error) => console.error("Checklist email failed", error)));
+  }
   return json({ success: true });
+}
+
+async function sendChecklistEmail(env, { name, email }) {
+  const first = name.split(/\s+/)[0];
+  const lines = [
+    `Hi ${first},`,
+    "Thanks for asking for the NDIS policy checklist. Here's your copy:",
+    CHECKLIST_PDF,
+    "It covers every policy an NDIS provider needs, what an auditor wants to see for each one, and the official source. When the rules change, we'll email you the updated version.",
+    "If you'd like a second opinion on one of your policies, just reply to this email.",
+    "Ajay Singh, Registered Nurse\nVitalScale Digital",
+    "Don't want checklist updates? Reply with \"unsubscribe\" and we'll take you off the list.",
+  ];
+  const html = lines.map((line) => line === CHECKLIST_PDF
+    ? `<p><a href="${CHECKLIST_PDF}">Download the NDIS policy checklist (PDF)</a></p>`
+    : `<p>${escapeHtml(line).replace(/\n/g, "<br>")}</p>`).join("");
+  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "api-key": env.BREVO_API_KEY, "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      sender: { name: "Ajay at VitalScale Digital", email: env.CHECKLIST_FROM_EMAIL },
+      replyTo: { name: "Ajay Singh", email: env.CHECKLIST_FROM_EMAIL },
+      to: [{ email, name }],
+      subject: "Your free NDIS policy checklist",
+      textContent: lines.join("\n\n"),
+      htmlContent: `<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.6;color:#1F2B28">${html}</div>`,
+      tags: ["policy-checklist"],
+    }),
+  });
+  if (!response.ok) console.error("Brevo didn't send the checklist email", response.status, await response.text().catch(() => ""));
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 function sendFailed() {

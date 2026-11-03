@@ -17,6 +17,9 @@ says: short, plain English, questions at the bottom.
   within a few minutes. Builds of other branches are switched off, so a branch is never public.
 - The enquiry form's Web3Forms key is the Worker secret `WEB3FORMS_ACCESS_KEY` in Cloudflare
   (**Settings > Variables and Secrets**). It never goes in a file.
+- The free policy checklist is also emailed to whoever asks for it, through Brevo, once the secret
+  `BREVO_API_KEY` and the variable `CHECKLIST_FROM_EMAIL` (the address it comes from) are set in the
+  same place. Until both are set, people just get the download on the page.
 - An old Cloudflare Pages project, `vitalscale-digital`, is also linked to the repo. It doesn't serve
   the domain; its failed builds can be ignored, or Ajay can disconnect it.
 - Roll back: in Cloudflare, **Workers & Pages > vitalscale-digital-rebuild > Deployments**, then
