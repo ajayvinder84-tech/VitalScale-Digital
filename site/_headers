@@ -11,3 +11,6 @@
 
 /blog/covers/*
   Cache-Control: public, max-age=604800
+
+/blog/images/*
+  Cache-Control: public, max-age=604800

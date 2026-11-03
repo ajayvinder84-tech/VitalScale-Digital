@@ -5,6 +5,7 @@ keyword: NDIS inducements
 category: Policies
 checked: 2026-11-03
 date: 2026-11-03
+photo_alt: Illustration of a gift box with a 20 November 2026 tag, for the NDIS inducements ban
 ---
 
 > **Quick answer:** From 20 November 2026, mostly no. The NDIS inducements ban makes it an offence for any provider, registered or unregistered, to give or offer anything that's reasonably likely to get someone to start, keep or increase using their services, whether it goes to the participant, their family or someone who refers to you. Genuine discounts and your own branded merchandise, like a cap or tote bag, are still allowed, but the Government says cash, gift cards, alcohol, tobacco and electronic devices are banned in all cases.
@@ -14,6 +15,8 @@ date: 2026-11-03
 A new section of the NDIS Act, section 73VA, bans NDIS inducements from 20 November 2026. It was added by the National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Act 2026, which became law on 20 August 2026. It's one of the 2026 NDIS legislation changes made by that Act.
 
 You might see 27 November elsewhere, including on a government timeline. The Act itself starts the ban the day after 3 months from Royal Assent, which is 20 November, so plan for that date.
+
+![Timeline: the Act became law on 20 August 2026, the inducements ban starts on 20 November 2026 for every NDIS provider, and NDIS rules on pricing and merchandise are still to come.](timeline.png)
 
 The ban applies to every NDIS provider, registered or unregistered. Under the Act, an NDIS provider includes anyone paid from a participant's NDIS funding, other than the participant. That covers sole traders, small teams, large organisations and plan managers.
 
@@ -28,6 +31,8 @@ Section 73VA has a three-part test. You breach it if you:
 1. give, offer or agree to give a gift, benefit or other thing to a person, or cause one to be given
 2. give something other than the support or service itself
 3. give something reasonably likely to get that person to engage you to start or keep supporting a participant, add a support, increase the amount or intensity of a support, or manage a participant's plan funding
+
+![The three-part test: you give, offer or agree to give a gift, benefit or other thing; it's something other than the support itself; and it's reasonably likely to get someone to start, keep or increase using your services. If all three apply, it's banned from 20 November 2026.](three-part-test.png)
 
 Gifts to participants are the obvious case, but two details catch people out. First, the Act says "it does not matter whether the person is the participant". A gift to a parent, a nominee or anyone else counts the same way. Second, you're responsible for gifts you get someone else to give for you, such as a staff member, a related business or an agency running a giveaway on your page.
 
@@ -47,6 +52,8 @@ The Government's fact sheet on the final law says providing "alcohol, tobacco an
 - electronic devices, such as phones, tablets and gaming consoles
 
 So a "$50 gift card for new participants", a tablet in a welcome pack or a bottle of wine in a Christmas hamper is off the table.
+
+![Banned in all cases: cash, gift cards, vouchers and store cards, alcohol, cigarettes, tobacco and vapes, electronic devices like phones and tablets, and illegal drugs. Still allowed: genuine discounts that are part of your normal pricing, your own merchandise like a cap or tote bag, and anything future NDIS rules specifically permit.](banned-and-allowed.png)
 
 ## What's still allowed
 

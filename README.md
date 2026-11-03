@@ -57,3 +57,8 @@ Each post is a folder in `content/blog/`: `post.md` (a `---` block with `title`,
 `/blog/<slug>`, the `/blog` list, and the blog entries in `sitemap.xml` and `llms.txt`. A post
 appears once its `date` arrives, and the build stops if a post is missing details or a
 `## Sources` section. Weekly publishing is "Routine: publish the weekly blog" in `CLAUDE.md`.
+
+A post can also show pictures or diagrams inside the article: save a PNG or JPG (under 1 MB, name in
+lowercase with hyphens) next to `post.md` and put `![what the picture shows](file-name.png)` on its
+own line where it should appear. The build copies it to `/blog/images/`. The diagrams for the
+inducements post are drawn by `tools/blog-graphics/ndis-inducements-gifts.cjs`.

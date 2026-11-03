@@ -12,6 +12,8 @@ const REQUIRED = ["title", "description", "keyword", "category", "checked", "dat
 const OPTIONAL = ["slug", "photo_alt", "photo_credit", "photo_credit_url"];
 const COVER_NAMES = ["cover.jpg", "cover.jpeg", "cover.png", "cover.webp"];
 const MAX_COVER_BYTES = 1024 * 1024;
+// Pictures inside an article: ![what it shows](file-name.png), with the file saved next to post.md
+const IMAGE_FILE = /^[a-z0-9]+(-[a-z0-9]+)*\.(png|jpe?g)$/;
 const ORG = `${BASE}/#organization`;
 const PERSON = `${BASE}/#ajay`;
 // Who runs the site, repeated on every blog page so search engines and AI tools can tie the
@@ -33,8 +35,10 @@ export function buildBlog({ root, distDir, fail }) {
   const posts = all.filter((post) => post.date <= today).sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
 
   mkdirSync(join(distDir, "blog", "covers"), { recursive: true });
+  mkdirSync(join(distDir, "blog", "images"), { recursive: true });
   for (const post of posts) {
     if (post.coverFile) copyFileSync(post.coverFile, join(distDir, "blog", "covers", post.coverName));
+    for (const image of post.images) copyFileSync(image.file, join(distDir, "blog", "images", image.name));
     const more = posts.filter((other) => other !== post).slice(0, 3);
     writeFileSync(join(distDir, "blog", `${post.slug}.html`), renderPostPage(template, post, more));
   }
@@ -96,7 +100,7 @@ function loadPost(folder, folderName, text, fail) {
     if (!meta.photo_alt) fail(`${where}: add "photo_alt" (a short description of the cover photo)`);
   }
 
-  const { html, toc, words } = renderMarkdown(match[2], fail, where);
+  const { html, toc, words, images } = renderMarkdown(match[2], fail, where, folder, slug);
   if (!toc.some((item) => /^sources\b/i.test(item.text))) fail(`${where}: add a "## Sources" section listing the official pages used`);
   return {
     ...meta,
@@ -104,6 +108,7 @@ function loadPost(folder, folderName, text, fail) {
     coverFile,
     coverName: coverName ? `${slug}${coverName.slice(coverName.indexOf("."))}` : null,
     html,
+    images,
     faq: extractFaq(match[2]),
     toc: toc.filter((item) => !/^sources\b/i.test(item.text)),
     minutes: Math.max(1, Math.round(words / 220)),
@@ -112,9 +117,10 @@ function loadPost(folder, folderName, text, fail) {
 
 // --- Markdown: headings, paragraphs, lists, quotes, tables, bold, italic, links and code ---
 
-function renderMarkdown(markdown, fail, where) {
+function renderMarkdown(markdown, fail, where, folder, slug) {
   const lines = markdown.replace(/\r\n?/g, "\n").split("\n");
   const out = [];
+  const images = [];
   const toc = [];
   const used = new Set();
   let words = 0;
@@ -170,13 +176,42 @@ function renderMarkdown(markdown, fail, where) {
       out.push(`<div class="table-wrap"><table><thead><tr>${head.map((c) => `<th>${inline(c)}</th>`).join("")}</tr></thead><tbody>${body.map((r) => `<tr>${r.map((c) => `<td>${inline(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`);
       continue;
     }
-    if (/^\s*!\[/.test(line)) { i++; continue; } // images inside the article aren't supported; the cover photo is shown above it
+    if (/^\s*!\[/.test(line)) {
+      i++;
+      const img = line.trim().match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/);
+      if (!img) fail(`${where}: write a picture on its own line as ![what it shows](file-name.png)`);
+      const [, alt, name] = img;
+      if (!alt.trim()) fail(`${where}: the picture ${name} needs a short description inside the [ ]`);
+      if (!IMAGE_FILE.test(name)) fail(`${where}: picture names may only use lowercase letters, numbers and hyphens, ending .png or .jpg (${name})`);
+      const file = join(folder, name);
+      if (!existsSync(file)) fail(`${where}: the picture ${name} isn't in the post's folder`);
+      if (statSync(file).size > MAX_COVER_BYTES) fail(`${where}: the picture ${name} is over 1 MB: make it smaller`);
+      const size = imageSize(readFileSync(file));
+      if (!size) fail(`${where}: couldn't read the size of ${name}; save it as a normal PNG or JPG`);
+      const published = `${slug}-${name}`;
+      images.push({ file, name: published });
+      out.push(`<figure class="post-figure"><img src="/blog/images/${published}" alt="${escape(alt.trim())}" width="${size.width}" height="${size.height}" loading="lazy" decoding="async"></figure>`);
+      continue;
+    }
     const para = [];
     while (i < lines.length && lines[i].trim() && (para.length === 0 || !startsBlock(lines[i]))) para.push(lines[i++].trim());
     words += countWords(para.join(" "));
     out.push(`<p>${inline(para.join(" "))}</p>`);
   }
-  return { html: out.join("\n"), toc, words };
+  return { html: out.join("\n"), toc, words, images };
+}
+
+// Width and height of a PNG or JPG, read from the file itself, so the page saves the right space
+function imageSize(bytes) {
+  if (bytes.length > 24 && bytes.readUInt32BE(0) === 0x89504e47) return { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) };
+  if (bytes[0] !== 0xff || bytes[1] !== 0xd8) return null;
+  for (let at = 2; at + 9 < bytes.length;) {
+    if (bytes[at] !== 0xff) { at++; continue; }
+    const marker = bytes[at + 1];
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) return { height: bytes.readUInt16BE(at + 5), width: bytes.readUInt16BE(at + 7) };
+    at += 2 + bytes.readUInt16BE(at + 2);
+  }
+  return null;
 }
 
 function paragraphs(lines) {
