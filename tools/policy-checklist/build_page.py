@@ -167,7 +167,7 @@ page = f"""<!doctype html>
 <link rel="icon" href="/icon-vs.png" type="image/png" sizes="96x96">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
-<body class="page-checklist">
+<body class="page-checklist svc-policies">
 {header}
 <main>
 <section class="hero"><div class="wrap">
@@ -267,8 +267,8 @@ page = f"""<!doctype html>
 
 <section id="book"><div class="wrap"><div class="cta cta-form">
 <div class="cta-copy">
-<h2>Found a gap? Get a free policy review.</h2>
-<p>Send us one policy you're unsure about. Ajay will review it against how your business actually runs and the current rules, and tell you plainly whether it needs work.</p>
+<h2>Found a gap? Start with the $166 Gap Check.</h2>
+<p>A nurse reviews up to 5 of your policies against how you actually work, and you get a gap report plus a 30-minute call. The full $166 comes off the bigger service if you go ahead within 30 days. <a href="checks.html#gap-check">See the Gap Check</a>.</p>
 <p class="small">Ajay will reply to you personally.</p>
 <p class="cta-chat">Prefer to chat? <a href="https://wa.me/61406970615?text=Hi%20VitalScale%20Digital%2C%20I%20found%20you%20on%20your%20website%20and%20have%20a%20question." target="_blank" rel="noopener">Message us on WhatsApp</a> or call <a href="tel:+61406970615">0406 970 615</a>.</p>
 </div>

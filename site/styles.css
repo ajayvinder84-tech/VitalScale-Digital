@@ -711,3 +711,65 @@ tr:last-child td { border-bottom: 0; }
   .page-checklist section { padding-block: 24px; }
   .page-checklist .cl-item { break-inside: avoid; }
 }
+
+/* ==========================================================================
+   Prices and the $166 checks (Nov 2026)
+   ========================================================================== */
+.trust-strip { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 0; font-size: 0.92rem; color: #C9D3D0; }
+.trust-strip li + li::before { content: "·"; margin: 0 10px; color: var(--gold); }
+.hero .hero-meta { margin: -6px 0 0; }
+.service-price { margin: 4px 0 0; font-size: 1.1rem; font-weight: 600; color: var(--accent, var(--black)); }
+.service-price span, .price-tag span { font-size: 0.85rem; font-weight: 400; color: var(--grey); }
+.services-note { margin-top: 20px; }
+.price-tag { margin: 0; font-size: clamp(1.5rem, 1.1rem + 1.3vw, 2.1rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; color: var(--accent, var(--black)); }
+.tick-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.tick-list li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; line-height: 1.5; }
+.tick-list li::before { content: "\2713"; font-weight: 600; color: var(--accent, var(--teal)); }
+.price-layout { display: grid; gap: 22px; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
+.price-layout-even { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.price-side { display: grid; gap: 18px; }
+.price-card, .no-hidden, .addon-box { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(20px, 3vw, 30px); display: grid; gap: 14px; align-content: start; min-width: 0; }
+.price-card { border-top: 4px solid var(--accent, var(--teal)); }
+.no-hidden { border-left: 4px solid var(--gold); }
+.no-hidden h2, .no-hidden h3 { font-size: var(--step-1); }
+.no-hidden .tick-list li::before { color: var(--gold); }
+.addon-box { border-style: dashed; }
+.price-rows { display: grid; gap: 16px; }
+.price-row { display: grid; gap: 28px; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--accent, var(--teal)); border-radius: var(--radius); padding: clamp(20px, 3vw, 32px); }
+.price-row-main, .price-row-detail { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.price-row-main h3 { font-size: var(--step-2); letter-spacing: -0.02em; }
+.check-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px 24px; margin-bottom: 18px; }
+.check-head h2 { margin-top: 8px; }
+.check-intro { display: grid; gap: 12px; max-width: 760px; margin-bottom: 22px; }
+.check-lead { font-size: var(--step-1); font-weight: 500; }
+.check-cols { display: grid; gap: 18px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.check-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.check-cols .who-card { border-top: 4px solid var(--accent, var(--teal)); }
+.check-cols .who-card h3 { font-size: 1.05rem; font-weight: 600; }
+.check-foot { display: grid; gap: 10px; justify-items: start; margin-top: 22px; max-width: 760px; }
+.who-grid .who-card h3 { font-size: 1.05rem; font-weight: 600; }
+.field select { font: 400 1rem var(--font); color: var(--white); background: transparent; width: 100%; border: 1px solid var(--line-dark); border-radius: 12px; padding: 12px 14px; }
+.field select option { color: var(--black); background: var(--white); }
+.footer-bank { font-weight: 500; }
+@media (max-width: 900px) {
+  .price-layout, .price-layout-even, .price-row, .check-cols, .check-cols-4 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ==========================================================================
+   Calmer colours (Nov 2026): each service has its own colour, used for its
+   labels, prices and ticks, and as a soft tint behind its sections, and the
+   black-and-white photos get a gentle tint so they don't look stark white.
+   ========================================================================== */
+:root { --accent: var(--teal); --accent-soft: #EEF3F2; }
+.accent-policies, body.svc-policies { --accent: #1F5B5A; --accent-soft: #E9F1F0; }
+.accent-social, body.svc-social { --accent: #9A6A12; --accent-soft: #F8F0E1; }
+.accent-websites, body.svc-websites { --accent: #3F6E4B; --accent-soft: #EBF2EC; }
+.accent-ai, body.svc-ai { --accent: #4A5866; --accent-soft: #ECEFF2; }
+.accent-checks { --accent: #9A6A12; --accent-soft: #F8F0E1; }
+body[class*="svc-"] .band, body[class*="svc-"] .news-band, .check-section.band { background: var(--accent-soft); }
+body[class*="svc-"] main section:not(.hero) .eyebrow, .accent-policies .eyebrow, .accent-social .eyebrow, .accent-websites .eyebrow, .accent-ai .eyebrow, .accent-checks .eyebrow { color: var(--accent); }
+.service[class*="accent-"] { border-top: 4px solid var(--accent); }
+/* soft tint on the black-and-white photos outside the dark top section */
+main section:not(.hero) .photo, .service-img, .founder-photo { position: relative; }
+main section:not(.hero) .photo img, .service-img { filter: grayscale(1) brightness(0.9) contrast(1.06); }
+main section:not(.hero) .photo::after { content: ""; position: absolute; inset: 0; background: var(--accent); mix-blend-mode: multiply; opacity: 0.22; pointer-events: none; }
