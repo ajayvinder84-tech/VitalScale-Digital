@@ -115,7 +115,7 @@ Your social media doesn't need prizes to work. Families and support coordinators
 6. Update your NDIS policies and procedures, starting with your gifts and benefits policy, so they cover what the business gives. Keep a simple record of what you give, to whom and why.
 7. Watch for NDIS rules on pricing practices and merchandise, and for guidance from the NDIS Commission.
 
-If your gifts policy hasn't been touched since you started, or you don't have one, this is a good week to sort it out. Our [policy writing service for NDIS providers](/policies.html) rewrites policies in plain English for the new NDIS changes. If you'd like a second opinion first, [book a free 20-minute review](/#book).
+If your gifts policy hasn't been touched since you started, or you don't have one, this is a good week to sort it out. Our [policy writing service for NDIS providers](/policies.html) rewrites policies in plain English for the new NDIS changes. If you'd like a second opinion first, start with our [$166 Policy vs Practice Gap Check](/checks#gap-check).
 
 ## Common questions
 

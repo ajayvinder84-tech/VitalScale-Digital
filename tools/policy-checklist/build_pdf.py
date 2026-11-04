@@ -136,9 +136,9 @@ p {{ margin:0; }}
 <h2>Official sources</h2>
 <ol>{sources}</ol>
 <p class="author">Written by Ajay Singh, Registered Nurse and founder of VitalScale Digital. Checked against these sources on {C.LAST_CHECKED}. Rules change: always check the official source for your situation.</p>
-<div class="cta"><div><h2>Found a gap? Get a free policy review.</h2>
-<p>Send Ajay one policy you're unsure about. He'll check it against how your business actually runs and the current rules, and tell you plainly whether it needs work.</p>
-<p style="margin-top:6pt"><b>vitalscaledigital.com.au/ndis-policies-and-procedures</b> · Call or WhatsApp <b>0406 970 615</b></p>
+<div class="cta"><div><h2>Found a gap? Start with the $166 Gap Check.</h2>
+<p>A Registered Nurse reads up to 5 of your policies, compares them with how your team actually works, and gives you a written gap report plus a 30-minute call. If you go ahead with our Policy + Evidence System within 30 days, the full $166 comes off the price.</p>
+<p style="margin-top:6pt"><b>vitalscaledigital.com.au/checks</b> · Call or WhatsApp <b>0406 970 615</b></p>
 <p style="margin-top:4pt">Updates when the rules change: <b>vitalscaledigital.com.au/ndis-policy-checklist</b></p></div>
 <img src="{LOGO_REV}" alt="VitalScale Digital"></div>
 </section>
