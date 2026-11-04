@@ -15,7 +15,10 @@ Builds within a few minutes. Treat a push to `main` as publishing.
 Ajay isn't technical. Keep messages short and in plain English, and explain any technical word in a
 few simple words. Check with Ajay before anything goes live. Put every question for Ajay at the very
 bottom of the message, in simple words, so it isn't missed. (The Monday NDIS news routine below is
-the one exception: Ajay asked on 4 Nov 2026 for it to research and publish by itself ## Routine: update NDIS news
+the one exception: Ajay asked on 4 Nov 2026 for it to research and publish by itself every week,
+without asking him.)
+
+## Routine: update NDIS news
 
 Run this when the Monday scheduled task "NDIS news, weekly automatic update" starts in the cloud,
 or when Ajay types "update NDIS news". It researches, writes and publishes the news by itself:
@@ -66,8 +69,6 @@ Never:
 - use a source that isn't an official one listed in step 2
 - change any other page, style, script or file during this routine
 - add tracking, cookies or new dependencies
-
-ing, cookies or new dependencies
 
 ## Routine: publish the weekly blog
 
