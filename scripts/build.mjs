@@ -21,6 +21,8 @@ const FILE_FIELDS = ["last_checked", "approved_by", "approved_on", "items"];
 const ITEM_FIELDS = ["headline", "whats_changing", "who_it_affects", "when", "what_to_do", "status", "source_url", "source_published"];
 const TEXT_FIELDS = ["headline", "whats_changing", "who_it_affects", "when", "what_to_do"];
 const STATUSES = ["VERIFIED", "EXPECTED"];
+// Who signed off this week's news: Ajay, or the Monday automatic check he set up on 4 Nov 2026
+const APPROVERS = ["Ajay", "Automatic weekly check"];
 const OFFICIAL_HOSTS = ["ndiscommission.gov.au", "ndis.gov.au", "health.gov.au", "legislation.gov.au"];
 const MAX_ITEMS = 4;
 const MAX_WORDS = 80;
@@ -103,7 +105,7 @@ function loadNews() {
   expectFields(news, FILE_FIELDS, "The file");
   if (!isDate(news.last_checked)) fail("last_checked must be a real date written YYYY-MM-DD");
   if (!isDate(news.approved_on)) fail("approved_on must be a real date written YYYY-MM-DD");
-  if (news.approved_by !== "Ajay") fail('approved_by must be "Ajay"');
+  if (!APPROVERS.includes(news.approved_by)) fail(`approved_by must be one of: ${APPROVERS.join(", ")}`);
   if (!Array.isArray(news.items) || news.items.length > MAX_ITEMS) fail(`items must be a list of at most ${MAX_ITEMS}`);
   news.items.forEach((item, index) => {
     const label = `Item ${index + 1}`;
