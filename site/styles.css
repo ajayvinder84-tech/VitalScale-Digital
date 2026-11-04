@@ -901,3 +901,10 @@ mark.todo { background: #FFE58A; color: #1F2B28; padding: 0 4px; border-radius: 
 .service-start .start-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent, var(--teal)); }
 .post-top .post-sample { margin-left: auto; font-size: 0.62rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; }
 .lp-pain strong { font-weight: 600; }
+
+/* Blog: the homepage "Latest from the blog" strip and the "Start here" box at the end of each post */
+.latest-blog .post-grid { margin-top: 0; }
+.latest-blog-more { margin: 22px 0 0; }
+.start-actions { display: grid; gap: 10px; justify-items: start; }
+.post-start { padding-top: 0; }
+.post-changes-link { margin: 0 0 18px; }

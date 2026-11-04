@@ -3,13 +3,15 @@
 // Each post.md starts with a front-matter block (see REQUIRED below) followed by the article
 // in plain Markdown. A post appears only once its `date` has arrived in Melbourne, and any
 // post that fails a check stops the build, so nothing half-finished is ever published.
+// The posts also fill the homepage "Latest from the blog" strip (latestStrip) and the
+// "NDIS reforms 2026" list on /ndis-changes (reformsList: posts with `ndis_change: yes`).
 
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const BASE = "https://vitalscaledigital.com.au";
 const REQUIRED = ["title", "description", "keyword", "category", "checked", "date"];
-const OPTIONAL = ["slug", "photo_alt", "photo_credit", "photo_credit_url"];
+const OPTIONAL = ["slug", "photo_alt", "photo_credit", "photo_credit_url", "ndis_change"];
 const COVER_NAMES = ["cover.jpg", "cover.jpeg", "cover.png", "cover.webp"];
 const MAX_COVER_BYTES = 1024 * 1024;
 // Pictures inside an article: ![what it shows](file-name.png), with the file saved next to post.md
@@ -51,8 +53,36 @@ export function buildBlog({ root, distDir, fail }) {
     : "- The first guide is coming soon.", fail);
 
   const waiting = all.length - posts.length;
-  return `${posts.length} blog post(s)${waiting ? `, ${waiting} waiting for their date` : ""}`;
+  return { posts, summary: `${posts.length} blog post(s)${waiting ? `, ${waiting} waiting for their date` : ""}` };
 }
+
+// The homepage "Latest from the blog" strip: the 3 newest published posts, or nothing at all.
+export function latestStrip(posts) {
+  if (!posts.length) return "";
+  return `<section class="latest-blog"><div class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">From the blog</span>
+    <h2>Latest from the blog.</h2>
+    <p class="muted">Plain-English guides for NDIS providers, written by a Registered Nurse.</p>
+  </div>
+  <div class="post-grid">${posts.slice(0, 3).map(card).join("")}</div>
+  <p class="latest-blog-more"><a class="link-arrow" href="/blog.html">See all guides</a></p>
+</div></section>`;
+}
+
+// Posts about an NDIS change (`ndis_change: yes`), newest first, for the /ndis-changes page.
+export function changePosts(posts) {
+  return posts.filter(isChangePost);
+}
+
+export function reformsList(posts) {
+  const list = changePosts(posts);
+  return list.length
+    ? `<div class="post-grid">${list.map(card).join("")}</div>`
+    : `<p class="muted">Our plain-English guides to each change will be listed here.</p>`;
+}
+
+const isChangePost = (post) => /^(yes|true)$/i.test(post.ndis_change || "");
 
 function loadPosts(dir, fail) {
   if (!existsSync(dir)) return [];
@@ -275,6 +305,7 @@ function renderPostPage(template, post, more) {
 ${post.html}
   </div>
 </div></section>
+${startHere(post)}
 <section class="band"><div class="wrap">
   <div class="author-card">
     <img src="/photos/ajay.jpg" alt="Ajay Singh, Registered Nurse" width="64" height="64" loading="lazy">
@@ -301,11 +332,38 @@ ${post.html}
   });
 }
 
+// The "Start here" box at the end of every post, chosen by the post's category. The wording is
+// the same as the Start here blocks on the homepage and the service pages.
+const START_HERE = [
+  { match: /polic|procedure|audit|standard|complian|registration/i, accent: "policies", heading: "Start with a $166 Gap Check",
+    text: "A Registered Nurse compares up to 5 of your policies with how your team works.",
+    button: ["Check my policies, $166", "/policy-check.html"], service: ["See policies", "/ndis-policies-and-procedures.html"] },
+  { match: /social|marketing|client|enquir|referral|grow/i, accent: "social", heading: "Start with a free week of posts",
+    text: "We design 3 single-image posts and 1 carousel for your business. You upload them.",
+    button: ["Get a free week of posts", "/free-week.html"], service: ["See Scroll-stopping Social Media", "/ndis-marketing.html"] },
+  { match: /website|web design/i, accent: "websites", heading: "Start with a free website demo",
+    text: "A homepage demo designed for your business, shown on a computer and a phone.",
+    button: ["Get a free website demo", "/free-demo.html"], service: ["See websites", "/ndis-website-design.html"] },
+];
+const START_ANY = { accent: null, heading: "Three ways to start. Two are free.",
+  text: "Pick the one you need help with: social media, your website or your policies.",
+  button: ["All the ways to start", "/start.html"], service: null };
+
+function startHere(post) {
+  const box = START_HERE.find((option) => option.match.test(post.category)) || START_ANY;
+  const service = box.service ? `<a class="link-arrow" href="${box.service[1]}">${escape(box.service[0])}</a>` : "";
+  const changes = isChangePost(post)
+    ? `\n  <p class="post-changes-link"><a class="link-arrow" href="/ndis-changes.html">See all the NDIS changes for 2026</a></p>` : "";
+  return `<section class="start-section post-start"><div class="wrap">${changes}
+  <div class="start-block${box.accent ? ` accent-${box.accent}` : ""}"><div class="stack"><span class="eyebrow">Start here</span><h2>${escape(box.heading)}</h2><p class="muted">${escape(box.text)}</p></div><div class="start-actions"><a class="btn btn-primary" href="${box.button[1]}">${escape(box.button[0])}</a>${service}</div></div>
+</div></section>`;
+}
+
 function renderListPage(template, posts) {
   const [latest, ...rest] = posts;
   const main = `<section class="hero blog-hero"><div class="wrap">
   <div class="hero-copy">
-    <span class="eyebrow">Blog · New guide every Friday</span>
+    <span class="eyebrow">Blog · New guides every week</span>
     <h1>Plain-English guides for NDIS providers.</h1>
     <p class="lede">Honest answers to the questions providers ask us most, written by a Registered Nurse and checked against official NDIS sources.</p>
   </div>
@@ -319,7 +377,7 @@ function renderListPage(template, posts) {
       <p class="muted">${escape(latest.description)}</p>
       <span class="link-arrow">Read the guide</span>
     </div>
-  </a>` : `<p class="muted">The first guide is on its way. Check back on Friday.</p>`}
+  </a>` : `<p class="muted">The first guide is on its way. Check back soon.</p>`}
   ${rest.length ? `<div class="post-grid">${rest.map(card).join("")}</div>` : ""}
 </div></section>`;
   const ld = graph([
@@ -330,7 +388,7 @@ function renderListPage(template, posts) {
   ]);
   return fill(template, {
     TITLE: "NDIS provider guides and blog | VitalScale Digital",
-    DESCRIPTION: "Plain-English guides for NDIS providers from a Registered Nurse, checked against official NDIS sources. A new guide every Friday.",
+    DESCRIPTION: "Plain-English guides for NDIS providers from a Registered Nurse, checked against official NDIS sources. New guides every week.",
     URL: `${BASE}/blog`, OG_TYPE: "website", OG_IMAGE: `${BASE}/og/blog.jpg`,
     OG_IMAGE_ALT: "VitalScale Digital blog: plain-English guides for NDIS providers", JSON_LD: jsonLd(ld), MAIN: main, FORM_PAGE: "blog",
     FORM_HEADING: "Got a question we should answer?",

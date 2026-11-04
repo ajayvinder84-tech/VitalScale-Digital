@@ -1,13 +1,14 @@
 // Builds the site into dist/: copies site/, builds the blog from content/blog (see blog.mjs),
 // then fills the NDIS news panel ({{NDIS_NEWS}}) and every "last checked" date
-// ({{NDIS_LAST_CHECKED}}) from src/data/ndis-news.json.
+// ({{NDIS_LAST_CHECKED}}) from src/data/ndis-news.json, and the homepage "Latest from the blog"
+// strip ({{LATEST_POSTS}}) from the newest blog posts.
 // The data file is validated first, so a bad file fails the build and nothing is deployed.
 // Uses only Node built-ins so it runs anywhere Node 18+ (or Bun) is installed.
 
 import { cpSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { breadcrumbs, buildBlog, fill, graph, jsonLd } from "./blog.mjs";
+import { breadcrumbs, buildBlog, changePosts, fill, graph, jsonLd, latestStrip, reformsList } from "./blog.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const siteDir = join(root, "site");
@@ -16,6 +17,7 @@ const dataFile = join(root, "src", "data", "ndis-news.json");
 
 const NEWS_TOKEN = "{{NDIS_NEWS}}";
 const DATE_TOKEN = "{{NDIS_LAST_CHECKED}}";
+const LATEST_TOKEN = "{{LATEST_POSTS}}";
 const NEWS_PAGES = ["index.html", "ndis-policies-and-procedures.html"];
 const FILE_FIELDS = ["last_checked", "approved_by", "approved_on", "items"];
 const ITEM_FIELDS = ["headline", "whats_changing", "who_it_affects", "when", "what_to_do", "status", "source_url", "source_published"];
@@ -32,13 +34,15 @@ const news = loadNews();
 
 rmSync(distDir, { recursive: true, force: true });
 cpSync(siteDir, distDir, { recursive: true });
-const blogSummary = buildBlog({ root, distDir, fail });
-writeFileSync(join(distDir, "ndis-changes.html"), renderChangesPage(readFileSync(join(root, "templates", "page.html"), "utf8"), news));
+const blog = buildBlog({ root, distDir, fail });
+writeFileSync(join(distDir, "ndis-changes.html"), renderChangesPage(readFileSync(join(root, "templates", "page.html"), "utf8"), news, blog.posts));
 for (const name of htmlFiles(distDir)) {
   const path = join(distDir, name);
   let html = readFileSync(path, "utf8");
   if (NEWS_PAGES.includes(name) && !html.includes(NEWS_TOKEN)) fail(`site/${name} is missing ${NEWS_TOKEN}`);
-  html = html.replaceAll(NEWS_TOKEN, renderPanel(news)).replaceAll(DATE_TOKEN, formatDate(news.last_checked));
+  if (name === "index.html" && !html.includes(LATEST_TOKEN)) fail(`site/index.html is missing ${LATEST_TOKEN}`);
+  html = html.replaceAll(NEWS_TOKEN, renderPanel(news)).replaceAll(DATE_TOKEN, formatDate(news.last_checked))
+    .replaceAll(LATEST_TOKEN, latestStrip(blog.posts));
   if (/\{\{[A-Z_]+\}\}/.test(html)) fail(`${name} has an unknown {{PLACEHOLDER}}`);
   checkStructuredData(name, html);
   writeFileSync(path, html);
@@ -48,7 +52,7 @@ writeFileSync(sitemapFile, readFileSync(sitemapFile, "utf8").replaceAll("{{NDIS_
 for (const name of ["sitemap.xml", "llms.txt"]) {
   if (/\{\{[A-Z_]+\}\}|<!-- [A-Z_]+ -->/.test(readFileSync(join(distDir, name), "utf8"))) fail(`${name} has an unfilled placeholder`);
 }
-console.log(`Built dist/: ${blogSummary}; ${news.items.length} NDIS news item(s), last checked ${formatDate(news.last_checked)}.`);
+console.log(`Built dist/: ${blog.summary}; ${news.items.length} NDIS news item(s), last checked ${formatDate(news.last_checked)}.`);
 
 // Each page's structured data must be valid JSON, and every question and answer in it must be
 // shown on the page word for word (search engines ignore, or penalise, FAQ data that isn't visible).
@@ -163,8 +167,9 @@ function renderPanel({ items, last_checked }) {
 // Each item is one short line (when + headline) with a "Learn more" link to the official page.
 // The other fields stay in the data file for the researcher's records but aren't shown.
 // The /ndis-changes page: every item in full (what's changing, who it affects, when, what to
-// do and the official source), rebuilt from the same approved file as the panel.
-function renderChangesPage(template, { items, last_checked }) {
+// do and the official source), rebuilt from the same approved file as the panel, then the
+// "NDIS reforms 2026" list of every blog post about an NDIS change, newest first.
+function renderChangesPage(template, { items, last_checked }, posts) {
   const url = "https://vitalscaledigital.com.au/ndis-changes";
   const title = "NDIS Changes 2026: What Providers Need to Know | VitalScale";
   const description = "The NDIS changes and reforms that affect providers, in plain English, checked against official NDIS sources every Monday.";
@@ -194,10 +199,20 @@ function renderChangesPage(template, { items, last_checked }) {
   ${items.length ? cards : `<p class="news-empty">No major NDIS changes this week.</p>`}
   </div>
   <p class="muted small changes-note">This is general information, not legal advice. Always check the official source before you act.</p>
+</div></section>
+<section id="reforms"><div class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">Our guides</span>
+    <h2>NDIS reforms 2026</h2>
+    <p class="muted">Plain-English guides to the 2026 NDIS changes, newest first. Each one lists the official sources it relies on.</p>
+  </div>
+  ${reformsList(posts)}
 </div></section>`;
+  const guides = changePosts(posts);
   const ld = graph([
     { "@type": "WebPage", "@id": `${url}#webpage`, url, name: title, description, dateModified: last_checked, inLanguage: "en-AU",
-      isPartOf: { "@id": "https://vitalscaledigital.com.au/#website" }, breadcrumb: { "@id": `${url}#breadcrumb` } },
+      isPartOf: { "@id": "https://vitalscaledigital.com.au/#website" }, breadcrumb: { "@id": `${url}#breadcrumb` },
+      ...(guides.length ? { hasPart: guides.map((post) => ({ "@type": "BlogPosting", headline: post.title, url: `https://vitalscaledigital.com.au/blog/${post.slug}`, datePublished: post.date })) } : {}) },
     breadcrumbs(url, ["NDIS changes", url]),
   ]);
   return fill(template, {

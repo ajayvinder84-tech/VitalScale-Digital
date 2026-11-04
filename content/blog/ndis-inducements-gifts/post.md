@@ -3,6 +3,7 @@ title: NDIS inducements ban: can providers still give gifts?
 description: From 20 November 2026, NDIS inducements are banned. What providers can still give, what's never allowed, referral payments and what to check now.
 keyword: NDIS inducements
 category: Policies
+ndis_change: yes
 checked: 2026-11-03
 date: 2026-11-03
 photo_alt: NDIS inducements ban: what providers can still give, from 20 November 2026, with a line drawing of a gift tagged 20.11.26
