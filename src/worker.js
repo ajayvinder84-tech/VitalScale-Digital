@@ -103,18 +103,12 @@ async function handleEnquiry(request, env, ctx) {
     return json({ success: false, error: "The form isn't set up yet. Please email us instead." }, 503);
   }
 
-  // The logo goes first, so the enquiry email can say whether it arrived.
+  // The enquiry goes first, and the logo only after it has been accepted, so a failed enquiry never
+  // leaves Ajay with a logo and no sign-up (or a new copy of the logo each time someone retries).
+  const canSendLogo = hasLogo && env.BREVO_API_KEY && env.CHECKLIST_FROM_EMAIL;
   let logoNote = "None sent";
-  if (hasLogo) {
-    logoNote = "Uploaded, but it couldn't be forwarded. Please ask them to email it.";
-    if (env.BREVO_API_KEY && env.CHECKLIST_FROM_EMAIL) {
-      const sent = await sendLogo(env, start.offer, data, logo).catch((error) => {
-        console.error("Logo email failed", error);
-        return false;
-      });
-      if (sent) logoNote = `Emailed to you separately (${logo.name || "logo"})`;
-    }
-  }
+  if (canSendLogo) logoNote = `Being emailed to you separately (${logo.name || "logo"}). If it doesn't arrive, please ask them to email it.`;
+  else if (hasLogo) logoNote = "Uploaded, but it couldn't be forwarded. Please ask them to email it.";
   const subject = start
     ? `${start.offer} sign-up: ${data.business} (marketing ${consent ? "YES" : "NO"})`
     : `New website enquiry (${page} page): marketing ${consent ? "YES" : "NO"} — VitalScale Digital`;
@@ -151,6 +145,10 @@ async function handleEnquiry(request, env, ctx) {
     return sendFailed();
   }
   if (start) console.log(`Sign-up: ${start.offer}`);
+  // The logo email goes out in the background once the sign-up has been sent.
+  if (canSendLogo) {
+    ctx.waitUntil(sendLogo(env, start.offer, data, logo).catch((error) => console.error("Logo email failed", error)));
+  }
   // The checklist email goes out in the background, so the page's download never waits for it.
   if (page === CHECKLIST_PAGE && env.BREVO_API_KEY && env.CHECKLIST_FROM_EMAIL) {
     ctx.waitUntil(sendChecklistEmail(env, data).catch((error) => console.error("Checklist email failed", error)));
@@ -199,18 +197,26 @@ async function sendChecklistEmail(env, { name, email }) {
 }
 
 // Emails Ajay the logo someone uploaded with a free-offer sign-up. Replying goes to them.
+// Like the checklist email, it's sent as plain text, and again with an HTML version if Brevo refuses that.
 async function sendLogo(env, offer, { name, email, business }, logo) {
   const extension = LOGO_TYPES[logo.type];
   const base = (logo.name || "logo").replace(/\.[^.]*$/, "").replace(/[^\w-]+/g, "-").slice(0, 60) || "logo";
-  const response = await sendWithBrevo(env, {
+  const text = `${name} from ${business} (${email}) uploaded this logo with their ${offer} sign-up.\n\nThe rest of their details are in the website enquiry email.`;
+  const message = {
     sender: { name: "VitalScale Digital Website", email: env.CHECKLIST_FROM_EMAIL },
     replyTo: { name, email },
     to: [{ email: env.CHECKLIST_FROM_EMAIL, name: "Ajay Singh" }],
     subject: `Logo for ${offer}: ${business}`,
-    textContent: `${name} from ${business} (${email}) uploaded this logo with their ${offer} sign-up.\n\nThe rest of their details are in the website enquiry email.`,
+    textContent: text,
     attachment: [{ name: `${base}.${extension}`, content: toBase64(await logo.arrayBuffer()) }],
     tags: ["start-offer-logo"],
-  });
+  };
+  let response = await sendWithBrevo(env, message);
+  if (response.status === 400) {
+    console.log("Brevo wouldn't send the logo email as plain text only, so sending with an HTML version", await response.text().catch(() => ""));
+    const html = text.split("\n\n").map((line) => `<p>${escapeHtml(line)}</p>`).join("");
+    response = await sendWithBrevo(env, { ...message, htmlContent: `<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.6;color:#1F2B28">${html}</div>` });
+  }
   if (!response.ok) {
     console.error("Brevo didn't send the logo email", response.status, await response.text().catch(() => ""));
     return false;

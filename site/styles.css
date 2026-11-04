@@ -908,3 +908,18 @@ mark.todo { background: #FFE58A; color: #1F2B28; padding: 0 4px; border-radius: 
 .start-actions { display: grid; gap: 10px; justify-items: start; }
 .post-start { padding-top: 0; }
 .post-changes-link { margin: 0 0 18px; }
+
+/* Review fixes, 5 Nov 2026 */
+.nowrap, a[href^="tel:"] { white-space: nowrap; }
+/* Short tick lists stay compact; the button still sits at the bottom of the card */
+.start-card .tick-list { align-content: start; }
+/* The two LinkedIn icons: Ajay's personal page carries his name so the two are easy to tell apart */
+.site-footer .social-link[href*="linkedin.com/in/"] { width: auto; padding: 0 14px 0 11px; gap: 7px; border-radius: 999px; }
+.site-footer .social-link[href*="linkedin.com/in/"]::after { content: "Ajay"; font-size: 0.85rem; color: var(--white); }
+@media (max-width: 760px) {
+  .trust-strip { gap: 6px 16px; }
+  .trust-strip li + li::before { content: none; }
+  .lp-get .price-card .check-lead { font-size: 1.05rem; }
+}
+@media (max-width: 600px) { .mock-refer { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 860px) { .phone-site { justify-self: center; width: 100%; } }

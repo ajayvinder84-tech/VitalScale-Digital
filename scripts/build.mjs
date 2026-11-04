@@ -28,9 +28,14 @@ const APPROVERS = ["Ajay", "Automatic weekly check"];
 const OFFICIAL_HOSTS = ["ndiscommission.gov.au", "ndis.gov.au", "health.gov.au", "legislation.gov.au"];
 const MAX_ITEMS = 4;
 const MAX_WORDS = 80;
+// Text still waiting for Ajay (such as the [TURNAROUND] time). A Cloudflare build (only main is
+// built, and every main build goes live) stops while any page still has it; other builds just warn.
+const TODO_PATTERN = /\[TURNAROUND\]|<mark class="todo">/;
+const STRICT_TODO = (process.env.WORKERS_CI && process.env.WORKERS_CI !== "0") || process.argv.includes("--production");
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const news = loadNews();
+const todoPages = [];
 
 rmSync(distDir, { recursive: true, force: true });
 cpSync(siteDir, distDir, { recursive: true });
@@ -45,7 +50,13 @@ for (const name of htmlFiles(distDir)) {
     .replaceAll(LATEST_TOKEN, latestStrip(blog.posts));
   if (/\{\{[A-Z_]+\}\}/.test(html)) fail(`${name} has an unknown {{PLACEHOLDER}}`);
   checkStructuredData(name, html);
+  if (TODO_PATTERN.test(html)) todoPages.push(name);
   writeFileSync(path, html);
+}
+if (todoPages.length) {
+  const message = `${todoPages.join(", ")} still ${todoPages.length === 1 ? "has" : "have"} text waiting for Ajay ([TURNAROUND] or <mark class="todo">)`;
+  if (STRICT_TODO) fail(`${message}. Fill it in before publishing.`);
+  console.warn(`Warning: ${message}. A production build (Cloudflare, or --production) will stop until it's filled in.`);
 }
 const sitemapFile = join(distDir, "sitemap.xml");
 writeFileSync(sitemapFile, readFileSync(sitemapFile, "utf8").replaceAll("{{NDIS_LAST_CHECKED_ISO}}", news.last_checked));
