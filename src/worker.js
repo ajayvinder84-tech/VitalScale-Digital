@@ -101,6 +101,9 @@ async function handleEnquiry(request, env, ctx) {
   return json({ success: true });
 }
 
+// The email is sent as plain text, like a personal reply: Brevo can't add its tracking picture to a
+// plain-text email, and it leaves the link to the PDF as it is. If Brevo ever refuses an email
+// without an HTML version, it's sent again with one.
 async function sendChecklistEmail(env, { name, email }) {
   const first = name.split(/\s+/)[0];
   const lines = [
@@ -112,28 +115,38 @@ async function sendChecklistEmail(env, { name, email }) {
     "Ajay Singh, Registered Nurse\nVitalScale Digital",
     "Don't want checklist updates? Reply with \"unsubscribe\" and we'll take you off the list.",
   ];
-  const html = lines.map((line) => line === CHECKLIST_PDF
-    ? `<p><a href="${CHECKLIST_PDF}">Download the NDIS policy checklist (PDF)</a></p>`
-    : `<p>${escapeHtml(line).replace(/\n/g, "<br>")}</p>`).join("");
-  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
-    method: "POST",
-    headers: { "api-key": env.BREVO_API_KEY, "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({
-      sender: { name: "Ajay at VitalScale Digital", email: env.CHECKLIST_FROM_EMAIL },
-      replyTo: { name: "Ajay Singh", email: env.CHECKLIST_FROM_EMAIL },
-      to: [{ email, name }],
-      subject: "Your NDIS policy checklist",
-      textContent: lines.join("\n\n"),
-      htmlContent: `<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.6;color:#1F2B28">${html}</div>`,
-      tags: ["policy-checklist"],
-    }),
-  });
+  const message = {
+    sender: { name: "Ajay at VitalScale Digital", email: env.CHECKLIST_FROM_EMAIL },
+    replyTo: { name: "Ajay Singh", email: env.CHECKLIST_FROM_EMAIL },
+    to: [{ email, name }],
+    subject: "Your NDIS policy checklist",
+    textContent: lines.join("\n\n"),
+    tags: ["policy-checklist"],
+  };
+  let response = await sendWithBrevo(env, message);
+  let kind = "plain text";
+  if (response.status === 400) {
+    console.log("Brevo wouldn't send plain text only, so sending with an HTML version", await response.text().catch(() => ""));
+    const html = lines.map((line) => line === CHECKLIST_PDF
+      ? `<p><a href="${CHECKLIST_PDF}">Download the NDIS policy checklist (PDF)</a></p>`
+      : `<p>${escapeHtml(line).replace(/\n/g, "<br>")}</p>`).join("");
+    response = await sendWithBrevo(env, { ...message, htmlContent: `<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.6;color:#1F2B28">${html}</div>` });
+    kind = "HTML";
+  }
   if (!response.ok) {
     console.error("Brevo didn't send the checklist email", response.status, await response.text().catch(() => ""));
     return;
   }
   const sent = await response.json().catch(() => ({}));
-  console.log("Checklist email sent by Brevo", sent.messageId || "");
+  console.log(`Checklist email sent by Brevo (${kind})`, sent.messageId || "");
+}
+
+function sendWithBrevo(env, body) {
+  return fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "api-key": env.BREVO_API_KEY, "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(body),
+  });
 }
 
 function escapeHtml(text) {
