@@ -69,13 +69,15 @@ Never:
 
 ## Routine: publish the weekly blog
 
-Run this when the Friday scheduled task "Blog, weekly automatic publish" starts in the cloud, or
-when Ajay types "publish the blog". Ajay chose the topic with the blog writer, so publish without
-asking again: the checks below are the safety net.
+Run this when the Tuesday and Thursday scheduled task "Blog, Tue and Thu publish" starts in the
+cloud (about 12:10pm Melbourne), or when Ajay types "publish the blog". Ajay's Marketing Manager
+writes the posts and Ajay approves them before they reach the ready folder, so publish without
+asking again: the checks below are the safety net. One post per run; if none is ready, publish
+nothing and say so.
 
 - Ready folder: Google Drive > VitalScale Digital shared workplace > VitalScale Blog > ready
   (folder ID `1ATbkyOhXofVMhrC7u5k9s1UvbdVrsrB8`). One `YYYY-MM-DD-short-name.md` per post, dated
-  the Friday it's for, with an optional photo of the same name (`.jpg` or `.png`).
+  the Tuesday or Thursday it's for, with an optional photo of the same name (`.jpg` or `.png`).
 - Published folder: VitalScale Blog > published (folder ID `15L0vqcHNiDaK0G2vjr2hjtb0UlAX9sxL`).
 - Use the Google Drive connector: `search_files` with `parentId = '<folder ID>'` to list a folder,
   `download_file_content` to get a file exactly as written, and `update_file` with `parentId` to
