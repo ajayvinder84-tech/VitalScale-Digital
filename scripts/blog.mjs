@@ -11,7 +11,8 @@ import { join } from "node:path";
 
 const BASE = "https://vitalscaledigital.com.au";
 const REQUIRED = ["title", "description", "keyword", "category", "checked", "date"];
-const OPTIONAL = ["slug", "photo_alt", "photo_credit", "photo_credit_url", "ndis_change"];
+const OPTIONAL = ["slug", "photo_alt", "photo_credit", "photo_credit_url", "ndis_change", "video"];
+const VIDEO_URL = /^https:\/\/(www\.)?(youtube\.com\/(watch\?v=|shorts\/|live\/)|youtu\.be\/)[\w-]{6,}[\w&=?.-]*$/;
 const COVER_NAMES = ["cover.jpg", "cover.jpeg", "cover.png", "cover.webp"];
 const MAX_COVER_BYTES = 1024 * 1024;
 // Pictures inside an article: ![what it shows](file-name.png), with the file saved next to post.md
@@ -119,6 +120,7 @@ function loadPost(folder, folderName, text, fail) {
   if (meta.title.length > 120) fail(`${where}: the title is over 120 characters`);
   if (meta.description.length > 170) fail(`${where}: the description is over 170 characters (aim for under 155)`);
   for (const key of ["checked", "date"]) if (!isDate(meta[key])) fail(`${where}: "${key}" must be a real date written YYYY-MM-DD`);
+  if (meta.video && !VIDEO_URL.test(meta.video)) fail(`${where}: "video" must be a YouTube link starting with https://`);
   const slug = meta.slug || folderName;
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) fail(`${where}: the address "${slug}" may only use lowercase letters, numbers and hyphens`);
 
@@ -299,6 +301,7 @@ function renderPostPage(template, post, more) {
 <div class="wrap"><figure class="post-cover">${cover
     ? `<img src="${cover}" alt="${escape(post.photo_alt)}" width="1600" height="900">`
     : designCover(post)}${credit}</figure></div>
+${post.video ? `<div class="wrap"><p class="post-video"><a class="btn btn-ghost" href="${escape(post.video)}" target="_blank" rel="noopener">Watch the video on YouTube<span class="visually-hidden"> (opens in a new tab)</span></a></p></div>` : ""}
 <section class="post-body"><div class="wrap${toc ? " post-layout" : ""}">
   ${toc}
   <div class="article">
