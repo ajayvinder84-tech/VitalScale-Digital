@@ -18,3 +18,7 @@
 # The free checklist PDF is given out after the email form, so keep it out of search results.
 /downloads/*
   X-Robots-Tag: noindex
+
+# The thank-you pages after each start-offer form: keep them out of search results.
+/thanks-*
+  X-Robots-Tag: noindex

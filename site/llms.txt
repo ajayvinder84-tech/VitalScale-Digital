@@ -1,6 +1,6 @@
 # VitalScale Digital
 
-> Your care is real. Make sure your paperwork and your page show it. Nurse-led NDIS policies, social media and websites for NDIS providers in Australia, with safe AI and chatbots as an add-on. Founded by Ajay Singh, a Registered Nurse. Start with a $166 check. Prices include GST, with no hidden costs and no promises of registration or audit outcomes.
+> Your care is real. Make sure your paperwork and your page show it. Nurse-led NDIS policies, social media and websites for NDIS providers in Australia, with safe AI and chatbots as an add-on. Founded by Ajay Singh, a Registered Nurse. Start free with a week of posts or a personalised website demo, or start your policies with the $166 Gap Check. Prices include GST, with no hidden costs and no promises of registration or audit outcomes.
 
 ## Key facts
 
@@ -13,11 +13,15 @@
 - Never promises NDIS registration or audit results, and doesn't act as an auditor: audits must be done by an approved quality auditor.
 - Safe AI rules: only Australian-hosted tools that don't train on client data, no participant information in public chatbots, and staff check and sign off everything AI drafts. VitalScale never holds participants' information.
 - The NDIS changes on the home page are checked against official NDIS sources every Monday.
-- Start with a $166 check (Policy vs Practice Gap Check or Online Trust Check), booked through the form at https://vitalscaledigital.com.au/checks. The full $166 comes off if the client goes ahead within 30 days.
+- Three ways to start, one for each service: a free week of posts (social media), a free personalised website demo (websites) and the $166 Policy vs Practice Gap Check (policies). The two free starts cost nothing, need no card and come with no obligation. The $166 Online Trust Check is also available. The full $166 of a check comes off if the client goes ahead within 30 days.
 - Phone and WhatsApp: 0406 970 615 (+61 406 970 615).
 
 ## Start here
 
+- [Start here](https://vitalscaledigital.com.au/start): the three ways to start, side by side.
+- [Free week of posts](https://vitalscaledigital.com.au/free-week): we design one week of social media posts for an NDIS business (3 single-image posts and 1 carousel), with captions written for families and support coordinators. The provider uploads them. Free, one per business, no obligation.
+- [Free personalised website demo](https://vitalscaledigital.com.au/free-demo): a homepage designed for an NDIS business (services, area and how to refer), shown on a computer and a phone. A demo, not a full website. Free, no obligation. Logo, colours and brand design are also available.
+- [Policy vs Practice Gap Check](https://vitalscaledigital.com.au/policy-check), $166 inc GST: a Registered Nurse compares up to 5 policies with how the team actually works, and the provider gets a written gap report and a 30-minute call. No participant information is ever needed.
 - [$166 checks](https://vitalscaledigital.com.au/checks): the Policy vs Practice Gap Check ($166 inc GST: a written gap report plus a 30-minute call) and the Online Trust Check ($166 inc GST: a video walkthrough, a 1-page checklist and a 20-minute call).
 - [Pricing](https://vitalscaledigital.com.au/pricing): one starting price per service, all including GST, with what's included, what isn't, ongoing support and the reports clients get.
 
@@ -38,7 +42,7 @@
 
 ## About
 
-- [Home](https://vitalscaledigital.com.au/): overview of services and prices, the current NDIS changes checked against official sources every Monday, and the $166 checks.
+- [Home](https://vitalscaledigital.com.au/): overview of services and prices, the current NDIS changes checked against official sources every Monday, and the ways to start.
 - [NDIS changes 2026](https://vitalscaledigital.com.au/ndis-changes): the NDIS changes that affect providers, what to do about each, and the official source, checked every Monday.
 - [Blog](https://vitalscaledigital.com.au/blog): plain-English guides for NDIS providers.
 - [Privacy policy](https://vitalscaledigital.com.au/privacy): how enquiry details are collected and used.

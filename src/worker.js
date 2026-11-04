@@ -2,8 +2,27 @@
 // Enquiries are forwarded to Web3Forms with the WEB3FORMS_ACCESS_KEY Worker secret.
 // When someone asks for the free policy checklist, Brevo also emails them the link to it, but only
 // once the BREVO_API_KEY secret and the CHECKLIST_FROM_EMAIL variable are both set in Cloudflare.
+// The start-offer forms (free week of posts, free website demo, Gap Check) send extra details, and
+// the two free offers can include a logo. Web3Forms can't take files on our plan, so Brevo emails the
+// logo to Ajay (at the CHECKLIST_FROM_EMAIL address, the one people reply to) as an attachment.
 
 const FIELD_LIMITS = { name: 100, email: 255, business: 150, message: 600 };
+// For each start-offer form: the name used in the email, and its extra fields as
+// [label in the email, longest allowed, required, name in error messages].
+const BUSINESS_FIELDS = {
+  services: ["Services they offer", 300, true, "services"],
+  area: ["Area they cover", 150, true, "area"],
+  referrals: ["How people refer to or contact them", 300, true, "how people contact you"],
+  social: ["Instagram or Facebook", 300, false, "Instagram or Facebook"],
+  colours: ["Brand colours", 150, false, "brand colours"],
+};
+const START_FORMS = {
+  "free-week": { offer: "Free week of posts", fields: BUSINESS_FIELDS, logo: true },
+  "free-demo": { offer: "Free website demo", fields: { ...BUSINESS_FIELDS, website: ["Current website", 300, false, "website"] }, logo: true },
+  "policy-check": { offer: "Policy vs Practice Gap Check", fields: { policies: ["Policies they'll send", 2, true, "number of policies"] }, logo: false },
+};
+const LOGO_MAX_BYTES = 3 * 1024 * 1024;
+const LOGO_TYPES = { "image/png": "png", "image/jpeg": "jpg", "application/pdf": "pdf" };
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_FILL_MS = 3000;
 const CHECKLIST_PAGE = "policy-checklist-pdf";
@@ -41,10 +60,13 @@ async function handleEnquiry(request, env, ctx) {
   }
   if (elapsed < MIN_FILL_MS) return json({ success: true });
 
+  const page = String(form.get("page") ?? "").trim().slice(0, 30) || "unknown";
+  const start = START_FORMS[page];
   const data = {};
   for (const [field, limit] of Object.entries(FIELD_LIMITS)) {
     const value = String(form.get(field) ?? "").trim();
-    if (!value || value.length > limit) {
+    // On the start-offer forms the message box is optional.
+    if ((!value && !(start && field === "message")) || value.length > limit) {
       return json({ success: false, error: `Please check the ${field} field.` }, 400);
     }
     data[field] = value;
@@ -52,7 +74,22 @@ async function handleEnquiry(request, env, ctx) {
   if (!EMAIL_PATTERN.test(data.email)) {
     return json({ success: false, error: "Please enter a valid email address." }, 400);
   }
-  const page = String(form.get("page") ?? "").trim().slice(0, 30) || "unknown";
+  const extra = {};
+  for (const [field, [label, limit, required, friendly]] of Object.entries(start?.fields ?? {})) {
+    const value = String(form.get(field) ?? "").trim();
+    if ((required && !value) || value.length > limit) {
+      return json({ success: false, error: `Please check the ${friendly} field.` }, 400);
+    }
+    if (value) extra[label] = value;
+  }
+  if (page === "policy-check" && !/^[1-5]$/.test(extra["Policies they'll send"])) {
+    return json({ success: false, error: "Please choose how many policies you'll send (1 to 5)." }, 400);
+  }
+  const logo = start?.logo ? form.get("logo") : null;
+  const hasLogo = logo && typeof logo === "object" && logo.size > 0;
+  if (hasLogo && (logo.size > LOGO_MAX_BYTES || !LOGO_TYPES[logo.type])) {
+    return json({ success: false, error: "Please choose a PNG, JPG or PDF logo under 3 MB, or leave it out." }, 400);
+  }
   const consent = form.get("marketing_consent") === "yes";
   const consentText = String(form.get("consent_text") ?? "").trim().slice(0, 400);
   const received = new Date().toLocaleString("en-AU", {
@@ -66,6 +103,22 @@ async function handleEnquiry(request, env, ctx) {
     return json({ success: false, error: "The form isn't set up yet. Please email us instead." }, 503);
   }
 
+  // The logo goes first, so the enquiry email can say whether it arrived.
+  let logoNote = "None sent";
+  if (hasLogo) {
+    logoNote = "Uploaded, but it couldn't be forwarded. Please ask them to email it.";
+    if (env.BREVO_API_KEY && env.CHECKLIST_FROM_EMAIL) {
+      const sent = await sendLogo(env, start.offer, data, logo).catch((error) => {
+        console.error("Logo email failed", error);
+        return false;
+      });
+      if (sent) logoNote = `Emailed to you separately (${logo.name || "logo"})`;
+    }
+  }
+  const subject = start
+    ? `${start.offer} sign-up: ${data.business} (marketing ${consent ? "YES" : "NO"})`
+    : `New website enquiry (${page} page): marketing ${consent ? "YES" : "NO"} — VitalScale Digital`;
+
   let response;
   try {
     response = await fetch("https://api.web3forms.com/submit", {
@@ -73,12 +126,15 @@ async function handleEnquiry(request, env, ctx) {
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
         access_key: env.WEB3FORMS_ACCESS_KEY,
-        subject: `New website enquiry (${page} page): marketing ${consent ? "YES" : "NO"} — VitalScale Digital`,
+        subject,
         from_name: "VitalScale Digital Website",
         name: data.name,
         email: data.email,
         "Business name": data.business,
-        Enquiry: data.message,
+        ...(start ? { Offer: start.offer } : {}),
+        ...extra,
+        ...(start?.logo ? { Logo: logoNote } : {}),
+        Enquiry: data.message || "(none)",
         "Marketing consent": consent ? "YES" : "NO",
         "Consent wording": consent ? consentText : "Box not ticked",
         Received: `${received} (Melbourne time)`,
@@ -94,6 +150,7 @@ async function handleEnquiry(request, env, ctx) {
     console.error("Web3Forms submission failed", response.status);
     return sendFailed();
   }
+  if (start) console.log(`Sign-up: ${start.offer}`);
   // The checklist email goes out in the background, so the page's download never waits for it.
   if (page === CHECKLIST_PAGE && env.BREVO_API_KEY && env.CHECKLIST_FROM_EMAIL) {
     ctx.waitUntil(sendChecklistEmail(env, data).catch((error) => console.error("Checklist email failed", error)));
@@ -139,6 +196,33 @@ async function sendChecklistEmail(env, { name, email }) {
   }
   const sent = await response.json().catch(() => ({}));
   console.log(`Checklist email sent by Brevo (${kind})`, sent.messageId || "");
+}
+
+// Emails Ajay the logo someone uploaded with a free-offer sign-up. Replying goes to them.
+async function sendLogo(env, offer, { name, email, business }, logo) {
+  const extension = LOGO_TYPES[logo.type];
+  const base = (logo.name || "logo").replace(/\.[^.]*$/, "").replace(/[^\w-]+/g, "-").slice(0, 60) || "logo";
+  const response = await sendWithBrevo(env, {
+    sender: { name: "VitalScale Digital Website", email: env.CHECKLIST_FROM_EMAIL },
+    replyTo: { name, email },
+    to: [{ email: env.CHECKLIST_FROM_EMAIL, name: "Ajay Singh" }],
+    subject: `Logo for ${offer}: ${business}`,
+    textContent: `${name} from ${business} (${email}) uploaded this logo with their ${offer} sign-up.\n\nThe rest of their details are in the website enquiry email.`,
+    attachment: [{ name: `${base}.${extension}`, content: toBase64(await logo.arrayBuffer()) }],
+    tags: ["start-offer-logo"],
+  });
+  if (!response.ok) {
+    console.error("Brevo didn't send the logo email", response.status, await response.text().catch(() => ""));
+    return false;
+  }
+  return true;
+}
+
+function toBase64(buffer) {
+  const bytes = new Uint8Array(buffer);
+  let binary = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return btoa(binary);
 }
 
 function sendWithBrevo(env, body) {
