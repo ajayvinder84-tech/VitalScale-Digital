@@ -14,60 +14,57 @@ Builds within a few minutes. Treat a push to `main` as publishing.
 
 Ajay isn't technical. Keep messages short and in plain English, and explain any technical word in a
 few simple words. Check with Ajay before anything goes live. Put every question for Ajay at the very
-bottom of the message, in simple words, so it isn't missed. (The Monday NDIS news routine below is
-the one exception: Ajay asked on 4 Nov 2026 for it to research and publish by itself every week,
-without asking him.)
+bottom of the message, in simple words, so it isn't missed. (The two weekly routines below are the
+exceptions: Ajay asked on 4 Nov 2026 for them to publish what his NDIS News Researcher and blog
+writer hand over, without asking him.)
 
 ## Routine: update NDIS news
 
-Run this when the Monday scheduled task "NDIS news, weekly automatic update" starts in the cloud,
-or when Ajay types "update NDIS news". It researches, writes and publishes the news by itself:
-Ajay asked for it to run without him (4 Nov 2026), so don't ask for approval. Accuracy is the
-approval: publish only what an official page says.
+Run this when the Monday 12:17pm scheduled task "NDIS news, weekly automatic update" starts in the
+cloud, or when Ajay types "update NDIS news". Ajay's NDIS News Researcher (on Ajay's computer) does
+the research and writes the news each Monday morning; this routine only checks its file and
+publishes it. Ajay asked (4 Nov 2026) for it to go live without asking him, so don't ask for
+approval. Never research, write or reword the news yourself.
 
+- Hand-over file: Google Drive > VitalScale Digital shared workplace > VitalScale NDIS News >
+  `ndis-news.json` (folder ID `1VFYQsSOaGg5Op4xktVRjyVHaMwKEtkco`).
+- Use the Google Drive connector: `search_files` with `parentId = '<folder ID>'` to find the file
+  (and its `modifiedTime`), and `download_file_content` to get it exactly as written.
 - "Today" always means today's date in Melbourne (`TZ=Australia/Melbourne date`).
-- "This Monday" means the most recent Monday on or before today, in Melbourne.
 
 1. **Update.** `git checkout main` and `git pull origin main`. If the working tree has uncommitted
    changes, stop and report "Uncommitted changes in the repo, nothing changed".
-2. **Research.** Read `src/data/ndis-news.json` (what's live) and the newest files in `research/`.
-   Then search the web for NDIS changes that affect providers: new or upcoming rules, deadlines,
-   registration, claiming, pricing, the NDIS Commission's and the NDIA's latest news, and
-   ministers' announcements. Use only official sources: ndis.gov.au, ndiscommission.gov.au,
-   health.gov.au, ministers.\*.gov.au and legislation.gov.au. News sites and social media can point
-   you to something, but never use them as the source.
-3. **Choose up to 4 items.** Pick the changes that matter most to small providers right now,
-   soonest first. Keep a current item if it's still true and still upcoming or new; drop one once
-   it's well past. For each item:
-   - every fact must be stated on the official page in `source_url` (check the page itself, or its
-     official search result if the page won't open). If you can't confirm a fact, leave it out.
-   - `status` is `VERIFIED` for a law, rule or confirmed date, and `EXPECTED` for something
-     announced but not final. Never `REPORTED`, and never anything rumoured.
-   - `when` reads like "From 20 Nov 2026", "Since 1 Jul 2026" or "Law passed Aug 2026".
-   - plain Australian English, calm, no fear or hype; no promises about registration or audits;
-     no legal advice. The text fields together stay under 80 words.
-   - `source_published` is the date the official page was published or last updated.
-4. **Write the file.** Save `src/data/ndis-news.json` with exactly the fields `last_checked`,
-   `approved_by`, `approved_on`, `items`, and each item exactly `headline`, `whats_changing`,
-   `who_it_affects`, `when`, `what_to_do`, `status`, `source_url`, `source_published`. Set
-   `last_checked` to this Monday, `approved_by` to "Automatic weekly check" and `approved_on` to
-   today. Even if nothing changed, update `last_checked`: the facts were checked again.
-5. **Note what you checked.** Save `research/YYYY-MM-DD NDIS news check.md` (today's date): each
-   item with its sources, anything you dropped or couldn't confirm and why, in under 300 words.
-6. **Build.** Run `node scripts/build.mjs`. It re-checks the news file and builds the pages. If it
-   fails, fix the news file (never the build script) and try again; if it still fails, stop
-   without publishing and report the error. Run `git diff --stat` and confirm only
-   `src/data/ndis-news.json` and the new research note changed.
-7. **Publish.** Commit with the message `NDIS news checked YYYY-MM-DD` (today) and
-   `git push origin main`. Cloudflare deploys it within a few minutes.
-8. **Report.** Finish with a short message in simple English, 6 lines or fewer (it becomes Ajay's
-   phone notification): the Last checked date, each item's headline in one line, and what changed
-   since last week. If anything failed, say what and that nothing went live.
+2. **Get the file.** If `ndis-news.json` isn't in the folder, or it wasn't saved today (its
+   `modifiedTime` in Melbourne time), stop and report "No new NDIS news from the researcher this
+   week, nothing changed".
+3. **Check it.** If any check fails, change nothing, report the reason and stop:
+   - valid JSON with exactly the fields `last_checked`, `approved_by`, `approved_on`, `items`, and
+     each item exactly `headline`, `whats_changing`, `who_it_affects`, `when`, `what_to_do`,
+     `status`, `source_url`, `source_published`
+   - `approved_by` is "Automatic weekly check" or "Ajay"
+   - `last_checked` is a real `YYYY-MM-DD` date within the last 7 days, and not in the future
+   - at most 4 items; every `status` is `VERIFIED` or `EXPECTED` (never `REPORTED`)
+   - every `source_url` starts with `https://` and is on ndiscommission.gov.au, ndis.gov.au,
+     health.gov.au, a ministers.\*.gov.au site or legislation.gov.au
+   - no empty fields; each item's text (headline, what's changing, who it affects, when, what to
+     do) is under 80 words
+4. **Already live?** If the file has the same content as `src/data/ndis-news.json`, report
+   "Already live, nothing changed" and stop.
+5. **Copy it.** Save it over `src/data/ndis-news.json` exactly as it is. Change nothing else. Run
+   `git diff --stat` and confirm `src/data/ndis-news.json` is the only changed file.
+6. **Build.** Run `node scripts/build.mjs`. It re-checks the file and builds the pages. If it fails,
+   `git checkout -- src/data/ndis-news.json`, stop without publishing and report the error.
+7. **Publish.** Commit with the message `NDIS news YYYY-MM-DD` (today) and `git push origin main`.
+   Cloudflare deploys it within a few minutes.
+8. **Report.** Finish with a short message in simple English, 6 lines or fewer: the Last checked
+   date, each item's headline in one line, and what changed since last week. If anything failed,
+   say what and that nothing went live.
 
 Never:
 
-- use a source that isn't an official one listed in step 2
-- change any other page, style, script or file during this routine
+- research, edit, reword or add news content (the researcher's file is final)
+- publish a file that fails a check
+- change any other page, style or file during this routine
 - add tracking, cookies or new dependencies
 
 ## Routine: publish the weekly blog
