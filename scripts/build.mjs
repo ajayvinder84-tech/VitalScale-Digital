@@ -5,8 +5,8 @@
 // The data file is validated first, so a bad file fails the build and nothing is deployed.
 // Uses only Node built-ins so it runs anywhere Node 18+ (or Bun) is installed.
 
-import { cpSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { cpSync, existsSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { join, posix } from "node:path";
 import { fileURLToPath } from "node:url";
 import { breadcrumbs, buildBlog, changePosts, fill, graph, jsonLd, latestStrip, reformsList } from "./blog.mjs";
 
@@ -48,6 +48,7 @@ for (const name of htmlFiles(distDir)) {
   if (name === "index.html" && !html.includes(LATEST_TOKEN)) fail(`site/index.html is missing ${LATEST_TOKEN}`);
   html = html.replaceAll(NEWS_TOKEN, renderPanel(news)).replaceAll(DATE_TOKEN, formatDate(news.last_checked))
     .replaceAll(LATEST_TOKEN, latestStrip(blog.posts));
+  html = cleanLinks(name, html);
   if (/\{\{[A-Z_]+\}\}/.test(html)) fail(`${name} has an unknown {{PLACEHOLDER}}`);
   checkStructuredData(name, html);
   if (TODO_PATTERN.test(html)) todoPages.push(name);
@@ -99,6 +100,30 @@ function flatText(text) {
 function plainText(text) {
   return text.replace(/<[^>]+>/g, "").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+}
+
+// Cloudflare serves every page at its clean address (/pricing, not /pricing.html) and redirects
+// the .html form there, so a link to "pricing.html" costs visitors and Google an extra redirect.
+// Rewrites links to our own pages (href and data-thanks) to the clean, root-relative address:
+// "index.html" -> "/", "pricing.html#faq" -> "/pricing#faq", "../start.html" -> "/start".
+// A link to an old address listed in site/_redirects goes straight to its new page.
+// Links to other sites, mailto:, tel: and "#..." are left alone.
+function oldAddresses() {
+  return (oldAddresses.map ??= new Map(readFileSync(join(siteDir, "_redirects"), "utf8").split("\n")
+    .map((line) => line.trim().split(/\s+/)).filter(([from, to]) => from?.startsWith("/") && !from.includes("*") && !from.endsWith(".html") && to && !to.includes("#"))));
+}
+
+function cleanLinks(name, html) {
+  const dir = posix.dirname(`/${name}`);
+  return html.replace(/\b(href|data-thanks)="([^":?#]+)\.html(#[^"]*)?"/g, (_, attr, path, hash = "") => {
+    let clean = posix.resolve(dir, `${path}.html`).replace(/\.html$/, "");
+    if (clean === "/index" || clean.endsWith("/index")) clean = clean.slice(0, -"index".length);
+    clean = oldAddresses().get(clean) ?? clean;
+    if (!existsSync(join(distDir, `${clean === "/" ? "/index" : clean.replace(/\/$/, "/index")}.html`))) {
+      fail(`${name} links to ${path}.html, which doesn't exist`);
+    }
+    return `${attr}="${clean}${hash}"`;
+  });
 }
 
 // Every .html file under dir, as paths relative to it with forward slashes (blog/post.html).
