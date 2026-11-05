@@ -924,3 +924,20 @@ mark.todo { background: #FFE58A; color: #1F2B28; padding: 0 4px; border-radius: 
 @media (max-width: 600px) { .mock-refer { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 860px) { .phone-site { justify-self: center; width: 100%; } }
 .post-video { margin: 18px 0 0; }
+
+/* Our work: the Bloom Care page and the small "See a real one" cards (Nov 2026) */
+.work-card { background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--accent, #3F6E4B); border-radius: var(--radius); padding: 18px 22px; display: grid; gap: 6px; align-content: start; }
+.work-card p { margin: 0; }
+.work-card .eyebrow { color: #3F6E4B; }
+.work-strip { padding-block: clamp(28px, 4vw, 44px); }
+.work-card-wide { grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 20px; align-items: center; max-width: 760px; }
+.work-card-wide img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block; }
+.work-card-wide div { display: grid; gap: 6px; }
+@media (max-width: 600px) { .work-card-wide { grid-template-columns: minmax(0, 1fr); } }
+.work-shots { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) minmax(0, 260px); align-items: start; }
+.work-shot { margin: 0; }
+.work-shot img { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 24px 50px -32px rgba(31, 43, 40, .5); }
+.work-shot.phone img { border-radius: 24px; }
+@media (max-width: 760px) { .work-shots { grid-template-columns: minmax(0, 1fr); } .work-shot.phone { max-width: 260px; } }
+.work-prose { max-width: 760px; display: grid; gap: 16px; }
+.work-prose h2 { font-size: var(--step-2); margin-top: 12px; }
