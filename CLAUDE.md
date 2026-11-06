@@ -18,6 +18,22 @@ bottom of the message, in simple words, so it isn't missed. (The two weekly rout
 exceptions: Ajay asked on 4 Nov 2026 for them to publish what his NDIS News Researcher and blog
 writer hand over, without asking him.)
 
+## Three checks (Ajay, 5 Nov 2026): nothing goes live without them
+
+**Before starting:** read the instructions three times.
+1. List every item asked for.
+2. Check each one against Offers.md, these rules and the live site.
+3. List anything unclear, conflicting or missing, and ask Ajay before building.
+
+**Before publishing:** three checks, and all three must pass.
+1. **Machine check:** run `node scripts/build.mjs --production` and the structured-data audit. Check every internal link, every changed page at 1366px and 390px (no errors, no sideways scroll), and the forms.
+2. **Words check:** compare every changed line word for word with the approved wording and Offers.md, including names, prices and "inc GST". No em dashes and no promised outcomes. Run the humaniser on anything new.
+3. **Eyes check:** look at screenshots of every changed page on a computer and a phone.
+
+**After publishing:** confirm that `main` is the exact commit that was checked. Then ask Ajay to open the live links, or check them yourself if the cloud computer can reach the site.
+
+For the automatic NDIS news and blog routines, the routine's own checks plus the machine check count as the checks before publishing.
+
 ## Routine: update NDIS news
 
 Run this when the Monday 12:17pm scheduled task "NDIS news, weekly automatic update" starts in the
