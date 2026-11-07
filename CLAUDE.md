@@ -18,6 +18,13 @@ bottom of the message, in simple words, so it isn't missed. (The two weekly rout
 exceptions: Ajay asked on 4 Nov 2026 for them to publish what his NDIS News Researcher and blog
 writer hand over, without asking him.)
 
+## Retired links and offers (Ajay, 7 Nov 2026)
+
+Never use anything listed in Google Drive > Content hub > `RETIRED - never use (links, offers, words).md`
+(for example the freeaudit link, any `.pages.dev` address, or the free online-presence check). Check
+every hand-over against it. The build stops if a page has one (`RETIRED_PATTERN` in `scripts/build.mjs`);
+when something new is retired, add it to both.
+
 ## Three checks (Ajay, 5 Nov 2026): nothing goes live without them
 
 **Before starting:** read the instructions three times.

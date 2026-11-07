@@ -31,6 +31,10 @@ const MAX_WORDS = 80;
 // Text still waiting for Ajay (such as the [TURNAROUND] time). A Cloudflare build (only main is
 // built, and every main build goes live) stops while any page still has it; other builds just warn.
 const TODO_PATTERN = /\[TURNAROUND\]|<mark class="todo">/;
+// Retired links and offers (Ajay, 7 Nov 2026: "make sure you never use the old stuff"). The full list,
+// and what replaces each one, is in Google Drive > Content hub > "RETIRED - never use (links, offers, words).md".
+// Any page (including blog posts) that still has one stops the build, so it can never go live.
+const RETIRED_PATTERN = /freeaudit|start\.vitalscaledigital|\.pages\.dev|online[- ]presence check|free online[- ]presence|free website (check|audit)|free (5|20)-minute|book a free review|done-for-you social/i;
 const STRICT_TODO = (process.env.WORKERS_CI && process.env.WORKERS_CI !== "0") || process.argv.includes("--production");
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -51,6 +55,8 @@ for (const name of htmlFiles(distDir)) {
   html = cleanLinks(name, html);
   if (/\{\{[A-Z_]+\}\}/.test(html)) fail(`${name} has an unknown {{PLACEHOLDER}}`);
   checkStructuredData(name, html);
+  const retired = html.match(RETIRED_PATTERN);
+  if (retired) fail(`${name} has retired wording or a retired link ("${retired[0]}"). Use the current one instead (see "RETIRED - never use" in Content hub).`);
   if (TODO_PATTERN.test(html)) todoPages.push(name);
   writeFileSync(path, html);
 }
