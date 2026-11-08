@@ -941,3 +941,84 @@ mark.todo { background: #FFE58A; color: #1F2B28; padding: 0 4px; border-radius: 
 @media (max-width: 760px) { .work-shots { grid-template-columns: minmax(0, 1fr); } .work-shot.phone { max-width: 260px; } }
 .work-prose { max-width: 760px; display: grid; gap: 16px; }
 .work-prose h2 { font-size: var(--step-2); margin-top: 12px; }
+
+/* ==========================================================================
+   Warm white theme (Ajay, 8 Nov 2026): warm white pages, dark text, gold buttons,
+   deep green for small accents. Only colours change. Colour pairs and contrast:
+   Content hub > To website > "2026-11-08 - warm white background.md".
+   These rules sit last so they win over everything above.
+   ========================================================================== */
+:root {
+  --page: #F6F5F1; --soft: #EFEDE7; --line: #DCE2DC; --grey: #4A5552;
+  --deep-green: #3E6B4A; --field-line: #7C8682; --ghost-line: rgba(31, 43, 40, 0.55);
+}
+body, body::before { background: var(--page); }
+.band, .before { background: var(--soft); }
+.site-header { background: rgba(246, 245, 241, 0.92); }
+
+/* Buttons: gold with dark text everywhere; outline buttons dark */
+.btn-primary, .btn-light { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
+.btn-ghost { color: var(--black); border-color: var(--ghost-line); }
+
+/* Small accents in deep green (gold is too light for text and dots on warm white) */
+.eyebrow, .cta-eyebrow, .change-when { color: var(--deep-green); }
+#services .service::before { color: var(--deep-green); }
+
+/* Top section: warm white with dark text; the page's photo fades in on the right */
+.hero { background: var(--page); color: var(--black); }
+.hero::before { background: linear-gradient(90deg, rgba(246, 245, 241, 0.96) 0%, rgba(246, 245, 241, 0.92) 45%, rgba(246, 245, 241, 0.62) 75%, rgba(246, 245, 241, 0.15) 100%); }
+.hero .photo-hero { background: var(--page); }
+.hero .eyebrow { color: var(--deep-green); }
+.hero .eyebrow::before, .hero-points li::before { background: var(--deep-green); }
+.hero-copy h1, .hero-points { color: var(--black); }
+.hero-copy .lede, .hero-meta { color: var(--grey); }
+.hero .btn-ghost, .hero .scroll-down { color: var(--black); border-color: var(--ghost-line); }
+@media (max-width: 760px) { .hero::before { background: rgba(246, 245, 241, 0.92); } }
+
+/* NDIS news box and other dark boxes become white cards */
+.news-band { background: var(--page); }
+:is(.hero, .news-band) .record, .news-band .record { background: var(--white); color: var(--black); border: 1px solid var(--line); backdrop-filter: none; }
+:is(.hero, .news-band) .record-head { color: var(--grey); border-bottom-color: var(--line); }
+:is(.hero, .news-band) .record-row { border-bottom-color: var(--line); }
+:is(.hero, .news-band) .record-row dt { color: var(--deep-green); }
+:is(.hero, .news-band) .tag { color: var(--black); border-color: var(--field-line); }
+:is(.hero, .news-band) .news-more a { color: var(--black); }
+.update-stamp { color: var(--grey); }
+.update-stamp strong { color: var(--black); }
+.update-stamp .dot, :is(.hero, .news-band) .update-stamp .dot { background: var(--deep-green); }
+.service.lead { background: var(--white); color: var(--black); border: 1.5px solid var(--deep-green); }
+.service.lead .eyebrow { color: var(--deep-green); }
+.service.lead ul { color: var(--grey); }
+.service.lead .btn-ghost { color: var(--black); border-color: var(--ghost-line); }
+.after { background: var(--white); color: var(--black); border-color: var(--line); }
+.after .record-head { color: var(--grey); border-bottom-color: var(--line); }
+.after .record-row { border-bottom-color: var(--line); }
+.after .record-row dt { color: var(--grey); }
+.after .tag-signal { color: var(--black); border-color: var(--field-line); }
+
+/* Call-to-action boxes and the forms inside them: soft panel, dark text */
+.cta { background: var(--soft); color: var(--black); border: 1px solid var(--line); }
+.cta h2 { color: var(--black); }
+.cta p, .cta-chat, .form-note, .form-status, .consent, .field label { color: var(--grey); }
+.cta-copy a, .cta-chat a, .form-note a, .quiet-line a, .consent label { color: var(--black); }
+.contact code, .email-link { color: var(--black); border-color: var(--field-line); }
+.copy-btn { background: var(--white); color: var(--black); border: 1px solid var(--field-line); }
+.field input, .field textarea, .field select { color: var(--black); background: var(--white); border-color: var(--field-line); }
+.field input:focus-visible, .field textarea:focus-visible, .field select:focus-visible { outline-color: var(--black); border-color: var(--black); }
+.field input::placeholder, .field textarea::placeholder { color: #6B7471; }
+.field input[type="file"]::file-selector-button { border-color: var(--black); color: var(--black); }
+.consent input[type="checkbox"] { accent-color: var(--deep-green); }
+.form-warn { color: var(--black); border-color: var(--line); border-left-color: var(--gold); }
+
+/* Footer: soft panel with a thin line on top, dark logo and links */
+.site-footer { background: var(--soft); color: var(--grey); border-top: 1px solid var(--line); }
+.site-footer a, .footer-links a { color: var(--black); }
+.footer-social span { color: var(--grey); }
+.site-footer .social-link { border-color: var(--field-line); }
+.site-footer .social-link:hover, .site-footer .social-link:focus-visible { background: rgba(31, 43, 40, 0.06); border-color: var(--black); }
+.site-footer .social-link[href*="linkedin.com/in/"]::after { color: var(--black); }
+/* Small light-grey lines made for the dark design: now muted dark grey */
+.trust-strip, .quiet-line, .lp-trust, .field .hint, .optional { color: var(--grey); }
+.trust-strip li + li::before { color: var(--deep-green); }
+/* The gold-brown for social media and the $166 checks, a touch darker so small text passes 4.5:1 on warm white */
+.accent-social, body.svc-social, .accent-checks { --accent: #876010; }
