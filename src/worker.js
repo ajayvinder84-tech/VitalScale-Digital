@@ -37,7 +37,13 @@ export default {
       }
       return handleEnquiry(request, env, ctx);
     }
-    return env.ASSETS.fetch(request);
+    const response = await env.ASSETS.fetch(request);
+    // Old .html addresses (/pricing.html) get a temporary 307 redirect to the clean page from
+    // Cloudflare. Make it permanent (301) so Google moves the old address's ranking to the new one.
+    if (response.status === 307 && url.pathname.endsWith(".html")) {
+      return new Response(null, { status: 301, headers: { Location: response.headers.get("Location") } });
+    }
+    return response;
   },
 };
 

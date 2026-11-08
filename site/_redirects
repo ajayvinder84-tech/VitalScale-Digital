@@ -15,6 +15,11 @@
 /new-ndis-providers / 301
 /about / 301
 /contact /#book 301
+/contact/ /#book 301
+/how-to-find-clients-for-ndis-what-actually-works /ndis-marketing 301
+/how-to-find-clients-for-ndis-what-actually-works/ /ndis-marketing 301
+/article-reviews.html /blog 301
+/article-reviews /blog 301
 /insights /blog 301
 /insights/* /blog 301
 /privacy-policy /privacy 301
