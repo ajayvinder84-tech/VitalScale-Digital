@@ -1022,3 +1022,7 @@ body, body::before { background: var(--page); }
 .trust-strip li + li::before { color: var(--deep-green); }
 /* The gold-brown for social media and the $166 checks, a touch darker so small text passes 4.5:1 on warm white */
 .accent-social, body.svc-social, .accent-checks { --accent: #876010; }
+
+/* Bands a touch darker (Ajay, 9 Nov 2026) so each section stands apart from the page.
+   #E9E5DC keeps every text colour at 4.5:1 or more. */
+.band { background: #E9E5DC; }
