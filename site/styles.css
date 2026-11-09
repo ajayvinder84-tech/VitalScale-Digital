@@ -964,17 +964,6 @@ body, body::before { background: var(--page); }
 .eyebrow, .cta-eyebrow, .change-when { color: var(--deep-green); }
 #services .service::before { color: var(--deep-green); }
 
-/* Top section: warm white with dark text; the page's photo fades in on the right */
-.hero { background: var(--page); color: var(--black); }
-.hero::before { background: linear-gradient(90deg, rgba(246, 245, 241, 0.96) 0%, rgba(246, 245, 241, 0.92) 45%, rgba(246, 245, 241, 0.62) 75%, rgba(246, 245, 241, 0.15) 100%); }
-.hero .photo-hero { background: var(--page); }
-.hero .eyebrow { color: var(--deep-green); }
-.hero .eyebrow::before, .hero-points li::before { background: var(--deep-green); }
-.hero-copy h1, .hero-points { color: var(--black); }
-.hero-copy .lede, .hero-meta { color: var(--grey); }
-.hero .btn-ghost, .hero .scroll-down { color: var(--black); border-color: var(--ghost-line); }
-@media (max-width: 760px) { .hero::before { background: rgba(246, 245, 241, 0.92); } }
-
 /* NDIS news box and other dark boxes become white cards */
 .news-band { background: var(--page); }
 :is(.hero, .news-band) .record, .news-band .record { background: var(--white); color: var(--black); border: 1px solid var(--line); backdrop-filter: none; }
@@ -1022,3 +1011,13 @@ body, body::before { background: var(--page); }
 .trust-strip li + li::before { color: var(--deep-green); }
 /* The gold-brown for social media and the $166 checks, a touch darker so small text passes 4.5:1 on warm white */
 .accent-social, body.svc-social, .accent-checks { --accent: #876010; }
+
+/* Top section stays dark (Ajay, 9 Nov 2026): the dark hero theme above applies there; these
+   lines put back its light text for the small lines that warm white made dark */
+.hero :is(.trust-strip, .quiet-line, .lp-trust) { color: #C9D3D0; }
+.hero .quiet-line a { color: var(--white); }
+.hero .trust-strip li + li::before { color: var(--gold); }
+.hero .hero-meta { color: #A9B5B1; }
+:is(.hero) .record { background: rgba(14, 28, 27, 0.78); color: var(--white); border: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(12px); }
+.hero .record-head, .hero .record-row dt { color: var(--grey-on-dark); border-bottom-color: var(--line-dark); }
+.hero .record-row { border-bottom-color: var(--line-dark); }
