@@ -1021,3 +1021,8 @@ body, body::before { background: var(--page); }
 :is(.hero) .record { background: rgba(14, 28, 27, 0.78); color: var(--white); border: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(12px); }
 .hero .record-head, .hero .record-row dt { color: var(--grey-on-dark); border-bottom-color: var(--line-dark); }
 .hero .record-row { border-bottom-color: var(--line-dark); }
+/* Dark top section, with the fade a little stronger behind the words than before, so every
+   line of text in every top section passes 4.5:1 (measured 9 Nov 2026). Phones keep the flat wash. */
+@media (min-width: 761px) {
+  .hero::before { background: linear-gradient(90deg, rgba(14, 28, 27, 0.95) 0%, rgba(14, 28, 27, 0.90) 45%, rgba(14, 28, 27, 0.62) 75%, rgba(14, 28, 27, 0.18) 100%); }
+}
