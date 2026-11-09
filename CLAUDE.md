@@ -25,6 +25,19 @@ Never use anything listed in Google Drive > Content hub > `RETIRED - never use (
 every hand-over against it. The build stops if a page has one (`RETIRED_PATTERN` in `scripts/build.mjs`);
 when something new is retired, add it to both.
 
+## One page per topic (Ajay, 9 Nov 2026)
+
+"If anything like this happens in the future, you have to flag it."
+
+- Before any new blog post or page goes live, check whether a live page already covers the same topic
+  or main keyword (compare `keyword:` and titles in `content/blog/*/post.md`, and the site pages). If
+  one does, don't publish the new one. Flag it to Ajay and recommend updating the existing page
+  instead, so the two don't compete in Google.
+- An update keeps the same web address. The page shows "Published <first date> · Last updated <date>"
+  (set `checked:` to the update date). Anything new goes in its own neat, clearly marked section
+  (for example a short "What's new (<date>)" section or new FAQs), so it looks professional. Replace
+  facts that are out of date; don't leave old and new facts side by side.
+
 ## Three checks (Ajay, 5 Nov 2026): nothing goes live without them
 
 **Before starting:** read the instructions three times.
@@ -118,6 +131,8 @@ nothing and say so.
    - it has a `## Sources` section linking the official pages it relies on
    - it promises no registration or audit results
    - its title isn't already published (compare with `content/blog/*/post.md`)
+   - its topic or main keyword doesn't duplicate a live post. If it does, publish nothing, tell Ajay
+     and recommend updating the live post instead (see "One page per topic")
 4. **Photo.** If the ready folder has a photo with the same name, download it, make it about 1600px
    wide as a JPG under 500 KB (Pillow is installed), and add `photo_alt:` (what the photo shows, in
    one short sentence) to the details block. Otherwise leave the photo out: the page shows a
