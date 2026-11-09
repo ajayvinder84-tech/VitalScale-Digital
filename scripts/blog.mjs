@@ -22,9 +22,10 @@ const PERSON = `${BASE}/#ajay`;
 // Who runs the site, repeated on every blog page so search engines and AI tools can tie the
 // guides to VitalScale and to Ajay. The static pages in site/ carry the same entities.
 const ENTITIES = [
-  { "@type": "Organization", "@id": ORG, name: "VitalScale Digital", url: `${BASE}/`, logo: { "@type": "ImageObject", url: `${BASE}/logo-primary.svg` }, founder: { "@id": PERSON }, telephone: "+61 406 970 615",
+  { "@type": "Organization", "@id": ORG, name: "VitalScale Digital", url: `${BASE}/`, logo: { "@type": "ImageObject", url: `${BASE}/logo-primary.svg` }, founder: { "@id": PERSON }, telephone: "+61 406 970 615", email: "ajay.singh@vitalscaledigital.com.au",
     address: { "@type": "PostalAddress", addressLocality: "Melbourne", addressRegion: "VIC", addressCountry: "AU" },
-    sameAs: ["https://www.linkedin.com/company/vitalscale-digital/", "https://www.facebook.com/profile.php?id=61585755002903", "https://www.instagram.com/vital.scale.digital/"] },
+    sameAs: ["https://www.linkedin.com/company/vitalscale-digital/", "https://www.facebook.com/profile.php?id=61585755002903", "https://www.instagram.com/vital.scale.digital/",
+      "https://maps.app.goo.gl/Z67sVE7jP8tvo4Ni9", "https://www.youtube.com/@vitalscaledigital-ajaysingh", "https://www.hotfrog.com.au/company/AaG9rtYNcgqtML1RWFkHHg/vitalscale-digital/melbourne/marketing-sales"] },
   { "@type": "Person", "@id": PERSON, name: "Ajay Singh", jobTitle: "Registered Nurse and founder", image: `${BASE}/photos/ajay.jpg`, url: `${BASE}/#founder`, worksFor: { "@id": ORG },
     sameAs: ["https://www.linkedin.com/in/ajay-vitalscaledigital/"] },
   { "@type": "WebSite", "@id": `${BASE}/#website`, url: `${BASE}/`, name: "VitalScale Digital", inLanguage: "en-AU", publisher: { "@id": ORG } },
