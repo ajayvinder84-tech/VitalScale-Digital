@@ -1,47 +1,47 @@
 {
-  "last_checked": "2026-11-02",
-  "approved_by": "Ajay",
-  "approved_on": "2026-11-04",
+  "last_checked": "2026-11-09",
+  "approved_by": "Automatic weekly check",
+  "approved_on": "2026-11-09",
   "items": [
     {
-      "headline": "Gifts and perks to win clients are banned",
-      "whats_changing": "Providers can't give or offer gifts, payments or perks to win or keep participants, including gifts to families or people who refer. Cash, gift cards, alcohol, tobacco and devices are banned in all cases.",
-      "who_it_affects": "Every NDIS provider, registered or unregistered.",
-      "when": "From 20 Nov 2026",
-      "what_to_do": "Remove sign-up gifts, giveaways and referral payments from your marketing before 20 November.",
+      "headline": "New ban on inducements starts 20 November",
+      "whats_changing": "Providers must not give or offer gifts or benefits that are likely to win or keep participants. Genuine discounts and your own merchandise are exceptions.",
+      "who_it_affects": "All NDIS providers",
+      "when": "20 November 2026",
+      "what_to_do": "Review any sign-up offers, referral gifts or promotions, and check whether this applies to you.",
       "status": "VERIFIED",
       "source_url": "https://www.legislation.gov.au/C2026A00066",
       "source_published": "2026-08-20"
     },
     {
-      "headline": "Claims must be made within 90 days",
-      "whats_changing": "The time to make a claim for an NDIS support drops from 2 years to 90 days after the support is delivered.",
-      "who_it_affects": "Providers, plan managers and self-managing participants who make NDIS claims.",
-      "when": "From 1 Dec 2026",
-      "what_to_do": "Claim each support soon after you deliver it, and lodge any older claims before 1 December.",
+      "headline": "Reminder: 90-day claim window starts 1 December",
+      "whats_changing": "Claims must be made within 90 days of delivering a support, down from 2 years. The new law sets the start date as 1 December 2026.",
+      "who_it_affects": "All providers and plan managers who claim from NDIS plans",
+      "when": "1 December 2026",
+      "what_to_do": "Check your invoicing routine so claims go in soon after each support is delivered.",
       "status": "VERIFIED",
-      "source_url": "https://www.ndis.gov.au/ndis-laws/securing-ndis-future-generations",
+      "source_url": "https://www.legislation.gov.au/C2026A00066",
       "source_published": "2026-08-20"
     },
     {
-      "headline": "Price limits rise for 4 household supports",
-      "whats_changing": "Price limits go up for house cleaning, house or yard maintenance, personal domestic activities and specialised home-based assistance for a child.",
-      "who_it_affects": "Providers of these household and home-based supports.",
-      "when": "From 1 Dec 2026",
-      "what_to_do": "Talk to each participant before changing an existing service agreement. They must agree to the new price first.",
+      "headline": "Reminder: four price limits rise on 1 December",
+      "whats_changing": "Maximum prices rise for house cleaning, house or yard maintenance, personal domestic activities, and specialised home-based help for a child. Item numbers and claiming don't change.",
+      "who_it_affects": "Providers who claim any of these four items",
+      "when": "Supports delivered from 1 December 2026",
+      "what_to_do": "Check the new limits, and agree any service agreement price changes with participants first.",
       "status": "VERIFIED",
       "source_url": "https://www.ndis.gov.au/news/11733-ndis-price-increase-1-december-2026-gender-based-undervaluation-priority-awards-review",
       "source_published": "2026-10-19"
     },
     {
-      "headline": "Registration expected to expand to high-risk supports",
-      "whats_changing": "Mandatory registration is set to expand to high-risk supports, such as personal care. It starts in July 2027, with everyone in scope by December 2030. The final list isn't published yet.",
-      "who_it_affects": "Unregistered providers of high-risk supports, such as personal care.",
-      "when": "From 1 Jul 2027",
-      "what_to_do": "If you're unregistered and deliver personal care, start preparing for registration now.",
-      "status": "EXPECTED",
-      "source_url": "https://www.health.gov.au/resources/publications/securing-the-ndis-for-future-generations-timeline-0",
-      "source_published": "2026-09-15"
+      "headline": "Digital platforms: worker screening rules start 1 January",
+      "whats_changing": "Workers need a valid worker screening clearance before offering supports on an NDIS digital platform. Platforms must also check and show banning orders and qualifications.",
+      "who_it_affects": "NDIS digital platforms and the workers who use them",
+      "when": "1 January 2027",
+      "what_to_do": "If you run a platform or find work through one, check clearances are in place before January.",
+      "status": "VERIFIED",
+      "source_url": "https://www.ndiscommission.gov.au/about-us/ndis-commission-reform-hub/mandatory-registration/mandatory-registration-digital/digital-1",
+      "source_published": "2026-09-01"
     }
   ]
 }
