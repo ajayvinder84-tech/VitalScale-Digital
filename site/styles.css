@@ -1026,3 +1026,12 @@ body, body::before { background: var(--page); }
 @media (min-width: 761px) {
   .hero::before { background: linear-gradient(90deg, rgba(14, 28, 27, 0.95) 0%, rgba(14, 28, 27, 0.90) 45%, rgba(14, 28, 27, 0.62) 75%, rgba(14, 28, 27, 0.18) 100%); }
 }
+
+/* "Other ways we help": a small strip on each service page linking to the other two services */
+.other-help { padding-block: clamp(40px, 6vw, 72px); }
+.other-title { font-size: var(--step-2); margin-bottom: 20px; }
+.other-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.other-card { display: grid; gap: 8px; padding: 22px 24px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--black); }
+.other-card:hover { border-color: var(--deep-green); }
+.other-card span:last-child::after { content: " \2192"; }
+@media (max-width: 700px) { .other-grid { grid-template-columns: minmax(0, 1fr); } }

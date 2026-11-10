@@ -349,7 +349,7 @@ const START_HERE = [
     text: "A homepage demo designed for your business, shown on a computer and a phone.",
     button: ["Get a free website demo", "/free-demo.html"], service: ["See websites", "/ndis-website-design.html"] },
 ];
-const START_ANY = { accent: null, heading: "Three ways to start. Two are free.",
+const START_ANY = { accent: null, heading: "Three ways to start. All three are free.",
   text: "Pick the one you need help with: social media, your website or your policies.",
   button: ["All the ways to start", "/start.html"], service: null };
 
