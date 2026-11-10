@@ -135,8 +135,15 @@ nothing and say so.
      and recommend updating the live post instead (see "One page per topic")
 4. **Photo.** If the ready folder has a photo with the same name, download it, make it about 1600px
    wide as a JPG under 500 KB (Pillow is installed), and add `photo_alt:` (what the photo shows, in
-   one short sentence) to the details block. Otherwise leave the photo out: the page shows a
-   branded cover. Any photo must be respectful: no stereotyped or pity images of disability, no
+   one short sentence) to the details block.
+   **Pictures in every post (Ajay, 10 Nov 2026: "people don't feel engaged" without them).** If the
+   writer sent no photo or pictures, make them: a cover (`cover.jpg`, 1600x900, photo_alt added)
+   and 2 or 3 simple line drawings placed beside the sections they help (each `![short description](name.png)`
+   on its own line, in the post's folder). Copy the style of `tools/blog-graphics/how-to-start-an-ndis-business.cjs`
+   (site colours, thin lines, almost no words, nothing that looks AI-made) in a new script named
+   after the post. Pictures may only show facts already in the article. Adding pictures and their
+   descriptions doesn't count as rewording; never change the article's words.
+   Any photo or picture must be respectful: no stereotyped or pity images of disability, no
    identifiable participants or children, no medical emergencies, no visible brands, nothing that
    suggests a real client.
 5. **Add it.** The slug is the file name without the date and `.md` (for example

@@ -5,6 +5,7 @@ keyword: how to start an NDIS business
 category: Starting out
 checked: 2026-11-09
 date: 2026-11-10
+photo_alt: How to start an NDIS business, 7 steps in plain English, with a line drawing of stepping stones leading to a flag
 ---
 
 > **Quick answer:** How to start an NDIS business comes down to three things: choose the supports you're qualified to deliver, get a free ABN, and check whether those supports must be registered. For most supports you can start as an unregistered sole trader and work with plan-managed and self-managed participants, then register later. Registration means paying for an audit and takes months, and the Government will start expanding mandatory registration from 1 July 2027.
@@ -16,6 +17,8 @@ An NDIS business isn't easy money. It's a business like any other, with complian
 The numbers back that up. In a National Disability Services survey of 290 disability organisations, 48% reported a loss or deficit in 2024–25.
 
 If you've worked in the sector as a support worker, nurse or support coordinator, you already know what the job looks like. If you haven't, we'd suggest working for an established provider first. You learn how the business runs while you're paid, and you can see whether it suits you before you spend your own money.
+
+![Line drawing of seven numbered stepping stones leading to a flag](roadmap.png)
 
 ## Step 1: choose your supports and who you'll support
 
@@ -34,6 +37,8 @@ This one decision shapes everything after it: whether you must register, what an
 Open a separate bank account from day one. It makes your bookkeeping, and any audit later, much easier.
 
 ## Step 3: decide whether to register
+
+![Line drawing of a path that splits two ways, one signposted Registered with a shield and one signposted Unregistered with a document](register-or-not.png)
 
 You don't have to be a registered NDIS provider to start delivering most supports. You must be registered with the NDIS Quality and Safeguards Commission (NDIS Commission) to provide:
 
@@ -95,6 +100,8 @@ Three dates to know:
 - **Since 27 August 2026:** you must keep records about each claim, and the support behind it, for 7 years from the date of the claim.
 - **From 20 November 2026:** you can't offer gifts or benefits to win or keep participants. See our guide to the [NDIS inducements ban](/blog/ndis-inducements-gifts).
 - **From 1 December 2026:** claims must be made within **90 days** of the support, down from 2 years.
+
+![Line drawing of three calendar cards: 27 August with a folder, 20 November with a crossed-out gift, and 1 December with a clock](three-dates.png)
 
 The 90-day limit counts from the day you deliver the support. If a plan manager pays you, their processing time comes out of your 90 days, so invoice within days, not weeks.
 
