@@ -152,6 +152,15 @@ nothing and say so.
    any photo line added to the details block, and save the photo as `content/blog/<slug>/cover.jpg`.
    Never reword the article. If the build shows something didn't display properly (raw HTML, a
    broken table), fix only the formatting, never the words.
+   **Humaniser on every post (Ajay, 12 Nov 2026: "Every single blog runs through humanizer").**
+   Run `python3 tools/humanizer/detect.py` on the article text (without the details block and
+   Sources). If it scores under 75, edit with the rules in `tools/humanizer/SKILL.md` until it
+   passes: change only sentence shape and wording, keep every fact, number, date, link and claim,
+   and add nothing new. This is the one allowed exception to "never reword"; list the changed lines
+   in the report. If it still won't pass without changing meaning, publish nothing and tell Ajay.
+   **Also check (Ajay, 11 Nov 2026):** one calm, genuinely useful CTA at the end, no selling in the
+   middle; and facts from official pages are linked on the words themselves, not just in Sources.
+   If these are missing, tell the Marketing Manager in the report (don't add new facts yourself).
 6. **Build.** Run `node scripts/build.mjs`. It must pass and count one more blog post than before.
    If it fails, remove the new folder and stop without publishing; report the error.
 7. **Publish.** Commit with the message `Blog post: <title>` and `git push origin main`. Cloudflare
@@ -163,7 +172,7 @@ nothing and say so.
 
 Never:
 
-- reword the article, or publish more than one post in a run
+- reword the article (except humaniser edits in step 5), or publish more than one post in a run
 - publish a post that fails a check
 - change any other page, style or file during this routine
 - add tracking, cookies or new dependencies
