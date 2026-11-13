@@ -7,14 +7,14 @@
   <url><loc>https://vitalscaledigital.com.au/policy-check</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://vitalscaledigital.com.au/checks</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://vitalscaledigital.com.au/pricing</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://vitalscaledigital.com.au/ndis-marketing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vitalscaledigital.com.au/ndis-marketing</loc><lastmod>2026-11-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vitalscaledigital.com.au/ndis-policies-and-procedures</loc><lastmod>{{NDIS_LAST_CHECKED_ISO}}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://vitalscaledigital.com.au/safe-ai-for-ndis-providers</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vitalscaledigital.com.au/safe-ai-for-ndis-providers</loc><lastmod>2026-11-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vitalscaledigital.com.au/work/bloom-care</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://vitalscaledigital.com.au/ndis-website-design</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vitalscaledigital.com.au/ndis-website-design</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vitalscaledigital.com.au/ndis-policy-checklist</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vitalscaledigital.com.au/ndis-changes</loc><lastmod>{{NDIS_LAST_CHECKED_ISO}}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://vitalscaledigital.com.au/blog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vitalscaledigital.com.au/blog</loc><lastmod>2026-11-13</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <!-- BLOG_POSTS -->
-  <url><loc>https://vitalscaledigital.com.au/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://vitalscaledigital.com.au/privacy</loc><lastmod>2026-11-09</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
