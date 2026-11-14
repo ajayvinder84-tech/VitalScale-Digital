@@ -11,7 +11,7 @@ import { join } from "node:path";
 
 const BASE = "https://vitalscaledigital.com.au";
 const REQUIRED = ["title", "description", "keyword", "category", "checked", "date"];
-const OPTIONAL = ["slug", "photo_alt", "photo_credit", "photo_credit_url", "ndis_change", "video"];
+const OPTIONAL = ["slug", "seo_title", "photo_alt", "photo_credit", "photo_credit_url", "ndis_change", "video"];
 const VIDEO_URL = /^https:\/\/(www\.)?(youtube\.com\/(watch\?v=|shorts\/|live\/)|youtu\.be\/)[\w-]{6,}[\w&=?.-]*$/;
 const COVER_NAMES = ["cover.jpg", "cover.jpeg", "cover.png", "cover.webp"];
 const MAX_COVER_BYTES = 1024 * 1024;
@@ -328,7 +328,7 @@ ${startHere(post)}
       ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }] : []),
   ]);
   return fill(template, {
-    TITLE: pageTitle(post.title), DESCRIPTION: post.description, URL: url, OG_TYPE: "article",
+    TITLE: pageTitle(post.title, post.seo_title), DESCRIPTION: post.description, URL: url, OG_TYPE: "article",
     OG_IMAGE: cover ? BASE + cover : `${BASE}/og/blog.jpg`, OG_IMAGE_ALT: post.photo_alt || "VitalScale Digital blog: plain-English guides for NDIS providers",
     JSON_LD: jsonLd(ld), MAIN: main, FORM_PAGE: `blog-${post.slug}`.slice(0, 30).replace(/-$/, ""),
     FORM_HEADING: "Got a question about your NDIS business?",
@@ -464,9 +464,12 @@ export function jsonLd(data) {
   return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
 }
 
-function pageTitle(title) {
-  const full = `${title} | VitalScale Digital`;
-  return full.length <= 65 ? full : title;
+// The browser tab and Google title. It's never the same as the H1 (Semrush flags that as a
+// duplicate): "seo_title" if the post has one, otherwise the title plus the brand.
+function pageTitle(title, seoTitle) {
+  const base = seoTitle || title;
+  for (const brand of [" | VitalScale Digital", " | VitalScale"]) if ((base + brand).length <= 70) return base + brand;
+  return seoTitle ? seoTitle : `${title} | VitalScale`;
 }
 
 function replaceToken(path, token, value, fail) {

@@ -2,6 +2,7 @@
 title: NDIS referrals in 2026: how to get support coordinators to refer to you
 description: How NDIS providers earn referrals from support coordinators: the 5 things they check first, a referral page checklist and the new rules.
 keyword: NDIS referrals
+seo_title: NDIS Referrals: How to Get Support Coordinators to Refer
 category: Marketing
 checked: 2026-11-12
 date: 2026-11-13
