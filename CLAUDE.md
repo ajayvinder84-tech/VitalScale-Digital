@@ -133,6 +133,12 @@ nothing and say so.
    - its title isn't already published (compare with `content/blog/*/post.md`)
    - its topic or main keyword doesn't duplicate a live post. If it does, publish nothing, tell Ajay
      and recommend updating the live post instead (see "One page per topic")
+   - its content isn't a near-copy of a live post (compare the headings and sections, not just the
+     keyword). Ajay, 16 Nov 2026: "don't do double copy". If a post competes with a live page,
+     delay it (publish nothing) and tell Ajay. B6 "how to get NDIS clients" is on hold for this
+     reason: it's the same article as the live /blog/ndis-referrals.
+   - **Blogs come only from the Marketing Manager (Ajay, 16 Nov 2026).** Never write, re-angle or
+     retitle a blog yourself. Only the humaniser edits in step 5 are allowed.
 4. **Photo.** If the ready folder has a photo with the same name, download it, make it about 1600px
    wide as a JPG under 500 KB (Pillow is installed), and add `photo_alt:` (what the photo shows, in
    one short sentence) to the details block.
