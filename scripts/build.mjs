@@ -211,6 +211,21 @@ function renderPanel({ items, last_checked }) {
 // The /ndis-changes page: every item in full (what's changing, who it affects, when, what to
 // do and the official source), rebuilt from the same approved file as the panel, then the
 // "NDIS reforms 2026" list of every blog post about an NDIS change, newest first.
+// The 90-day claiming section on /ndis-changes (Ajay approved, 14 Nov 2026). Facts checked on
+// ndis.gov.au and legislation.gov.au by the Marketing Manager; FAQ_90 feeds the FAQPage schema too.
+function claiming90() { return `<section id="claiming-90-days"><div class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">From 1 December 2026</span>
+    <h2>The 90-day claiming rule</h2>
+    <p class="muted prose">From 1 December 2026, <a href="https://www.ndis.gov.au/ndis-laws/securing-ndis-future-generations" target="_blank" rel="noopener">NDIS claims must be submitted within 90 days</a> of delivering a support. Until then the limit is <a href="https://www.ndis.gov.au/news/10904-claim-time-limit-starts-soon" target="_blank" rel="noopener">2 years</a>. But one part has already started: since 15 October, <a href="https://www.ndis.gov.au/news/11575-increasing-integrity-checks-older-claims" target="_blank" rel="noopener">claims lodged more than 90 days after the support can be held for up to 28 days</a> for extra checks.</p>
+  </div>
+  <div class="faq">
+    <div class="faq-item"><h3>What is the 90-day rule for NDIS claims?</h3><p class="muted">From 1 December 2026 you have 90 days from the day you deliver a support to submit the claim. Right now you have 2 years, the limit that&#x27;s applied since 3 October 2024.</p></div>\n    <div class="faq-item"><h3>What has already changed?</h3><p class="muted">Since 15 October 2026, the NDIA does extra checks on claims submitted more than 90 days after the support. It can hold them for up to 28 days, and it may ask you for more information or evidence before it pays.</p></div>\n    <div class="faq-item"><h3>When do the 90 days start?</h3><p class="muted">On the day you deliver the support, not the day you send the invoice. If a plan manager pays you, their processing time comes out of the same 90 days. So invoice within a few days, not at the end of the month.</p></div>\n    <div class="faq-item"><h3>How far back can you claim NDIS?</h3><p class="muted">Until 1 December 2026, up to 2 years after the support, the limit that&#x27;s applied since 3 October 2024. From 1 December 2026, it&#x27;s 90 days.</p></div>\n    <div class="faq-item"><h3>What should I do before 1 December?</h3><p class="muted">Claim anything older that&#x27;s still unpaid. Pick one claiming day each week and stick to it. And keep the records behind every claim, like support logs, rosters, case notes and service agreements, for 7 years.</p></div>\n  </div>
+  <p class="muted small changes-note">The 7-year records rule comes from the <a href="https://www.legislation.gov.au/C2026A00066/asmade/text" target="_blank" rel="noopener">NDIS Amendment (Securing the NDIS for Future Generations) Act 2026</a>. Not sure your claiming and records would hold up? Start with the <a href="/policy-check.html">Policy vs Practice Gap Check</a> ($166 inc GST).</p>
+</div></section>
+`; }
+function faq90() { return [["What is the 90-day rule for NDIS claims?", "From 1 December 2026 you have 90 days from the day you deliver a support to submit the claim. Right now you have 2 years, the limit that's applied since 3 October 2024."], ["What has already changed?", "Since 15 October 2026, the NDIA does extra checks on claims submitted more than 90 days after the support. It can hold them for up to 28 days, and it may ask you for more information or evidence before it pays."], ["When do the 90 days start?", "On the day you deliver the support, not the day you send the invoice. If a plan manager pays you, their processing time comes out of the same 90 days. So invoice within a few days, not at the end of the month."], ["How far back can you claim NDIS?", "Until 1 December 2026, up to 2 years after the support, the limit that's applied since 3 October 2024. From 1 December 2026, it's 90 days."], ["What should I do before 1 December?", "Claim anything older that's still unpaid. Pick one claiming day each week and stick to it. And keep the records behind every claim, like support logs, rosters, case notes and service agreements, for 7 years."]]; }
+
 function renderChangesPage(template, { items, last_checked }, posts) {
   const url = "https://vitalscaledigital.com.au/ndis-changes";
   const title = "NDIS Changes 2026: What Providers Need to Know | VitalScale";
@@ -242,7 +257,7 @@ function renderChangesPage(template, { items, last_checked }, posts) {
   </div>
   <p class="muted small changes-note">This is general information, not legal advice. Always check the official source before you act.</p>
 </div></section>
-<section id="reforms"><div class="wrap">
+${claiming90()}<section id="reforms"><div class="wrap">
   <div class="section-head">
     <span class="eyebrow">Our guides</span>
     <h2>NDIS reforms 2026</h2>
@@ -256,6 +271,7 @@ function renderChangesPage(template, { items, last_checked }, posts) {
       isPartOf: { "@id": "https://vitalscaledigital.com.au/#website" }, breadcrumb: { "@id": `${url}#breadcrumb` },
       ...(guides.length ? { hasPart: guides.map((post) => ({ "@type": "BlogPosting", headline: post.title, url: `https://vitalscaledigital.com.au/blog/${post.slug}`, datePublished: post.date })) } : {}) },
     breadcrumbs(url, ["NDIS changes", url]),
+    { "@type": "FAQPage", "@id": `${url}#faq`, mainEntity: faq90().map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) },
   ]);
   return fill(template, {
     TITLE: title, DESCRIPTION: description, URL: url, OG_TYPE: "website", OG_IMAGE: "https://vitalscaledigital.com.au/og/ndis-changes.jpg",

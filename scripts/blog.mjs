@@ -48,8 +48,14 @@ export function buildBlog({ root, distDir, fail }) {
   }
   writeFileSync(join(distDir, "blog.html"), renderListPage(template, posts));
 
+  // Each post also lists its cover and inline pictures, so they can show in Google Images
+  // (image sitemap; Ajay, 13 Nov 2026).
+  const imageTags = (post) => [
+    ...(post.coverName ? [`${BASE}/blog/covers/${post.coverName}`] : []),
+    ...post.images.map((image) => `${BASE}/blog/images/${image.name}`),
+  ].map((loc) => `<image:image><image:loc>${loc}</image:loc></image:image>`).join("");
   replaceToken(join(distDir, "sitemap.xml"), "<!-- BLOG_POSTS -->", posts.map((post) =>
-    `<url><loc>${BASE}/blog/${post.slug}</loc><lastmod>${lastUpdated(post)}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`).join("\n  "), fail);
+    `<url><loc>${BASE}/blog/${post.slug}</loc><lastmod>${lastUpdated(post)}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>${imageTags(post)}</url>`).join("\n  "), fail);
   replaceToken(join(distDir, "llms.txt"), "{{BLOG_GUIDES}}", posts.length
     ? posts.map((post) => `- [${post.title}](${BASE}/blog/${post.slug}): ${post.description}`).join("\n")
     : "- The first guide is coming soon.", fail);
