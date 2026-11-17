@@ -8,13 +8,13 @@ date: 2026-11-17
 photo_alt: How to get NDIS clients and referrals without paying for ads, shown as the title in large serif type with the VitalScale Digital byline.
 ---
 
-> **Quick answer:** In our experience, the best way to get NDIS clients without paying for ads is to be easy for support coordinators to refer to. Before they refer, coordinators check five things: who you can serve, where you go, how soon you can start, how you keep people safe and how you'll report back. Put all five on one clear page of your website, then make sure coordinators can find it.
+> **Quick answer:** In our experience, the best way to get NDIS clients without paying for ads is to be easy for support coordinators to refer to. Before they refer, coordinators check 5 things: who you can serve, where you go, how soon you can start, how you keep people safe and how you'll report back. Put all 5 on one clear page of your website, then make sure coordinators can find it.
 
 ## Why support coordinators matter for NDIS referrals
 
-Part of a support coordinator's job is helping participants find providers who can meet their needs, compare and trial options, and agree on the supports and costs. So when a coordinator has a participant who needs the kind of support you offer, they're the one building the shortlist.
+[Part of a support coordinator's job](https://www.ndis.gov.au/participants/working-providers/support-coordinators-and-plan-managers/what-support-coordinator) is helping participants find providers who can meet their needs, compare and trial options, and agree on the supports and costs. So when a coordinator has a participant who needs the kind of support you offer, they're the one building the shortlist.
 
-They often do it quickly, on a phone, between other calls. The support coordinators we've spoken to look up a provider's website and Instagram before they refer. If the answers they need aren't there, it's simply easier to refer to a provider whose page has them.
+They often do it fast, on a phone, between calls. The support coordinators we've spoken to look up a provider's website and Instagram before they refer. If the answers they need aren't there, it's simply easier to refer to a provider whose page has them.
 
 A website on its own won't bring you clients. What it can do is stop you losing the ones who were already looking.
 
@@ -24,25 +24,27 @@ A website on its own won't bring you clients. What it can do is stop you losing 
 
 ### 1. Who you can serve
 
-NDIA-managed funding can only be used with registered providers. The NDIS puts it plainly: participants can't use unregistered providers for supports they have NDIA-managed funding for. Self-managed and plan-managed participants can choose registered or unregistered providers for most supports, though some, like supported independent living (SIL), always need a registered provider.
+[NDIA-managed funding can only be used with registered providers](https://www.ndis.gov.au/participants/using-your-funding/ndia-managed/what-ndia-managed-funding). The NDIS puts it plainly: participants can't use unregistered providers for supports they have NDIA-managed funding for. [Self-managed and plan-managed participants can choose registered or unregistered providers](https://www.ndis.gov.au/participants/working-providers/get-know-your-providers/what-provider) for most supports, though some, like supported independent living (SIL), always need a registered provider.
 
-So the first thing a coordinator needs to know is whether you're registered. If you're unregistered, say "We work with self-managed and plan-managed participants" near the top of every service page. If you're registered, say so, and say what you're registered to deliver. Coordinators can check the NDIS Commission's provider register, and some will.
+So the first thing a coordinator needs to know is whether you're registered. If you're unregistered, say "We work with self-managed and plan-managed participants" near the top of every service page. If you're registered, say so, and say what you're registered to deliver. Coordinators can check the [NDIS Commission's provider register](https://www.ndiscommission.gov.au/provider-registration/find-registered-provider), and some will.
 
 ### 2. Where you go
 
-List the suburbs you actually visit, and how far you're happy to travel. "Melbourne" or "all of Victoria" doesn't help a coordinator whose participant lives in one suburb on the edge of town. If you only cover the north and west, say that. A clear limit saves everyone a phone call.
+List the suburbs you actually visit, and how far you're happy to travel. "Melbourne" or "all of Victoria" doesn't help a coordinator whose participant lives in one suburb on the edge of town. Cover only the north and west? Say that. A clear limit saves everyone a phone call.
+
+For example: *"We visit Sunshine, St Albans, Deer Park and Footscray, up to 15 km from our office."* A coordinator can read that in 5 seconds.
 
 ### 3. How soon you can start
 
-Some referrals are urgent, so coordinators ask about waitlists. Say whether you're taking new participants right now and how soon you can usually do a first visit. Then keep it current. A page that still says "taking new participants" months after you filled your last spot costs you trust.
+Some referrals are urgent, so coordinators ask about waitlists. Say whether you're taking new participants right now and how soon you can usually do a first visit. For example: *"Taking 3 new participants this month. First visit usually within 5 working days."* Then keep it current. A page that still says "taking new participants" months after you filled your last spot costs you trust.
 
 ### 4. How you keep people safe
 
-A coordinator is trusting you with someone's care. Show the basics in a few plain lines: written support plans, trained and screened workers, proper records, and a clear way to raise a complaint. You don't need to publish your policies. You just need to show you have the systems behind them.
+A coordinator is trusting you with someone's care. Show the basics in a few plain lines: written support plans, trained and screened workers, proper records, and a clear way to raise a complaint. For example: *"Every worker holds an NDIS Worker Screening Check and has completed the NDIS Commission's Worker Orientation Module."* You don't need to publish your policies. You just need to show you have the systems behind them.
 
 ### 5. How you'll report back
 
-Coordinators keep track of how each participant's supports are going. Tell them how you'll keep them posted, for example a short written update after each review, and who they can call if something changes.
+Coordinators keep track of how each participant's supports are going. Tell them how you'll keep them posted and who they can call if something changes. For example: a one-page written update after each review, every 3 months, and a phone call within 24 hours if anything changes.
 
 ## Put all five on one referral page
 
@@ -56,11 +58,11 @@ The simplest fix is one page written for support coordinators. Here's what we'd 
 - A few lines on how you keep people safe
 - How you'll report back, and how often
 - A short referral form asking for what coordinators usually send: the participant's name and NDIS number (with consent), the supports needed and how often, any cultural, language or gender preferences, and the coordinator's contact details
-- A direct phone number and the time you'll reply by
+- A direct phone number and the time you'll reply by (say, *"We reply to referrals by 5pm the next business day"*)
 - Your cancellation policy
-- A one-page capability statement they can download and save
+- A one-page capability statement they can download and save: your services, suburbs, registration status, hours (say, Monday to Saturday, 7am to 7pm) and contact details
 
-If your current site can't hold a page like this, that's worth fixing before anything else. We cover what a good page looks like on our [NDIS website design](/ndis-website-design) page.
+If your current site can't hold a page like this, fix that first. We cover what a good page looks like on our [NDIS website design](/ndis-website-design) page.
 
 ## Other ways to get NDIS clients without paying for ads
 
@@ -68,10 +70,10 @@ If your current site can't hold a page like this, that's worth fixing before any
 
 Once your referral page is ready, these are the free ways we'd focus on:
 
-1. **Get on coordinators' radar.** Connect with support coordinators in your area on LinkedIn and send a short hello with your capability statement attached. Keep it to a few lines.
+1. **Get on coordinators' radar.** Connect with support coordinators in your area on LinkedIn and send a short hello with your capability statement attached. Keep it to a few lines, like this: *"Hi Sam, we're a small NDIS provider in Werribee. We have 2 spots for community access on Mondays and Wednesdays. Our capability statement is attached in case it's useful."*
 2. **Show up locally.** Disability expos and community events in your area are where coordinators and families meet providers face to face.
-3. **Get found on Google.** Fill in your Google Business Profile with your services and service area, so you appear when someone searches for support near them.
-4. **Post one useful thing a week.** A vacancy post that names the suburb, the support, the days and how to refer is one a coordinator can act on the same day. Our [social media for NDIS providers](/ndis-marketing) page shows the kind of posts we mean.
+3. **Get found on Google.** Fill in your Google Business Profile with your services and service area, so you appear on Google Search and Maps when someone looks for support near them.
+4. **Post one useful thing a week.** A vacancy post that names the suburb, the support, the days and how to refer is one a coordinator can act on the same day. Something like: *"Sunshine and Footscray: 2 spots for community access, Tuesday and Thursday mornings, 9am to 1pm. Coordinators can refer through the link in our bio."* Our [social media for NDIS providers](/ndis-marketing) page shows the kind of posts we mean.
 
 If you're still setting up, our guide on [how to start an NDIS business](/blog/how-to-start-an-ndis-business) covers the steps before your first participant.
 
@@ -79,13 +81,13 @@ If you're still setting up, our guide on [how to start an NDIS business](/blog/h
 
 ![From 20 November 2026, paying for NDIS referrals, gifts to win or keep participants and thank-you gifts to coordinators and families are not allowed, while genuine discounts and your own branded merchandise are still fine.](how-to-get-ndis-clients-no-paying-for-referrals-from-20-november-2026.webp "General information only. Check the official NDIS rules before you act.")
 
-From 20 November 2026, new rules ban giving gifts or other benefits to win or keep participants, and paying for referrals counts as a kickback. That includes thank-you gifts to support coordinators and families. Our guide to the [NDIS inducements ban](/blog/ndis-inducements-gifts) explains what's still fine, like genuine discounts and your own branded merchandise.
+From 20 November 2026, [new rules](https://www.legislation.gov.au/C2026A00066/asmade/text) ban giving gifts or other benefits to win or keep participants, and paying for referrals counts as a kickback. That includes thank-you gifts to support coordinators and families. Our guide to the [NDIS inducements ban](/blog/ndis-inducements-gifts) explains what's still fine, like genuine discounts and your own branded merchandise.
 
 ## What to check this week
 
 ![Four checks to do this week for NDIS referrals: search your business name on Google, say who you can serve, put a referral form and phone number on one page, and keep your availability current.](how-to-get-ndis-clients-4-checks-this-week.webp "Start with step 1 on your phone today.")
 
-1. Search your business name on Google from your phone, then time how long it takes to find all five answers.
+1. Search your business name on Google from your phone, then time how long it takes to find all 5 answers. Under 30 seconds is a good goal.
 2. Add the "who you can serve" line to every service page.
 3. Put a referral form and a direct phone number on one page.
 4. Update whether you're taking new participants.
