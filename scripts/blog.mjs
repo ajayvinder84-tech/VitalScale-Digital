@@ -16,7 +16,10 @@ const VIDEO_URL = /^https:\/\/(www\.)?(youtube\.com\/(watch\?v=|shorts\/|live\/)
 const COVER_NAMES = ["cover.jpg", "cover.jpeg", "cover.png", "cover.webp"];
 const MAX_COVER_BYTES = 1024 * 1024;
 // Pictures inside an article: ![what it shows](file-name.png), with the file saved next to post.md
-const IMAGE_FILE = /^[a-z0-9]+(-[a-z0-9]+)*\.(png|jpe?g)$/;
+const IMAGE_FILE = /^[a-z0-9]+(-[a-z0-9]+)*\.(png|jpe?g|webp)$/;
+// A cover the writer named themselves, e.g. how-to-get-ndis-clients-without-paying-for-ads-cover.webp.
+// It keeps its own file name when published (Ajay, 17 Nov 2026: use the names exactly as given).
+const NAMED_COVER = /^[a-z0-9]+(-[a-z0-9]+)*-cover\.(jpe?g|png|webp)$/;
 const ORG = `${BASE}/#organization`;
 const PERSON = `${BASE}/#ajay`;
 // Who runs the site, repeated on every blog page so search engines and AI tools can tie the
@@ -131,7 +134,8 @@ function loadPost(folder, folderName, text, fail) {
   const slug = meta.slug || folderName;
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) fail(`${where}: the address "${slug}" may only use lowercase letters, numbers and hyphens`);
 
-  const coverName = COVER_NAMES.find((name) => existsSync(join(folder, name)));
+  const namedCover = readdirSync(folder).find((name) => NAMED_COVER.test(name));
+  const coverName = COVER_NAMES.find((name) => existsSync(join(folder, name))) || namedCover;
   let coverFile = null;
   if (coverName) {
     coverFile = join(folder, coverName);
@@ -145,7 +149,7 @@ function loadPost(folder, folderName, text, fail) {
     ...meta,
     slug,
     coverFile,
-    coverName: coverName ? `${slug}${coverName.slice(coverName.indexOf("."))}` : null,
+    coverName: !coverName ? null : coverName === namedCover ? coverName : `${slug}${coverName.slice(coverName.indexOf("."))}`,
     html,
     images,
     faq: extractFaq(match[2]),
@@ -217,19 +221,20 @@ function renderMarkdown(markdown, fail, where, folder, slug) {
     }
     if (/^\s*!\[/.test(line)) {
       i++;
-      const img = line.trim().match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/);
-      if (!img) fail(`${where}: write a picture on its own line as ![what it shows](file-name.png)`);
-      const [, alt, name] = img;
+      const img = line.trim().match(/^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)$/);
+      if (!img) fail(`${where}: write a picture on its own line as ![what it shows](file-name.png) or ![what it shows](file-name.png "caption")`);
+      const [, alt, name, caption] = img;
       if (!alt.trim()) fail(`${where}: the picture ${name} needs a short description inside the [ ]`);
-      if (!IMAGE_FILE.test(name)) fail(`${where}: picture names may only use lowercase letters, numbers and hyphens, ending .png or .jpg (${name})`);
+      if (!IMAGE_FILE.test(name)) fail(`${where}: picture names may only use lowercase letters, numbers and hyphens, ending .png, .jpg or .webp (${name})`);
       const file = join(folder, name);
       if (!existsSync(file)) fail(`${where}: the picture ${name} isn't in the post's folder`);
       if (statSync(file).size > MAX_COVER_BYTES) fail(`${where}: the picture ${name} is over 1 MB: make it smaller`);
       const size = imageSize(readFileSync(file));
-      if (!size) fail(`${where}: couldn't read the size of ${name}; save it as a normal PNG or JPG`);
-      const published = `${slug}-${name}`;
+      if (!size) fail(`${where}: couldn't read the size of ${name}; save it as a normal PNG, JPG or WebP`);
+      // Names that already start with the post's address are kept exactly as the writer gave them.
+      const published = name.startsWith(`${slug}-`) ? name : `${slug}-${name}`;
       images.push({ file, name: published });
-      out.push(`<figure class="post-figure"><img src="/blog/images/${published}" alt="${escape(alt.trim())}" width="${size.width}" height="${size.height}" loading="lazy" decoding="async"></figure>`);
+      out.push(`<figure class="post-figure"><img src="/blog/images/${published}" alt="${escape(alt.trim())}" width="${size.width}" height="${size.height}" loading="lazy" decoding="async">${caption && caption.trim() ? `<figcaption>${inline(caption.trim())}</figcaption>` : ""}</figure>`);
       continue;
     }
     const para = [];
@@ -242,6 +247,14 @@ function renderMarkdown(markdown, fail, where, folder, slug) {
 
 // Width and height of a PNG or JPG, read from the file itself, so the page saves the right space
 function imageSize(bytes) {
+  // WebP: RIFF....WEBP, then a VP8 (lossy), VP8L (lossless) or VP8X (extended) chunk.
+  if (bytes.length > 30 && bytes.toString("ascii", 0, 4) === "RIFF" && bytes.toString("ascii", 8, 12) === "WEBP") {
+    const kind = bytes.toString("ascii", 12, 16);
+    if (kind === "VP8X") return { width: 1 + bytes.readUIntLE(24, 3), height: 1 + bytes.readUIntLE(27, 3) };
+    if (kind === "VP8L") { const b = bytes.readUInt32LE(21); return { width: 1 + (b & 0x3fff), height: 1 + ((b >> 14) & 0x3fff) }; }
+    if (kind === "VP8 ") return { width: bytes.readUInt16LE(26) & 0x3fff, height: bytes.readUInt16LE(28) & 0x3fff };
+    return null;
+  }
   if (bytes.length > 24 && bytes.readUInt32BE(0) === 0x89504e47) return { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) };
   if (bytes[0] !== 0xff || bytes[1] !== 0xd8) return null;
   for (let at = 2; at + 9 < bytes.length;) {
@@ -305,7 +318,7 @@ function renderPostPage(template, post, more) {
     <p>Written by <strong>Ajay Singh</strong>, Registered Nurse<br><span>Published ${formatDate(post.date)} · Last updated ${formatDate(lastUpdated(post))} · ${post.minutes} min read</span></p>
   </div>
 </div></section>
-<div class="wrap"><figure class="post-cover">${cover
+<div class="wrap"><figure class="post-cover${post.coverName && NAMED_COVER.test(post.coverName) ? " post-cover-full" : ""}">${cover
     ? `<img src="${cover}" alt="${escape(post.photo_alt)}" width="1600" height="900">`
     : designCover(post)}${credit}</figure></div>
 ${post.video ? `<div class="wrap"><p class="post-video"><a class="btn btn-ghost" href="${escape(post.video)}" target="_blank" rel="noopener">Watch the video on YouTube<span class="visually-hidden"> (opens in a new tab)</span></a></p></div>` : ""}

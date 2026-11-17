@@ -135,8 +135,8 @@ nothing and say so.
      and recommend updating the live post instead (see "One page per topic")
    - its content isn't a near-copy of a live post (compare the headings and sections, not just the
      keyword). Ajay, 16 Nov 2026: "don't do double copy". If a post competes with a live page,
-     delay it (publish nothing) and tell Ajay. B6 "how to get NDIS clients" is on hold for this
-     reason: it's the same article as the live /blog/ndis-referrals.
+     delay it (publish nothing) and tell Ajay. (17 Nov 2026: Ajay chose to publish B6 "how to get
+     NDIS clients" and 301-redirect the near-copy /blog/ndis-referrals to it.)
    - **Blogs come only from the Marketing Manager (Ajay, 16 Nov 2026).** Never write, re-angle or
      retitle a blog yourself. Only the humaniser edits in step 5 are allowed.
 4. **Photo.** If the ready folder has a photo with the same name, download it, make it about 1600px
