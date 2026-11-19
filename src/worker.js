@@ -6,6 +6,14 @@
 // the two free offers can include a logo. Web3Forms can't take files on our plan, so Brevo emails the
 // logo to Ajay (at the CHECKLIST_FROM_EMAIL address, the one people reply to) as an attachment.
 
+// The Auditor Test's wording and scoring (shared with the page, so the email matches the screen).
+import "../site/auditor-test-data.js";
+
+const AUDITOR_TEST = globalThis.AUDITOR_TEST;
+const AUDITOR_PAGE = "auditor-test";
+// Longest allowed for each Auditor Test field (the test has its own limits, separate from the enquiry form's).
+const AUDITOR_LIMITS = { name: 100, email: 255, business: 150, phone: 30, worry: 600, other: 600, from: 60 };
+
 const FIELD_LIMITS = { name: 100, email: 255, business: 150, message: 600 };
 // For each start-offer form: the name used in the email, and its extra fields as
 // [label in the email, longest allowed, required, name in error messages].
@@ -67,6 +75,7 @@ async function handleEnquiry(request, env, ctx) {
   if (elapsed < MIN_FILL_MS) return json({ success: true });
 
   const page = String(form.get("page") ?? "").trim().slice(0, 30) || "unknown";
+  if (page === AUDITOR_PAGE) return handleAuditorTest(form, env);
   const start = START_FORMS[page];
   const data = {};
   for (const [field, limit] of Object.entries(FIELD_LIMITS)) {
@@ -160,6 +169,115 @@ async function handleEnquiry(request, env, ctx) {
     ctx.waitUntil(sendChecklistEmail(env, data).catch((error) => console.error("Checklist email failed", error)));
   }
   return json({ success: true });
+}
+
+// The Auditor Test (/auditor-test): one email to Ajay with a ready-to-send results email at the top
+// (he presses Reply, copies it and sends), then every answer. The score is worked out here from the
+// raw answers, never taken from the page.
+async function handleAuditorTest(form, env) {
+  const text = (field) => String(form.get(field) ?? "").trim();
+  const data = {};
+  for (const [field, limit] of Object.entries(AUDITOR_LIMITS)) {
+    const value = text(field);
+    const required = ["name", "email", "business", "worry"].includes(field);
+    if ((required && !value) || value.length > limit) {
+      return json({ success: false, error: `Please check the ${field === "worry" ? "biggest worry" : field} field.` }, 400);
+    }
+    data[field] = value;
+  }
+  if (!EMAIL_PATTERN.test(data.email)) return json({ success: false, error: "Please enter a valid email address." }, 400);
+  const answers = [];
+  for (let q = 1; q <= 12; q++) {
+    const value = text(`q${q}`);
+    if (!/^[012]$/.test(value)) return json({ success: false, error: "Please answer all 12 questions." }, 400);
+    answers.push(Number(value));
+  }
+  const { ABOUT, AREAS, ANSWERS } = AUDITOR_TEST;
+  const about = {};
+  for (const field of ["type", "audit", "help"]) {
+    about[field] = text(field);
+    if (!ABOUT[field].options.includes(about[field])) return json({ success: false, error: "Please answer the questions about you." }, 400);
+  }
+  const from = data.from.replace(/[^\w-]/g, "");
+  const followUp = form.get("follow_up") === "yes";
+  const result = AUDITOR_TEST.score(answers);
+  const priority = about.audit === "Within 3 months" && result.pct < 80;
+
+  if (!env.WEB3FORMS_ACCESS_KEY) {
+    console.error("WEB3FORMS_ACCESS_KEY is not set");
+    return json({ success: false, error: "The form isn't set up yet. Please email us instead." }, 503);
+  }
+  const label = (value) => ANSWERS.find(([points]) => Number(points) === value)[1];
+  const plain = (html) => html.replace(/<[^>]+>/g, "");
+  const answerLines = AREAS.map((area, a) => [`${area.name}: ${result.areas[a]} out of 6`,
+    ...area.questions.map(([title], i) => `  ${a * 3 + i + 1}. ${plain(title)} ${label(answers[a * 3 + i])}`)].join("\n")).join("\n\n");
+  const received = new Date().toLocaleString("en-AU", { timeZone: "Australia/Melbourne", dateStyle: "full", timeStyle: "short" });
+
+  let response;
+  try {
+    response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: env.WEB3FORMS_ACCESS_KEY,
+        subject: `${priority ? "PRIORITY " : ""}Auditor Test: ${result.pct}% · ${data.business}`,
+        from_name: "VitalScale Digital Website",
+        replyto: data.email,
+        "READY TO SEND (press Reply, copy this in, send)": `Subject: Your Auditor Test result: ${result.pct}%\n\n${auditorResultsEmail(data.name, about.type, result)}`,
+        name: data.name,
+        email: data.email,
+        "Business name": data.business,
+        Phone: data.phone || "(none)",
+        Score: `${result.pct}% (${result.band.name}), ${result.total} out of 24`,
+        "Every answer": answerLines,
+        [ABOUT.type.label]: about.type,
+        [ABOUT.audit.label]: about.audit,
+        [ABOUT.worry.label]: data.worry,
+        [ABOUT.help.label]: about.help,
+        [ABOUT.other.label]: data.other || "(none)",
+        "Send the 2 follow-up emails": followUp ? "YES" : "NO",
+        "Came from (?from=)": from || "(none)",
+        Received: `${received} (Melbourne time)`,
+        "Sent from page": AUDITOR_PAGE,
+      }),
+    });
+  } catch (error) {
+    console.error("Web3Forms request failed", error);
+    return sendFailed();
+  }
+  const sent = await response.json().catch(() => null);
+  if (!response.ok || sent?.success !== true) {
+    console.error("Web3Forms submission failed", response.status);
+    return sendFailed();
+  }
+  console.log(`Auditor Test completed: ${result.pct}%${priority ? " (priority)" : ""}`);
+  return json({ success: true });
+}
+
+// "Email 1" (Ajay approved the wording on 20 Nov 2026), filled in for this person.
+function auditorResultsEmail(name, type, result) {
+  const { AREAS, FULL_MARKS, NOT_REGISTERED, NOT_REGISTERED_TYPES } = AUDITOR_TEST;
+  const weak = result.weakest.map((a) => AREAS[a]);
+  let weakest;
+  if (!weak.length) weakest = FULL_MARKS;
+  else if (weak.length === 1) weakest = `Your weakest area is ${weak[0].name}. ${weak[0].message}`;
+  else {
+    const names = weak.map((area) => area.name);
+    weakest = [`Your weakest areas are ${names.slice(0, -1).join(", ")} and ${names.at(-1)}.`,
+      ...weak.map((area) => `${area.name}: ${area.message}`)].join("\n\n");
+  }
+  return [
+    `Hi ${name.split(/\s+/)[0]},`,
+    "Thanks for taking the Auditor Test. Here's your result.",
+    [`Overall: ${result.pct}% (${result.band.name})`, ...AREAS.map((area, a) => `${area.name}: ${result.areas[a]} out of 6`)].join("\n"),
+    weakest,
+    ...(NOT_REGISTERED_TYPES.includes(type) ? [NOT_REGISTERED] : []),
+    "If you'd like a second pair of eyes on it, the next step is our $166 Policy vs Practice Gap Check. I read up to 5 of your policies, compare them with how your team actually works, and send you a written report with the top gaps and a plain-English fix for each. Then we go through it together on a 30-minute call. If you go ahead with our Policy + Evidence System within 30 days, the full $166 comes off.",
+    "You can book it here: https://vitalscaledigital.com.au/policy-check",
+    "Or just reply with a question. I read every reply myself.",
+    "Ajay Singh\nRegistered Nurse, founder of VitalScale Digital\nvitalscaledigital.com.au",
+    "The Auditor Test is a self-check, not an audit or legal advice.\nDon't want emails from us? Reply \"stop\" and we'll take you off our list.",
+  ].join("\n\n");
 }
 
 // The email is sent as plain text, like a personal reply: Brevo can't add its tracking picture to a
