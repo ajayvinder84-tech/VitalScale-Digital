@@ -13,10 +13,29 @@ Builds within a few minutes. Treat a push to `main` as publishing.
 ## Working with Ajay
 
 Ajay isn't technical. Keep messages short and in plain English, and explain any technical word in a
-few simple words. Check with Ajay before anything goes live. Put every question for Ajay at the very
-bottom of the message, in simple words, so it isn't missed. (The two weekly routines below are the
-exceptions: Ajay asked on 4 Nov 2026 for them to publish what his NDIS News Researcher and blog
-writer hand over, without asking him.)
+few simple words. Put every question for Ajay at the very bottom of the message, in simple words, so
+it isn't missed.
+
+## Standing approval (Ajay, 19 Nov 2026)
+
+- **Scheduled work publishes itself.** In the Monday "Website weekly to-do" and the Wednesday "SEO
+  pick-up" runs, if all THREE CHECKS pass, merge and push to `main` without waiting for "yes,
+  publish". The NDIS news and blog routines below already publish on their own (4 Nov 2026).
+- **Ask Ajay first** (preview screenshots, nothing live until "yes, publish") only for: changes to
+  offers, prices, services or guarantees; removing or renaming a page; or anything a check failed
+  on. If you're not sure whether a change is one of these, ask.
+- **Changes Ajay asks for in chat** still get a preview and his "yes, publish", unless he says to
+  just publish.
+- **Lead magnets:** when a to-do in "To website" asks for a lead-magnet page, build and publish it
+  under the same three checks.
+- **GEO (getting shown in AI answers)** is part of the SEO pick-up: keep `/llms.txt` current;
+  Organization + ProfessionalService schema with `sameAs` to the live Google Business Profile,
+  LinkedIn page and Facebook page (never invent a link); FAQPage schema wherever a page has FAQs;
+  answer-first opening sentences on service pages. No new SEO data file means stop silently.
+- **Blogs:** the Marketing Manager's Sunday task writes the Tuesday and Thursday posts into the
+  ready folder. They're pre-approved; keep publishing them with the blog routine.
+- **Only message Ajay when you need something from him.** Otherwise finish quietly and leave the
+  report file as the record.
 
 ## Retired links and offers (Ajay, 7 Nov 2026)
 
