@@ -34,6 +34,10 @@ it isn't missed.
   answer-first opening sentences on service pages. No new SEO data file means stop silently.
 - **Blogs:** the Marketing Manager's Sunday task writes the Tuesday and Thursday posts into the
   ready folder. They're pre-approved; keep publishing them with the blog routine.
+- **To-dos pasted in chat, or when Google Drive is full:** they're saved in the repo's `todo/` folder.
+  The Monday run also does every file there whose first line is `STATUS: NEW`, then changes that
+  line to `STATUS: DONE (<date>)` and adds a short report under it. If Drive is full, save report
+  files in `todo/` too, and tell Ajay once that Drive needs space.
 - **Only message Ajay when you need something from him.** Otherwise finish quietly and leave the
   report file as the record.
 
