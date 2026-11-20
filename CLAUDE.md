@@ -35,8 +35,9 @@ Sheets connectors:
 
 **Social media offers are paused (Ajay, 19 Nov 2026).** Sell only websites and policies. Don't
 promote the free week of posts or social media anywhere on the site: no new links, buttons, CTAs
-or mentions. (Taking the existing ones off the live site is a change to offers, so it needs a
-preview and Ajay's yes.)
+or mentions. **The existing social media and free-week pages, links and mentions stay on the
+website as they are (Ajay, 20 Nov 2026: "leave it there").** Don't remove or hide them unless Ajay
+asks.
 
 ## Standing approval (Ajay, 19 Nov 2026)
 
