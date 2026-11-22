@@ -25,7 +25,7 @@ const PERSON = `${BASE}/#ajay`;
 // Who runs the site, repeated on every blog page so search engines and AI tools can tie the
 // guides to VitalScale and to Ajay. The static pages in site/ carry the same entities.
 const ENTITIES = [
-  { "@type": "Organization", "@id": ORG, name: "VitalScale Digital", url: `${BASE}/`, logo: { "@type": "ImageObject", url: `${BASE}/logo-primary.svg` }, founder: { "@id": PERSON }, telephone: "+61 406 970 615", email: "ajay.singh@vitalscaledigital.com.au",
+  { "@type": ["Organization", "ProfessionalService"], "@id": ORG, name: "VitalScale Digital", url: `${BASE}/`, logo: { "@type": "ImageObject", url: `${BASE}/logo-primary.svg` }, founder: { "@id": PERSON }, telephone: "+61 406 970 615", email: "ajay.singh@vitalscaledigital.com.au",
     address: { "@type": "PostalAddress", addressLocality: "Melbourne", addressRegion: "VIC", addressCountry: "AU" },
     sameAs: ["https://www.linkedin.com/company/vitalscale-digital/", "https://www.facebook.com/profile.php?id=61585755002903", "https://www.instagram.com/vital.scale.digital/",
       "https://maps.app.goo.gl/Z67sVE7jP8tvo4Ni9", "https://www.youtube.com/@vitalscaledigital-ajaysingh", "https://www.hotfrog.com.au/company/AaG9rtYNcgqtML1RWFkHHg/vitalscale-digital/melbourne/marketing-sales"] },
