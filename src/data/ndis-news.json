@@ -1,27 +1,27 @@
 {
-  "last_checked": "2026-11-16",
+  "last_checked": "2026-11-23",
   "approved_by": "Automatic weekly check",
-  "approved_on": "2026-11-16",
+  "approved_on": "2026-11-23",
   "items": [
     {
-      "headline": "New ban on inducements starts 20 November",
-      "whats_changing": "Providers must not give or offer gifts or benefits that are likely to win or keep participants. Genuine discounts and your own merchandise are exceptions.",
-      "who_it_affects": "All NDIS providers",
-      "when": "20 November 2026",
-      "what_to_do": "Review any sign-up offers, referral gifts or promotions, and check whether this applies to you.",
+      "headline": "Plan management: new registrations paused from 18 November",
+      "whats_changing": "The NDIS Commission won't approve new applications to register for plan management, or add it, except in extenuating circumstances. Applications submitted before 18 November are assessed as usual.",
+      "who_it_affects": "Providers offering, or planning to offer, plan management",
+      "when": "From 18 November 2026",
+      "what_to_do": "If you planned to add plan management, read the Commission's page first. Current plan managers can keep it when re-registering.",
       "status": "VERIFIED",
-      "source_url": "https://www.legislation.gov.au/C2026A00066",
-      "source_published": "2026-08-20"
+      "source_url": "https://www.ndiscommission.gov.au/provider-registration/about-registration/changes-registration-plan-management-services",
+      "source_published": "2026-11-18"
     },
     {
       "headline": "Reminder: 90-day claim window starts 1 December",
-      "whats_changing": "Claims must be made within 90 days of delivering a support, down from 2 years. The new law sets the start date as 1 December 2026.",
+      "whats_changing": "From 1 December, claims must be made within 90 days of delivering a support. The NDIA asks providers to submit outstanding claims now, as later claims won't be paid unless exceptional circumstances apply.",
       "who_it_affects": "All providers and plan managers who claim from NDIS plans",
       "when": "1 December 2026",
-      "what_to_do": "Check your invoicing routine so claims go in soon after each support is delivered.",
+      "what_to_do": "Review unsubmitted claims and invoices before 1 December, and keep service dates accurate.",
       "status": "VERIFIED",
-      "source_url": "https://www.legislation.gov.au/C2026A00066",
-      "source_published": "2026-08-20"
+      "source_url": "https://www.ndis.gov.au/news/11764-new-90-day-claiming-timeframe-starts-1-december-2026",
+      "source_published": "2026-11-18"
     },
     {
       "headline": "Reminder: four price limits rise on 1 December",
