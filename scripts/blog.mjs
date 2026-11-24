@@ -74,7 +74,7 @@ export function latestStrip(posts) {
   <div class="section-head">
     <span class="eyebrow">From the blog</span>
     <h2>Latest from the blog.</h2>
-    <p class="muted">Plain-English guides for NDIS providers, written by a Registered Nurse.</p>
+    <p class="muted">Plain-English guides for NDIS providers.</p>
   </div>
   <div class="post-grid">${posts.slice(0, 3).map(card).join("")}</div>
   <p class="latest-blog-more"><a class="link-arrow" href="/blog.html">See all guides</a></p>
@@ -315,7 +315,7 @@ function renderPostPage(template, post, more) {
   <p class="lede">${escape(post.description)}</p>
   <div class="post-meta">
     <img class="avatar" src="/photos/ajay.jpg" alt="" width="48" height="48">
-    <p>Written by <strong>Ajay Singh</strong>, Registered Nurse<br><span>Published ${formatDate(post.date)} · Last updated ${formatDate(lastUpdated(post))} · ${post.minutes} min read</span></p>
+    <p>Written by <strong>Ajay Singh</strong><br><span>Published ${formatDate(post.date)} · Last updated ${formatDate(lastUpdated(post))} · ${post.minutes} min read</span></p>
   </div>
 </div></section>
 <div class="wrap"><figure class="post-cover${post.coverName && NAMED_COVER.test(post.coverName) ? " post-cover-full" : ""}">${cover
@@ -359,7 +359,7 @@ ${startHere(post)}
 // the same as the Start here blocks on the homepage and the service pages.
 const START_HERE = [
   { match: /polic|procedure|audit|standard|complian|registration/i, accent: "policies", heading: "Start with a $166 Gap Check",
-    text: "A Registered Nurse compares up to 5 of your policies with how your team works.",
+    text: "We compare up to 5 of your policies with how your team works.",
     button: ["Check my policies, $166", "/policy-check.html"], service: ["See policies", "/ndis-policies-and-procedures.html"] },
   { match: /social|marketing|client|enquir|referral|grow/i, accent: "social", heading: "Start with a free week of posts",
     text: "We design 3 single-image posts and 1 carousel for your business. You upload them.",
@@ -388,7 +388,7 @@ function renderListPage(template, posts) {
   <div class="hero-copy">
     <span class="eyebrow">Blog · New guides every week</span>
     <h1>Plain-English guides for NDIS providers.</h1>
-    <p class="lede">Honest answers to the questions providers ask us most, written by a Registered Nurse and checked against official NDIS sources.</p>
+    <p class="lede">Honest answers to the questions providers ask us most, checked against official NDIS sources.</p>
   </div>
 </div></section>
 <section class="band"><div class="wrap">
@@ -411,7 +411,7 @@ function renderListPage(template, posts) {
   ]);
   return fill(template, {
     TITLE: "NDIS provider guides and blog | VitalScale Digital",
-    DESCRIPTION: "Plain-English guides for NDIS providers from a Registered Nurse, checked against official NDIS sources. New guides every week.",
+    DESCRIPTION: "Plain-English guides for NDIS providers, checked against official NDIS sources. New guides every week.",
     URL: `${BASE}/blog`, OG_TYPE: "website", OG_IMAGE: `${BASE}/og/blog.jpg`,
     OG_IMAGE_ALT: "VitalScale Digital blog: plain-English guides for NDIS providers", JSON_LD: jsonLd(ld), MAIN: main, FORM_PAGE: "blog",
     FORM_HEADING: "Got a question we should answer?",

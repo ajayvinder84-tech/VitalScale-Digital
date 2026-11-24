@@ -150,7 +150,7 @@
       '<div class="at-weak">' + weakHtml + "</div>" +
       (T.NOT_REGISTERED_TYPES.indexOf(type) >= 0 ? '<p class="at-not-registered">' + esc(T.NOT_REGISTERED) + "</p>" : "") +
       '<div class="at-next"><h3>What next?</h3>' +
-      "<p>Our $166 Policy vs Practice Gap Check is the next step. A Registered Nurse reads up to 5 of your policies, compares them with how your team actually works, and shows you where they don't match. You get a written gap report with a plain-English fix for each gap, and a 30-minute call with Ajay. If you go ahead with our Policy + Evidence System within 30 days, the full $166 comes off.</p>" +
+      "<p>Our $166 Policy vs Practice Gap Check is the next step. We read up to 5 of your policies, compare them with how your team actually works, and show you where they don't match. You get a written gap report with a plain-English fix for each gap, and a 30-minute call with Ajay. If you go ahead with our Policy + Evidence System within 30 days, the full $166 comes off.</p>" +
       '<div class="btn-row"><a class="btn btn-primary" href="/policy-check?from=auditor-test">Book the Gap Check</a></div>' +
       '<p class="at-alt">Not ready for that? <a href="/ndis-policy-checklist">Get the free NDIS policy checklist</a></p></div>';
     form.hidden = true;
