@@ -27,6 +27,7 @@ const BUSINESS_FIELDS = {
 const START_FORMS = {
   "free-week": { offer: "Free week of posts", fields: BUSINESS_FIELDS, logo: true },
   "free-demo": { offer: "Free website demo", fields: { ...BUSINESS_FIELDS, website: ["Current website", 300, false, "website"] }, logo: true },
+  "free-google-visibility-check": { offer: "Free Google Visibility Check", fields: { website: ["Website", 300, true, "website"], area: ["Main suburb", 150, true, "main suburb"], services: BUSINESS_FIELDS.services }, logo: false },
   "policy-check": { offer: "Policy vs Practice Gap Check", fields: { policies: ["Policies they'll send", 2, true, "number of policies"] }, logo: false },
 };
 const LOGO_MAX_BYTES = 3 * 1024 * 1024;
