@@ -3,6 +3,13 @@
 What went live on vitalscaledigital.com.au, newest first. (The older log is on Ajay's PC:
 D:\Claude Code\VitalScale\NDIS News\deploy_log.md.)
 
+## 24 Nov 2026: privacy policy tidy-up
+
+- **What:** in "Who can see it", the sentence now ends "We never sell your details." and the repeated
+  "We never sell or rent your information." is removed, so it no longer clashes with "We don't share
+  your details with anyone else unless the law requires it." (Ajay, 24 Nov.) Date stays 24 November 2026.
+- **Checked before publishing:** build x3, structured-data audit, links, privacy page at 1366px and 390px.
+
 ## 24 Nov 2026: privacy policy wording
 
 - **What:** in "Who can see it", "Ajay is the only person who reads your enquiry." became "Your enquiry
