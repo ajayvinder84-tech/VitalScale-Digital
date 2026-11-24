@@ -76,7 +76,7 @@ async function handleEnquiry(request, env, ctx) {
   if (elapsed < MIN_FILL_MS) return json({ success: true });
 
   const page = String(form.get("page") ?? "").trim().slice(0, 30) || "unknown";
-  if (page === AUDITOR_PAGE) return handleAuditorTest(form, env);
+  if (page === AUDITOR_PAGE) return handleAuditorTest(form, env, ctx);
   const start = START_FORMS[page];
   const data = {};
   for (const [field, limit] of Object.entries(FIELD_LIMITS)) {
@@ -161,6 +161,15 @@ async function handleEnquiry(request, env, ctx) {
     return sendFailed();
   }
   if (start) console.log(`Sign-up: ${start.offer}`);
+  sendToLeads(env, ctx, {
+    name: data.name,
+    email: data.email,
+    business: data.business,
+    message: start ? `${start.offer}${data.message ? `: ${data.message}` : ""}` : data.message,
+    page,
+    marketing_consent: consent ? "YES" : "NO",
+    received: `${received} (Melbourne time)`,
+  });
   // The logo email goes out in the background once the sign-up has been sent.
   if (canSendLogo) {
     ctx.waitUntil(sendLogo(env, start.offer, data, logo).catch((error) => console.error("Logo email failed", error)));
@@ -175,7 +184,7 @@ async function handleEnquiry(request, env, ctx) {
 // The Auditor Test (/auditor-test): one email to Ajay with a ready-to-send results email at the top
 // (he presses Reply, copies it and sends), then every answer. The score is worked out here from the
 // raw answers, never taken from the page.
-async function handleAuditorTest(form, env) {
+async function handleAuditorTest(form, env, ctx) {
   const text = (field) => String(form.get(field) ?? "").trim();
   const data = {};
   for (const [field, limit] of Object.entries(AUDITOR_LIMITS)) {
@@ -252,6 +261,15 @@ async function handleAuditorTest(form, env) {
     return sendFailed();
   }
   console.log(`Auditor Test completed: ${result.pct}%${priority ? " (priority)" : ""}`);
+  sendToLeads(env, ctx, {
+    name: data.name,
+    email: data.email,
+    business: data.business,
+    message: `${priority ? "PRIORITY. " : ""}Auditor Test ${result.pct}% (${result.band.name}). Next audit: ${about.audit}. Type: ${about.type}. Wants: ${about.help}. Worry: ${data.worry}`.slice(0, 600),
+    page: AUDITOR_PAGE,
+    marketing_consent: followUp ? "YES" : "NO",
+    received: `${received} (Melbourne time)`,
+  });
   return json({ success: true });
 }
 
@@ -366,6 +384,20 @@ function sendWithBrevo(env, body) {
 
 function escapeHtml(text) {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// Every enquiry is also sent to the VitalScale lead automation (Activepieces), which adds it to the
+// Leads sheet and alerts the agents. Runs in the background and only when the LEADS_WEBHOOK_URL
+// secret is set in Cloudflare, so a problem there never affects the person filling in the form.
+function sendToLeads(env, ctx, payload) {
+  if (!env.LEADS_WEBHOOK_URL) return;
+  ctx.waitUntil(
+    fetch(env.LEADS_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch((error) => console.error("Leads webhook failed", error)),
+  );
 }
 
 function sendFailed() {
