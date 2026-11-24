@@ -49,3 +49,20 @@ if (navToggle) {
   header.querySelector(".nav").addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
 }
+
+// Soft fade-up as sections come into view. Skipped when the visitor has turned motion off,
+// and everything stays visible if the browser has no IntersectionObserver.
+if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  var revealItems = document.querySelectorAll("main section:not(.hero) :is(.section-head, .service, .facts li, .split > *, .cta, .other-card, .work-card, .price-card, .price-row, .change, .faq details)");
+  var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) { entry.target.classList.add("in"); revealObserver.unobserve(entry.target); }
+    });
+  }, { rootMargin: "0px 0px -8% 0px" });
+  revealItems.forEach(function (el) {
+    // Things already on screen when the page opens are shown straight away
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+    el.classList.add("reveal");
+    revealObserver.observe(el);
+  });
+}

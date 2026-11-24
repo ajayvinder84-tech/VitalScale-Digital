@@ -1090,3 +1090,127 @@ body, body::before { background: var(--page); }
 /* The test scrolls to just below the fixed menu, and "Back" has no forward arrow. */
 .at-test { scroll-margin-top: 96px; }
 .at-nav [data-back]::after { content: none; }
+
+/* ==========================================================================
+   Navy and yellow rebrand (Ajay chose "option B", 25 Nov 2026): light, calm pages,
+   deep navy text and buttons, one bright yellow accent, wordmark logo without a box.
+   Colours: navy #0F2A44, yellow #F5B700, soft yellow #FFF3C4, off-white #FBFAF6.
+   Subtle motion only, and none at all for people who turn motion off.
+   These rules sit last so they win over everything above.
+   ========================================================================== */
+:root {
+  --black: #0F2A44; --ink: #0F2A44; --gold: #F5B700; --on-gold: #0F2A44; --teal: #2B5C8A;
+  --navy-soft: #E8EEF5; --yellow-soft: #FFF3C4;
+  --page: #FBFAF6; --paper: #FBFAF6; --soft: #F3F2EE; --line: #E3E6EA; --grey: #4E5D6C;
+  --deep-green: #2B5C8A; --field-line: #7D8A97; --ghost-line: rgba(15, 42, 68, 0.5);
+  --grey-on-dark: #B8C6D4; --line-dark: #2A4560;
+}
+body, body::before { background: var(--page); }
+.site-header { background: rgba(251, 250, 246, 0.92); }
+
+/* Logo: the wordmark on its own, no outline box */
+.brand { border: 0; border-radius: 0; padding: 0; background: none; box-shadow: none; }
+.brand img { height: 46px; }
+@media (max-width: 760px) { .brand img { height: 40px; } }
+.footer-logo img { height: 46px; }
+
+/* Buttons: navy with a yellow arrow; outline buttons navy */
+.btn-primary, .btn-light, .site-header .btn-primary, .hero .btn-primary, .cta .btn-primary, .cta button[type="submit"] {
+  background: var(--ink); border-color: var(--ink); color: #FFFFFF;
+}
+.btn-primary::after, .btn-light::after { color: var(--gold); }
+.btn { transition: transform .2s, box-shadow .2s, background-color .2s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -12px rgba(15, 42, 68, 0.55); }
+.btn-ghost { color: var(--ink); border-color: var(--ghost-line); }
+
+/* Accents: navy blue for small labels, the gold-brown stays for the $166 checks */
+.accent-policies, body.svc-policies, .accent-websites, body.svc-websites, .accent-ai, body.svc-ai { --accent: #2B5C8A; --accent-soft: var(--navy-soft); }
+.eyebrow, .cta-eyebrow, .change-when, #services .service::before { color: var(--teal); }
+#services .service::before { color: var(--gold); -webkit-text-stroke: 0; }
+.trust-strip li + li::before { color: #C99400; }
+.update-stamp .dot, :is(.hero, .news-band) .update-stamp .dot { background: var(--gold); }
+.work-card .eyebrow { color: var(--teal); }
+.article li::marker, .cl-proof li::marker { color: var(--teal); }
+.article .callout, .cl-nurse { border-left-color: var(--gold); }
+.cl-nurse { background: var(--navy-soft); }
+.design-cover-cat { color: var(--gold); }
+.consent input[type="checkbox"], .cl-box, .at-option input, .at-check input { accent-color: var(--ink); }
+.at-option:has(input:checked) { border-color: var(--ink); background: var(--navy-soft); }
+.at-band { color: var(--teal); }
+.at-bar span { background: var(--ink); }
+.whatsapp-float { background: var(--ink); }
+
+/* Top section: light and calm instead of dark over a photo */
+.hero { background: var(--page); color: var(--ink); }
+.hero::before { display: none; }
+.hero .photo-hero { display: none; }
+.hero-copy h1 { color: var(--ink); font-weight: 600; letter-spacing: -0.03em; }
+.hero .eyebrow { justify-self: start; width: fit-content; color: var(--ink); background: var(--yellow-soft); padding: 7px 14px; border-radius: 999px; letter-spacing: 0.1em; font-weight: 600; }
+.hero .eyebrow::before { width: 7px; height: 7px; background: #C99400; }
+.hero-copy .lede, .hero :is(.trust-strip, .quiet-line, .lp-trust), .hero .hero-meta, .at-points, .hero-points { color: var(--grey); }
+.hero-points li::before { background: var(--gold); }
+.hero .quiet-line a { color: var(--ink); }
+.hero .trust-strip li + li::before { color: #C99400; }
+.hero .btn-ghost, .hero .scroll-down { color: var(--ink); border-color: var(--ghost-line); }
+:is(.hero) .record { background: var(--white); color: var(--ink); border: 1px solid var(--line); backdrop-filter: none; box-shadow: 0 24px 50px -30px rgba(15, 42, 68, 0.35); }
+.hero .record-head, .hero .record-row dt { color: var(--grey); border-bottom-color: var(--line); }
+.hero .record-row { border-bottom-color: var(--line); }
+.hero .tag { color: var(--ink); border-color: var(--field-line); }
+.hero .news-more a { color: var(--ink); }
+/* The picked-out word: a yellow marker line that draws in under it */
+.hl {
+  border: 0; border-radius: 0; padding: 0 0.04em; margin: 0; line-height: inherit;
+  background: linear-gradient(transparent 78%, var(--gold) 78%) no-repeat 0 0 / 100% 100%;
+  animation: hl-draw 0.9s 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes hl-draw { from { background-size: 0% 100%; } to { background-size: 100% 100%; } }
+@media (min-width: 761px) { .hero-copy h1:has(.hl) { line-height: 1.06; } }
+
+/* Home page top: words on the left, two small cards on the right */
+@media (min-width: 1000px) {
+  .hero-home .wrap { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: center; }
+}
+.hero-visual { position: relative; min-height: 420px; }
+.hv-card { position: absolute; background: var(--white); border-radius: 18px; padding: 22px; box-shadow: 0 30px 60px -28px rgba(15, 42, 68, 0.35); border: 1px solid var(--line); }
+.hv-google { left: 0; top: 0; width: min(100%, 380px); animation: hv-in 0.9s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both, hv-float 7s 1.2s ease-in-out infinite alternate; }
+.hv-audit { right: 0; bottom: 0; width: min(80%, 300px); background: var(--ink); color: #FFFFFF; border-color: var(--ink); animation: hv-in 0.9s 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both, hv-float 8s 1.6s ease-in-out infinite alternate-reverse; }
+.hv-label { display: block; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--grey); margin-bottom: 14px; }
+.hv-audit .hv-label { color: var(--grey-on-dark); }
+.hv-result { display: grid; gap: 3px; border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 10px; font-size: 0.82rem; color: var(--grey); }
+.hv-result b { font-size: 0.98rem; color: var(--ink); font-weight: 600; }
+.hv-stars { color: var(--gold); letter-spacing: 1px; }
+.hv-stars em { font-style: normal; color: var(--grey); letter-spacing: 0; }
+.hv-pill { justify-self: start; margin-top: 6px; font-size: 0.74rem; font-weight: 600; color: #1E7A45; background: #E6F4EA; border-radius: 999px; padding: 3px 9px; }
+.hv-faded { opacity: 0.45; margin-bottom: 0; }
+.hv-audit ul { list-style: none; margin: 0; padding: 0; }
+.hv-audit li { display: flex; align-items: center; gap: 10px; font-size: 0.93rem; padding: 8px 0; border-bottom: 1px solid var(--line-dark); }
+.hv-audit li:last-child { border-bottom: 0; }
+.hv-audit i { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 0.72rem; font-weight: 800; background: var(--gold); color: var(--ink); animation: tick-pop 0.45s cubic-bezier(0.2, 0.8, 0.2, 1.4) both; }
+.hv-audit li:nth-child(1) i { animation-delay: 1.0s; }
+.hv-audit li:nth-child(2) i { animation-delay: 1.25s; }
+.hv-audit li:nth-child(3) i { animation-delay: 1.5s; }
+.hv-audit li:nth-child(4) i { animation-delay: 1.75s; }
+.hv-audit i.hv-warn { background: #3A5470; color: #FFFFFF; }
+@keyframes hv-in { from { opacity: 0; transform: translateY(26px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes hv-float { from { translate: 0 0; } to { translate: 0 -10px; } }
+@keyframes tick-pop { from { transform: scale(0); } to { transform: scale(1); } }
+@media (max-width: 999px) { .hero-visual { min-height: 400px; max-width: 520px; } }
+@media (max-width: 560px) {
+  .hero-visual { min-height: 0; display: grid; gap: 14px; }
+  .hv-card { position: relative; width: 100%; left: auto; right: auto; top: auto; bottom: auto; }
+  .hv-faded { display: none; }
+}
+
+/* Gentle lift on cards when pointed at */
+:is(#services .service, .facts li, .other-card, .work-card, .price-card, .price-row, .change) { transition: transform 0.25s, box-shadow 0.25s; }
+:is(.facts li, .other-card, .work-card, .price-card, .price-row, .change):hover { transform: translateY(-3px); box-shadow: 0 18px 36px -24px rgba(15, 42, 68, 0.4); }
+
+/* Soft fade-up as sections scroll into view (added by site.js, only when motion is allowed) */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hl, .hv-card, .hv-audit i { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .btn-primary:hover, :is(.facts li, .other-card, .work-card, .price-card, .price-row, .change):hover { transform: none; }
+}
