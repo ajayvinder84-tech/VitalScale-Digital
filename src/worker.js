@@ -275,7 +275,7 @@ function auditorResultsEmail(name, type, result) {
     "If you'd like a second pair of eyes on it, the next step is our $166 Policy vs Practice Gap Check. I read up to 5 of your policies, compare them with how your team actually works, and send you a written report with the top gaps and a plain-English fix for each. Then we go through it together on a 30-minute call. If you go ahead with our Policy + Evidence System within 30 days, the full $166 comes off.",
     "You can book it here: https://vitalscaledigital.com.au/policy-check",
     "Or just reply with a question. I read every reply myself.",
-    "Ajay Singh\nRegistered Nurse, founder of VitalScale Digital\nvitalscaledigital.com.au",
+    "Ajay Singh\nVitalScale Digital\nvitalscaledigital.com.au",
     "The Auditor Test is a self-check, not an audit or legal advice.\nDon't want emails from us? Reply \"stop\" and we'll take you off our list.",
   ].join("\n\n");
 }
@@ -291,7 +291,7 @@ async function sendChecklistEmail(env, { name, email }) {
     CHECKLIST_PDF,
     "It covers every policy an NDIS provider needs, what an auditor wants to see for each one, and the official source. When the rules change, we'll email you the updated version.",
     "If you'd like a second opinion on one of your policies, just reply to this email.",
-    "Ajay Singh, Registered Nurse\nVitalScale Digital",
+    "Ajay Singh\nVitalScale Digital",
     "Don't want checklist updates? Reply with \"unsubscribe\" and we'll take you off the list.",
   ];
   const message = {
