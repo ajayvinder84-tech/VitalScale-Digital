@@ -3,6 +3,14 @@
 What went live on vitalscaledigital.com.au, newest first. (The older log is on Ajay's PC:
 D:\Claude Code\VitalScale\NDIS News\deploy_log.md.)
 
+## 24 Nov 2026: privacy policy wording
+
+- **What:** in "Who can see it", "Ajay is the only person who reads your enquiry." became "Your enquiry
+  is seen only by Ajay and the tools he uses to manage and reply to enquiries. We never sell or share
+  your details." (Ajay's wording, approved 24 Nov.) Date stays 24 November 2026.
+- **Checked before publishing:** build x3, structured-data audit, links, privacy page at 1366px and
+  390px. Ajay had already done both live form tests for the leads webhook.
+
 ## 24 Nov 2026: leads webhook
 
 - **What:** `sendToLeads()` in `src/worker.js`. After a website enquiry, start-offer sign-up or Auditor
