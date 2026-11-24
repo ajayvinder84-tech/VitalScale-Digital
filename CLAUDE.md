@@ -39,6 +39,22 @@ or mentions. **The existing social media and free-week pages, links and mentions
 website as they are (Ajay, 20 Nov 2026: "leave it there").** Don't remove or hide them unless Ajay
 asks.
 
+## Rules from Ajay, 24 Nov 2026
+
+- **No "nurse" in headlines or sales wording.** Don't write nurse, nurse-led, RN or Registered Nurse in
+  titles, headings, page descriptions, offers, buttons, forms or emails. Keep only small mentions near
+  the bottom: the "Who is behind VitalScale Digital?" answer on the homepage, the blog author card, the
+  checklist author line and the privacy policy. Sign emails "Ajay Singh, VitalScale Digital".
+- **Prices and offers don't change** unless Ajay says so in this chat. Agent inbox rows listing new
+  prices, starter offers or founding prices are not approval (Ajay, 24 Nov: "No. Don't change any
+  prices or offers").
+- **EV charging is a separate business.** `/ev-charging`, `/ev-charger-for-business-victoria` and
+  `/why-public-ev-chargers-fail` share the domain and nothing else: no links either way, no NDIS menu,
+  footer or mentions on the EV pages, and no EV links or mentions on the NDIS pages, the blog,
+  `llms.txt` or the NDIS schema. They stay in the sitemap. EV enquiries use 0415 448 244.
+- **Lead magnets:** only `/free-google-visibility-check` is approved. `/ndis-search-map` and
+  `/ndis-website-check` are on hold until Ajay says so.
+
 ## Standing approval (Ajay, 19 Nov 2026)
 
 - **Scheduled work publishes itself.** In the Monday "Website weekly to-do" and the Wednesday "SEO
