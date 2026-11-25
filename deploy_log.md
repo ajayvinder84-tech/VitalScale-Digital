@@ -3,6 +3,14 @@
 What went live on vitalscaledigital.com.au, newest first. (The older log is on Ajay's PC:
 D:\Claude Code\VitalScale\NDIS News\deploy_log.md.)
 
+## 25 Nov 2026: "No promised outcomes" label removed
+
+- **What:** the "No promised outcomes" item is gone from the trust strip (home, checks, pricing, start)
+  and from the "Why VitalScale" lists (free demo, free week, policy check, visibility check). Ajay asked,
+  "remove and publish". The rule itself hasn't changed: the site still never promises outcomes, and the
+  FAQ "Do you promise NDIS registration or audit results?" stays.
+- **Checked before publishing:** build x3, structured-data audit, links, 20 pages at 1366px and 390px.
+
 ## 25 Nov 2026: navy and yellow rebrand
 
 - **What:** Ajay's rebrand (option B). Navy #0F2A44 and yellow #F5B700 on every page, light top
