@@ -230,10 +230,15 @@ function renderChangesPage(template, { items, last_checked }, posts) {
   const url = "https://vitalscaledigital.com.au/ndis-changes";
   const title = "NDIS Changes 2026: What Providers Need to Know | VitalScale";
   const description = "The NDIS changes and reforms that affect providers, in plain English, checked against official NDIS sources every Monday.";
-  const cards = items.map((item) => {
+  // Each change has its own address on the page (/ndis-changes#its-headline), so posts can link to it.
+  const anchor = (item) => item.headline.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const archivePath = join(root, "src", "data", "ndis-news-archive.json");
+  const earlier = existsSync(archivePath) ? JSON.parse(readFileSync(archivePath, "utf8")).items : [];
+  const card = (item, checked) => {
     const host = new URL(item.source_url).hostname.replace(/^www\./, "");
     const tag = item.status === "EXPECTED" ? `<span class="tag tag-signal">Expected, not final</span>` : "";
-    return `<article class="change">
+    const lastChecked = checked ? `<span aria-hidden="true">·</span>Last checked ${formatDate(checked)}` : "";
+    return `<article class="change" id="${anchor(item)}">
     <div class="change-head"><span class="change-when">${escape(item.when)}</span>${tag}</div>
     <h2>${escape(item.headline)}</h2>
     <dl class="change-facts">
@@ -241,9 +246,22 @@ function renderChangesPage(template, { items, last_checked }, posts) {
       <div><dt>Who it affects</dt><dd>${escape(item.who_it_affects)}</dd></div>
       <div><dt>What to do</dt><dd>${escape(item.what_to_do)}</dd></div>
     </dl>
-    <p class="change-source"><a href="${escape(item.source_url)}" target="_blank" rel="noopener">Read it on ${escape(host)}<span class="visually-hidden"> (opens in a new tab)</span></a><span aria-hidden="true">·</span>Published ${formatDate(item.source_published)}</p>
+    <p class="change-source"><a href="${escape(item.source_url)}" target="_blank" rel="noopener">Read it on ${escape(host)}<span class="visually-hidden"> (opens in a new tab)</span></a><span aria-hidden="true">·</span>Published ${formatDate(item.source_published)}${lastChecked}</p>
   </article>`;
-  }).join("\n  ");
+  };
+  const cards = items.map((item) => card(item)).join("\n  ");
+  const jump = [...items, ...earlier].map((item) => `<li><a href="#${anchor(item)}">${escape(item.headline)}</a></li>`).join("");
+  const earlierSection = earlier.length ? `<section id="earlier-changes"><div class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">NDIS news so far</span>
+    <h2>Earlier NDIS changes in 2026</h2>
+    <p class="muted">Our weekly list only holds 4 changes, so older ones move down here. You'll see the date we last checked each one against the official source. Rules move. Open the official link before you act on any of them.</p>
+  </div>
+  <div class="changes">
+  ${earlier.map((item) => card(item, item.last_checked)).join("\n  ")}
+  </div>
+</div></section>
+` : "";
   const main = `<section class="hero"><div class="wrap">
   <div class="hero-copy">
     <span class="eyebrow">Updated every Monday</span>
@@ -252,12 +270,13 @@ function renderChangesPage(template, { items, last_checked }, posts) {
   </div>
 </div></section>
 <section class="band"><div class="wrap">
+  <nav class="changes-jump" aria-label="On this page"><span class="eyebrow">On this page</span><ul>${jump}</ul></nav>
   <div class="changes">
   ${items.length ? cards : `<p class="news-empty">No major NDIS changes this week.</p>`}
   </div>
   <p class="muted small changes-note">This is general information, not legal advice. Always check the official source before you act.</p>
 </div></section>
-${claiming90()}<section id="reforms"><div class="wrap">
+${earlierSection}${claiming90()}<section id="reforms"><div class="wrap">
   <div class="section-head">
     <span class="eyebrow">Our guides</span>
     <h2>NDIS reforms 2026</h2>
