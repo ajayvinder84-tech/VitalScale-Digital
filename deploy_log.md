@@ -3,6 +3,22 @@
 What went live on vitalscaledigital.com.au, newest first. (The older log is on Ajay's PC:
 D:\Claude Code\VitalScale\NDIS News\deploy_log.md.)
 
+## 26 Nov 2026: realistic Google card and NDIS news section
+
+- **Homepage card:** the "found on Google" card is redrawn like a real phone search result (search bar,
+  small map, listing with rating, hours, Call / Directions / Website buttons). The rating is invented,
+  so the card is marked "Example only".
+- **NDIS news section on /ndis-changes:** "Earlier NDIS changes in 2026" keeps the items that dropped
+  off the weekly list, word for word from the researcher's earlier files, each with its official link
+  and "last checked" date. Each change has its own link (`/ndis-changes#its-headline`) and there is a
+  row of quick links at the top.
+- **Keeps itself up to date:** `scripts/news-archive.mjs` runs in the Monday news routine (CLAUDE.md
+  step 5) and writes `src/data/ndis-news-archive.json`. Headlines in its `hidden` list never show.
+- **Checked before publishing:** build x3, structured-data audit, every internal link, every page at
+  1366px and 390px. The 4-sentence intro to the news section scored 61.6 on the humaniser (pass mark
+  75); Ajay read and approved the wording. Ajay: "yes, publish".
+- **Not checked:** the live site (not reachable from the cloud computer).
+
 ## 25 Nov 2026: "No promised outcomes" label removed
 
 - **What:** the "No promised outcomes" item is gone from the trust strip (home, checks, pricing, start)
