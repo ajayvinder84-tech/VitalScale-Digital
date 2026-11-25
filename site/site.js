@@ -63,6 +63,9 @@ if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-mot
     // Things already on screen when the page opens are shown straight away
     if (el.getBoundingClientRect().top < window.innerHeight) return;
     el.classList.add("reveal");
+    // Cards in the same row arrive one after another, not all at once
+    var place = Array.prototype.indexOf.call(el.parentNode.children, el);
+    if (place > 0 && place < 6) el.style.transitionDelay = (place * 80) + "ms";
     revealObserver.observe(el);
   });
 }
