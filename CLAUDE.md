@@ -148,10 +148,13 @@ approval. Never research, write or reword the news yourself.
      do) is under 80 words
 4. **Already live?** If the file has the same content as `src/data/ndis-news.json`, report
    "Already live, nothing changed" and stop.
-5. **Copy it.** Save it over `src/data/ndis-news.json` exactly as it is. Change nothing else. Run
-   `git diff --stat` and confirm `src/data/ndis-news.json` is the only changed file.
+5. **Copy it.** Save it over `src/data/ndis-news.json` exactly as it is. Then run
+   `node scripts/news-archive.mjs`: it moves any item that dropped off this week, word for word, into
+   `src/data/ndis-news-archive.json` (the "Earlier NDIS changes" section on `/ndis-changes`). Change
+   nothing else. Run `git diff --stat` and confirm those two data files are the only changed files.
+   If an archived item just repeats a newer one, add its headline to `hidden` in the archive file.
 6. **Build.** Run `node scripts/build.mjs`. It re-checks the file and builds the pages. If it fails,
-   `git checkout -- src/data/ndis-news.json`, stop without publishing and report the error.
+   `git checkout -- src/data/`, stop without publishing and report the error.
 7. **Publish.** Commit with the message `NDIS news YYYY-MM-DD` (today) and `git push origin main`.
    Cloudflare deploys it within a few minutes.
 8. **Report.** Finish with a short message in simple English, 6 lines or fewer: the Last checked

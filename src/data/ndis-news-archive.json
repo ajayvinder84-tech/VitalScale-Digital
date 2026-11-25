@@ -1,0 +1,52 @@
+{
+  "hidden": [
+    "Gifts and perks to win clients are banned",
+    "Claims must be made within 90 days"
+  ],
+  "items": [
+    {
+      "headline": "New ban on inducements starts 20 November",
+      "whats_changing": "Providers must not give or offer gifts or benefits that are likely to win or keep participants. Genuine discounts and your own merchandise are exceptions.",
+      "who_it_affects": "All NDIS providers",
+      "when": "20 November 2026",
+      "what_to_do": "Review any sign-up offers, referral gifts or promotions, and check whether this applies to you.",
+      "status": "VERIFIED",
+      "source_url": "https://www.legislation.gov.au/C2026A00066",
+      "source_published": "2026-08-20",
+      "last_checked": "2026-11-16"
+    },
+    {
+      "headline": "Registration expected to expand to high-risk supports",
+      "whats_changing": "Mandatory registration is set to expand to high-risk supports, such as personal care. It starts in July 2027, with everyone in scope by December 2030. The final list isn't published yet.",
+      "who_it_affects": "Unregistered providers of high-risk supports, such as personal care.",
+      "when": "From 1 Jul 2027",
+      "what_to_do": "If you're unregistered and deliver personal care, start preparing for registration now.",
+      "status": "EXPECTED",
+      "source_url": "https://www.health.gov.au/resources/publications/securing-the-ndis-for-future-generations-timeline-0",
+      "source_published": "2026-09-15",
+      "last_checked": "2026-11-02"
+    },
+    {
+      "headline": "SIL and digital platform providers must be registered",
+      "whats_changing": "Supported independent living (SIL) and NDIS digital platform providers must be registered with the NDIS Commission.",
+      "who_it_affects": "Providers of SIL and businesses that run NDIS digital platforms.",
+      "when": "Since 1 Jul 2026",
+      "what_to_do": "If you deliver SIL or run a digital platform, check your registration covers that service before you deliver it.",
+      "status": "VERIFIED",
+      "source_url": "https://www.ndis.gov.au/news/11596-crackdown-sales-ndis-businesses-mandatory-registration-set-expand-1-july",
+      "source_published": "2026-06-30",
+      "last_checked": "2026-10-25"
+    },
+    {
+      "headline": "Keep payment records for 7 years",
+      "whats_changing": "Providers must keep records of the NDIS payments they receive for 7 years. Not keeping them can lead to a civil penalty.",
+      "who_it_affects": "All providers paid with NDIS funds.",
+      "when": "Law passed Aug 2026",
+      "what_to_do": "Check how long you keep invoices, service records and payment records, and make it at least 7 years.",
+      "status": "VERIFIED",
+      "source_url": "https://www.ndis.gov.au/ndis-laws/securing-ndis-future-generations",
+      "source_published": "2026-08-20",
+      "last_checked": "2026-10-25"
+    }
+  ]
+}
