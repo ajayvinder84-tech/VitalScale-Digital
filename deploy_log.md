@@ -3,6 +3,26 @@
 What went live on vitalscaledigital.com.au, newest first. (The older log is on Ajay's PC:
 D:\Claude Code\VitalScale\NDIS News\deploy_log.md.)
 
+## 25 Nov 2026: navy and yellow rebrand
+
+- **What:** Ajay's rebrand (option B). Navy #0F2A44 and yellow #F5B700 on every page, light top
+  sections, new wordmark logo with a small "v" and a capital yellow "S", new homepage top (the line
+  "Two things that help an NDIS business grow...", main button "Free Google visibility check", two
+  cards with the star rating kept). Applied from `2026-11-25 navy-yellow-rebrand.patch` with `git am`,
+  then changed in chat with Ajay.
+- **Premium layer:** gradient glow behind the homepage cards (`glow-hero.svg`), border trail on the
+  Google card, counting "from" prices, staggered fade-ins, spotlight on card hover. All off for
+  reduced motion. No library added.
+- **Icons:** new browser-tab and home-screen icon ("vS" with a dot above the v and a line under each
+  letter) and a new `og-image.png`. The 12 page-specific sharing pictures in `site/og/` are still in
+  the old style.
+- **Changed from the patch:** the homepage card label "Audit ready" became "Policy check" (site rule).
+- **EV pages:** take the new colours and logo, and stay separate from the NDIS pages.
+- **Not changed:** prices, offers, free-week mentions.
+- **Checked before publishing:** build x3, structured-data audit, 54 internal links, 20 pages at
+  1366px and 390px, each effect tested, reduced motion tested. Ajay approved the preview ("yes, publish").
+- **Not checked:** the live site and Lighthouse speed (not reachable from the cloud computer).
+
 ## 24 Nov 2026: privacy policy tidy-up
 
 - **What:** in "Who can see it", the sentence now ends "We never sell your details." and the repeated
