@@ -69,3 +69,50 @@ if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-mot
     revealObserver.observe(el);
   });
 }
+
+// Premium touches (25 Nov 2026). Both are skipped when the visitor has turned motion off.
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  // Counting numbers: each "from" price counts up to its real value once, as it comes into view.
+  if ("IntersectionObserver" in window) {
+    var countObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        countObserver.unobserve(entry.target);
+        var el = entry.target, end = Number(el.getAttribute("data-count")), started = null;
+        function step(now) {
+          if (started === null) started = now;
+          var t = Math.min((now - started) / 900, 1), eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = Math.round(end * (0.6 + 0.4 * eased)).toLocaleString("en-AU");
+          if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".service-price, .price-tag").forEach(function (price) {
+      var node = price.firstChild;
+      if (!node || node.nodeType !== 3) return;
+      var match = node.nodeValue.match(/^(.*\$)([\d,]{3,})(.*)$/);
+      if (!match) return;
+      var span = document.createElement("span");
+      span.className = "count";
+      span.setAttribute("data-count", match[2].replace(/,/g, ""));
+      span.textContent = match[2];
+      price.insertBefore(document.createTextNode(match[1]), node);
+      price.insertBefore(span, node);
+      node.nodeValue = match[3];
+      if (price.getBoundingClientRect().top >= window.innerHeight) countObserver.observe(span);
+    });
+  }
+  // Spotlight: tell each card where the pointer is, so the CSS can light that spot.
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document.querySelectorAll("#services .service, .facts li, .other-card, .work-card, .price-card, .change").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var box = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - box.left) + "px");
+        card.style.setProperty("--my", (e.clientY - box.top) + "px");
+        card.classList.add("spot");
+      });
+      card.addEventListener("pointerleave", function () { card.classList.remove("spot"); });
+    });
+  }
+}

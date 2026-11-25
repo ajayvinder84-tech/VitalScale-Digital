@@ -1201,15 +1201,35 @@ body, body::before { background: var(--page); }
   .hv-faded { display: none; }
 }
 
-/* A soft yellow and blue glow behind the two cards, slowly drifting */
+/* A soft navy and yellow blurred-gradient glow (glow-hero.svg, self-hosted) behind the two cards, slowly drifting */
 .hero-visual::before {
-  content: ""; position: absolute; inset: -8% -6% -10% -10%; z-index: 0; pointer-events: none; border-radius: 50%;
-  background: radial-gradient(42% 46% at 30% 34%, rgba(245, 183, 0, 0.34), transparent 70%), radial-gradient(46% 50% at 74% 70%, rgba(43, 92, 138, 0.26), transparent 72%);
-  filter: blur(28px); animation: hv-glow 12s ease-in-out infinite alternate;
+  content: ""; position: absolute; inset: -14% -10% -16% -14%; z-index: 0; pointer-events: none;
+  background: url("glow-hero.svg") center / 100% 100% no-repeat; animation: hv-glow 12s ease-in-out infinite alternate;
 }
 .hv-card { z-index: 1; }
 @keyframes hv-glow { from { transform: translate(0, 0) scale(1); } to { transform: translate(14px, -12px) scale(1.06); } }
 @media (max-width: 560px) { .hero-visual::before { inset: 0; } }
+
+/* Border trail: a small yellow glow travels slowly around the edge of the main card */
+@property --trail { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.hv-google::after {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 2px; pointer-events: none;
+  background: conic-gradient(from var(--trail), transparent 0 80%, rgba(245, 183, 0, 0.9) 93%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: hv-trail 7s linear infinite;
+}
+@keyframes hv-trail { to { --trail: 360deg; } }
+
+/* Counting prices keep their width while the digits change */
+:is(.service-price, .price-tag) .count { font-variant-numeric: tabular-nums; font-size: inherit; font-weight: inherit; color: inherit; }
+
+/* Spotlight: a faint yellow light follows the pointer across a card (mouse only; set by site.js) */
+@media (hover: hover) and (pointer: fine) {
+  :is(#services .service, .facts li, .other-card, .work-card, .price-card, .change).spot {
+    background-image: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(245, 183, 0, 0.13), transparent 70%);
+  }
+}
 
 /* Gentle lift on cards when pointed at */
 :is(#services .service, .facts li, .other-card, .work-card, .price-card, .price-row, .change) { transition: transform 0.25s, box-shadow 0.25s; }
@@ -1220,7 +1240,8 @@ body, body::before { background: var(--page); }
 .reveal.in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hl, .hv-card, .hv-audit i, .hero-visual::before { animation: none; }
+  .hl, .hv-card, .hv-audit i, .hero-visual::before, .hv-google::after { animation: none; }
+  .hv-google::after { display: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .btn-primary:hover, :is(.facts li, .other-card, .work-card, .price-card, .price-row, .change):hover { transform: none; }
 }
